@@ -1,0 +1,42 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.UniShop" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green</item>
+        <item name="colorSecondaryVariant">@color/green</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:fontFamily">@font/comfortaa_bold</item>
+        <item name="hintTextColor">#BFBBBB</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="CustomTextAppearance" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/CustomTextAppearance</item>
+        <item name="boxStrokeColor">@color/white</item>
+    </style>
+
+    <style name="AppCompatButtonGridLayout">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">96dp</item>
+        <item name="android:layout_marginStart">@dimen/margin_standard</item>
+        <item name="android:layout_marginTop">@dimen/margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+</resources>

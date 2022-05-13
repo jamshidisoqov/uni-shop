@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_small"
+    app:cardBackgroundColor="#302A2A"
+    app:cardCornerRadius="@dimen/margin_standard">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_standard"
+        android:padding="@dimen/margin_standard">
+
+        <TextView
+            android:id="@+id/tv_item_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_product_name"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_item_product_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_item_product_name"
+            android:fontFamily="sans-serif"
+            android:text="@string/default_product_name"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_item_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:text="@string/default_product_price"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/tv_item_product_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_item_product_price"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:fontFamily="sans-serif"
+            android:text="@string/default_product_count"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

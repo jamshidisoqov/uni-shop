@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.fragment_home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+
+        <argument
+            android:name="role"
+            android:defaultValue="ceo"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_addProductFragment"
+            app:destination="@id/addProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_salesFragment"
+            app:destination="@id/salesFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addProductFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.AddProductFragment"
+        android:label="fragment_add_product"
+        tools:layout="@layout/fragment_add_product" />
+    <fragment
+        android:id="@+id/salesFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.SalesFragment"
+        android:label="fragment_sales"
+        tools:layout="@layout/fragment_sales" />
+</navigation>

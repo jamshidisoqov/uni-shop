@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    tools:context=".presentation.feature_main.feature_products.fragment_add_product.dialog.NewCategoryDialog">
+
+    <RelativeLayout
+        android:id="@+id/container_header"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/add_new_category"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/ed_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/container_header"
+        android:layout_margin="@dimen/margin_standard"
+        android:backgroundTint="@color/green"
+        android:hint="@string/category_name"
+        android:importantForAutofill="no"
+        android:textColorHint="@color/hint" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_category"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ed_category_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/margin_standard"
+        android:background="@drawable/sign_in_btn_bg"
+        android:text="@string/add_new_category" />
+
+
+</RelativeLayout>

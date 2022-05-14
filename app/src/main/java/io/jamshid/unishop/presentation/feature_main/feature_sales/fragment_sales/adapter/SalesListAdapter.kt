@@ -13,7 +13,7 @@ import io.jamshid.unishop.domain.models.Product
 class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ListItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBindView(product: Product, position: Int) {
+        fun onBindView(product: Product) {
             binding.apply {
                 tvItemProductName.text = product.name
                 tvItemProductBrand.text = product.brand
@@ -21,7 +21,7 @@ class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
                 tvItemProductPrice.text = product.price.toString()
 
                 root.setOnClickListener {
-                    onItemClick?.invoke(product, position)
+                    onItemClick?.invoke(product)
                 }
             }
         }
@@ -34,7 +34,7 @@ class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = differ.currentList[position]
-        holder.onBindView(product, position)
+        holder.onBindView(product)
     }
 
     override fun getItemCount(): Int = differ.currentList.size
@@ -58,9 +58,9 @@ class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
 
     // Click Listeners
 
-    private var onItemClick: ((Product, Int) -> Unit)? = null
+    private var onItemClick: ((Product) -> Unit)? = null
 
-    fun setOnItemClickListener(onClick: (Product, Int) -> Unit) {
+    fun setOnItemClickListener(onClick: (Product) -> Unit) {
         onItemClick = onClick
     }
 }

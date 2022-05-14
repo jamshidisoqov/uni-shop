@@ -66,6 +66,15 @@
         app:layout_constraintVertical_bias="0.562"
         tools:listitem="@layout/list_item_product" />
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/loading"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/rcv_product_list"
+        app:layout_constraintLeft_toLeftOf="@id/rcv_product_list"
+        app:layout_constraintRight_toRightOf="@id/rcv_product_list"
+        app:layout_constraintTop_toTopOf="@id/rcv_product_list" />
+
     <RelativeLayout
         android:id="@+id/basket_container"
         android:layout_width="0dp"

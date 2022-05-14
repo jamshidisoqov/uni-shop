@@ -27,16 +27,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 findNavController().navigate(R.id.action_homeFragment_to_salesFragment)
             }
             financeContainer.setOnClickListener {
-                //findNavController().navigate(R.id.action_mainFragment_to_financeFragment)
+                //TODO: findNavController().navigate(R.id.action_mainFragment_to_financeFragment)
             }
             clientContainer.setOnClickListener {
-                //findNavController().navigate(R.id.action_mainFragment_to_clientFragment)
+                //TODO: findNavController().navigate(R.id.action_mainFragment_to_clientFragment)
             }
             warehouseContainer.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_addProductFragment)
             }
             debtContainer.setOnClickListener {
-                //findNavController().navigate(R.id.action_mainFragment_to_debtListFragment)
+                //TODO: findNavController().navigate(R.id.action_mainFragment_to_debtListFragment)
             }
         }
     }

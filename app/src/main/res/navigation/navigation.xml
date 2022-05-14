@@ -19,6 +19,7 @@
         <action
             android:id="@+id/action_homeFragment_to_addProductFragment"
             app:destination="@id/addProductFragment" />
+
         <action
             android:id="@+id/action_homeFragment_to_salesFragment"
             app:destination="@id/salesFragment" />
@@ -30,9 +31,27 @@
         android:name="io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
+
     <fragment
         android:id="@+id/salesFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.SalesFragment"
         android:label="fragment_sales"
-        tools:layout="@layout/fragment_sales" />
+        tools:layout="@layout/fragment_sales">
+
+        <action
+            android:id="@+id/action_salesFragment_to_basketFragment"
+            app:destination="@id/basketFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.BasketFragment"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket">
+
+        <argument
+            android:name="jsonString"
+            android:defaultValue="[]"
+            app:argType="string" />
+    </fragment>
 </navigation>

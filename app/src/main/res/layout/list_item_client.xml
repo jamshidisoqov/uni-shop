@@ -17,17 +17,10 @@
             android:id="@+id/tv_client_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:text="@string/lenavo"
             android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_client_name"
-            android:text="@string/default_product_price"
-            android:textColor="#D90707"
-            android:textSize="16sp"
             android:textStyle="bold" />
 
         <ImageView

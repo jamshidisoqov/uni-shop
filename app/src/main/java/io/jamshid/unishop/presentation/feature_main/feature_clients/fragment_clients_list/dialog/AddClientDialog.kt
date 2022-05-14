@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import io.jamshid.unishop.data.models.dto.ClientDto
 import io.jamshid.unishop.databinding.FragmentDialogAddClientBinding
-import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.OrderViewModel
+import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.ClientsListViewModel
 
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
 class AddClientDialog(
-    private var viewModel: OrderViewModel
+    private var viewModel: ClientsListViewModel
 ) : DialogFragment() {
 
 
@@ -44,10 +44,7 @@ class AddClientDialog(
                     dialog!!.dismiss()
                 }
             }
-
         }
-
-
         return binding!!.root
     }
 

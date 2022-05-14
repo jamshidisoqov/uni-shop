@@ -11,7 +11,7 @@ import retrofit2.http.POST
 interface ClientApi {
 
     @GET("/client/all")
-    suspend fun getAllClients(): List<ClientDto>
+    suspend fun getAllClients(): List<Client>
 
     @POST("client/create")
     suspend fun addClient(@Body clientDto: ClientDto): Result<Client>

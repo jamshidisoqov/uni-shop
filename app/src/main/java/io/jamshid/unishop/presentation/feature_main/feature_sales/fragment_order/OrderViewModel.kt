@@ -3,6 +3,8 @@ package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_orde
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.jamshid.unishop.data.models.dto.ClientDto
+import io.jamshid.unishop.data.models.dto.OutputDto
 import io.jamshid.unishop.data.remote.apis.ClientApi
 import io.jamshid.unishop.domain.models.Client
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,26 +24,25 @@ class OrderViewModel @Inject constructor(
         getAllClient()
     }
 
-    fun addClient(client: Client) {
+    fun addClient(client: ClientDto) {
         viewModelScope.launch {
             api.addClient(
-                clientDto = client.toClientDto()
+                clientDto = client
             )
         }
     }
 
-    fun getAllClient() {
+    private fun getAllClient() {
         viewModelScope.launch {
             _allClients.value = api
                 .getAllClients()
-                .map { it.toClient() }
         }
     }
 
-//    fun addSell(outputDto: OutputDto) {
-//        viewModelScope.launch {
-//
-//        }
-//    }
+    fun addSell(outputDto: OutputDto) {
+        viewModelScope.launch {
+
+        }
+    }
 
 }

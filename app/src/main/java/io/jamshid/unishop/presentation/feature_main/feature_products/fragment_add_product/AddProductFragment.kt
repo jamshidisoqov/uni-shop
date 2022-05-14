@@ -15,6 +15,7 @@ import io.jamshid.unishop.domain.models.Product
 import io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.adapter.CategorySpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.dialog.NewCategoryDialog
 import kotlinx.coroutines.flow.collectLatest
+import java.util.*
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
@@ -55,7 +56,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(FragmentAddPr
                     if (price <= minPrice && minPrice < maxPrice)
                         viewModel.addProduct(
                             Product(
-                                id = 0,
+                                id = UUID.randomUUID(),
                                 name = name,
                                 description = "birzat",
                                 brand = brand,

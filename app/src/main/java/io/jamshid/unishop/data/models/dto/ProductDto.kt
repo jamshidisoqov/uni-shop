@@ -1,11 +1,12 @@
 package io.jamshid.unishop.data.models.dto
 
 import io.jamshid.unishop.domain.models.Product
+import java.util.*
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
 data class ProductDto(
-    val id: Int? = null,
+    val id: UUID? = null,
     val name: String? = null,
     val description: String? = null,
     val brand: String? = null,
@@ -16,7 +17,7 @@ data class ProductDto(
     val categoryId: Int? = null,
 ) {
     fun toProduct() = Product(
-        id = id ?: 0,
+        id = id ?: UUID.randomUUID(),
         name = name ?: "",
         description = description ?: "",
         brand = brand ?: "",

@@ -1,11 +1,12 @@
 package io.jamshid.unishop.domain.models
 
 import io.jamshid.unishop.data.models.dto.ProductDto
+import java.util.*
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
 data class Product(
-    val id: Int,
+    val id: UUID,
     val name: String,
     val description: String,
     val brand: String,

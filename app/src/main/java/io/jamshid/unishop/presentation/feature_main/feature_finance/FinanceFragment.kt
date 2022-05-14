@@ -2,7 +2,9 @@ package io.jamshid.unishop.presentation.feature_main.feature_finance
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.databinding.FragmentFinanceBinding
 
@@ -26,8 +28,18 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
 
     private fun navigate() {
 
+        binding.apply {
 
-
+            containerBalance.setOnClickListener {
+                findNavController().navigate(R.id.action_financeFragment_to_incomeFragment)
+            }
+            containerExpanses.setOnClickListener {
+                findNavController().navigate(R.id.action_financeFragment_to_expansesFragment)
+            }
+            containerIncome.setOnClickListener {
+                findNavController().navigate(R.id.action_financeFragment_to_incomeFragment)
+            }
+        }
     }
 
 

@@ -23,6 +23,12 @@
         <action
             android:id="@+id/action_homeFragment_to_salesFragment"
             app:destination="@id/salesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_financeFragment"
+            app:destination="@id/financeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_warehouseFragment"
+            app:destination="@id/warehouseFragment" />
 
     </fragment>
 
@@ -62,4 +68,49 @@
         android:name="io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.OrderFragment"
         android:label="fragment_order"
         tools:layout="@layout/fragment_order" />
+    <fragment
+        android:id="@+id/financeFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.FinanceFragment"
+        android:label="fragment_finance"
+        tools:layout="@layout/fragment_finance" >
+        <action
+            android:id="@+id/action_financeFragment_to_incomeFragment"
+            app:destination="@id/incomeFragment" />
+        <action
+            android:id="@+id/action_financeFragment_to_expansesFragment"
+            app:destination="@id/expansesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/warehouseFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_warehouse.WarehouseFragment"
+        android:label="fragment_warehouse"
+        tools:layout="@layout/fragment_warehouse" />
+    <fragment
+        android:id="@+id/expansesFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.ExpansesFragment"
+        android:label="fragment_expanses"
+        tools:layout="@layout/fragment_expanses" >
+        <action
+            android:id="@+id/action_expansesFragment_to_addExpansesFragment"
+            app:destination="@id/addExpansesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/incomeFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.IncomeFragment"
+        android:label="fragment_income"
+        tools:layout="@layout/fragment_income" >
+        <action
+            android:id="@+id/action_incomeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.fragment_detail.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/addExpansesFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.fragment_add.AddExpansesFragment"
+        android:label="fragment_add_expanses"
+        tools:layout="@layout/fragment_add_expanses" />
 </navigation>

@@ -140,7 +140,7 @@
     <string name="remove_uz">Удалить</string>
     <string name="confirm_remove_uz">Вы действительно хотите удалить этот товар из корзины?</string>
     <string name="finance">Финанс</string>
-    <string name="expenses">Расходы</string>
+    <string name="expenses_dto">Расходы</string>
     <string name="expense_any">Другие</string>
     <string name="expense_administrative">Административные расходы</string>
     <string name="expense_rent">Аренда</string>
@@ -188,4 +188,6 @@
     <string name="err_valid_sum">Введите корректную сумму</string>
     <string name="warning">Вы уверены?</string>
     <string name="reports">Отчеты</string>
+    <string name="default_month">март\n2022 г.</string>
+    <string name="balance">Чистая прибыль</string>
 </resources>

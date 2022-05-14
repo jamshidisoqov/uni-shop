@@ -1,14 +1,8 @@
 package io.jamshid.unishop.presentation.feature_main.feature_finance
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.databinding.FragmentFinanceBinding
 
@@ -27,6 +21,12 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
     private val viewModel: FinanceViewModel by viewModels()
 
     override fun myCreateView(savedInstanceState: Bundle?) {
+        navigate()
+    }
+
+    private fun navigate() {
+
+
 
     }
 

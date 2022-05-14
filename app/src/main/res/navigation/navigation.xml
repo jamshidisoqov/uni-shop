@@ -53,5 +53,13 @@
             android:name="jsonString"
             android:defaultValue="[]"
             app:argType="string" />
+        <action
+            android:id="@+id/action_basketFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" />
 </navigation>

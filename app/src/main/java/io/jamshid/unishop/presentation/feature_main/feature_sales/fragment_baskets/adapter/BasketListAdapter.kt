@@ -20,15 +20,13 @@ class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
                 tvProductBrand.text = basketProductModel.product.brand
                 tvProductCountBasket.text = basketProductModel.product.quantity.toString()
 
+                imgAddProduct.setOnClickListener {
+                    onItemAddClick?.invoke(basketProductModel)
+                }
 
-//                imgAddProduct.setOnClickListener {
-//                    basketOnClickListener.plusProduct(outPut)
-//                    notifyItemChanged(position)
-//                }
-//                removeImg.setOnClickListener {
-//                    basketOnClickListener.minusProduct(outPut)
-//                    notifyItemChanged(position)
-//                }
+                removeImg.setOnClickListener {
+                    onItemRemoveClick?.invoke(basketProductModel)
+                }
             }
         }
     }
@@ -63,5 +61,11 @@ class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
 
     fun setOnAddClickListener(onClick: (BasketProductModel) -> Unit) {
         onItemAddClick = onClick
+    }
+
+    private var onItemRemoveClick: ((BasketProductModel) -> Unit)? = null
+
+    fun setOnRemoveClickListener(onClick: (BasketProductModel) -> Unit) {
+        onItemRemoveClick = onClick
     }
 }

@@ -7,6 +7,7 @@ data class OutputSales(
     val id: Long,
     val client: Client,
     val products: Set<OutputProduct>,
+    val paymentHistories: Set<PaymentHistory>,
     val status: PaymentStatus,
     val debtAmount: Double,
     val expiredDate: Date,

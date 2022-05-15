@@ -6,7 +6,7 @@ import java.util.*
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
 data class ProductDto(
-    val id: UUID? = null,
+    val id: Long? = null,
     val name: String? = null,
     val description: String? = null,
     val brand: String? = null,
@@ -17,7 +17,7 @@ data class ProductDto(
     val categoryId: Int? = null,
 ) {
     fun toProduct() = Product(
-        id = id ?: UUID.randomUUID(),
+        id = id!!,
         name = name ?: "",
         description = description ?: "",
         brand = brand ?: "",

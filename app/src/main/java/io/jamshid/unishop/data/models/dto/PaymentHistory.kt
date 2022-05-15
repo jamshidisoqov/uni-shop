@@ -9,7 +9,6 @@ class PaymentHistory(
     val id: Long,
     val amount: Double,
     val type: PaymentType,
-    val output: OutputSales,
     val createdDate: Timestamp,
     val createdBy: UUID
 )

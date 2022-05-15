@@ -53,9 +53,10 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
                 }
             }
 
-            navigate()
+
         }
 
+        navigate()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.saleProducts.collectLatest { products ->

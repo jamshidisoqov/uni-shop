@@ -4,7 +4,7 @@ import io.jamshid.unishop.domain.models.Category
 import java.util.*
 
 data class Product(
-    var id: UUID,
+    var id: Long,
     var name: String,
     var description: String,
     var brand: String,

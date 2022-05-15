@@ -6,7 +6,7 @@ import java.util.*
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
 data class Product(
-    val id: UUID,
+    val id: Long,
     val name: String,
     val description: String,
     val brand: String,

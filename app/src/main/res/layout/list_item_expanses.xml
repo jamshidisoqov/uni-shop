@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_small"
+    app:cardBackgroundColor="#282525"
+    app:cardCornerRadius="@dimen/margin_standard">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small">
+
+        <ImageView
+            android:id="@+id/img_expanse_category"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/margin_standart"
+            android:background="@drawable/circle_bg"
+            android:backgroundTint="#EA2CCD"
+            android:contentDescription="@string/todo"
+            android:padding="12dp"
+            android:src="@drawable/app_img" />
+
+        <TextView
+            android:id="@+id/tv_expanse_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/img_expanse_category"
+            android:text="@string/expense_office"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_expanse_summ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_expanse_name"
+            android:layout_toEndOf="@id/img_expanse_category"
+            android:text="@string/default_basket_summ"
+            android:textColor="#ED1919"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_expanse_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/default_user_name"
+            tools:ignore="RelativeOverlap" />
+
+
+        <TextView
+            android:id="@+id/tv_expanse_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_expanse_user_name"
+            android:layout_alignParentEnd="true"
+            android:text="@string/default_date" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

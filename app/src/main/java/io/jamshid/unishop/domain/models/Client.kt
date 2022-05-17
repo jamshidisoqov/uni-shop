@@ -1,6 +1,7 @@
 package io.jamshid.unishop.domain.models
 
 import io.jamshid.unishop.data.models.dto.ClientDto
+import java.io.Serializable
 import java.util.*
 
 data class Client(
@@ -12,7 +13,7 @@ data class Client(
     val createdDate: Date? = null,
     val updatedDate: Date? = null,
     val createdBy: UUID? = null
-) {
+) : Serializable {
     fun toClientDto() = ClientDto(
         fullName = fullName,
         phoneNumber = phoneNumber,

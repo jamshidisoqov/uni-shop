@@ -30,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 //TODO: findNavController().navigate(R.id.action_mainFragment_to_financeFragment)
             }
             clientContainer.setOnClickListener {
-                //TODO: findNavController().navigate(R.id.action_mainFragment_to_clientFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_clientsListFragment)
             }
             warehouseContainer.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_addProductFragment)

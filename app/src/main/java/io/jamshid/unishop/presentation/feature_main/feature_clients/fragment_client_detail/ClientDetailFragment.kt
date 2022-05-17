@@ -16,7 +16,7 @@ class ClientDetailFragment : BaseFragment<FragmentClientDetailBinding>(FragmentC
 
     override fun myCreateView(savedInstanceState: Bundle?) {
 
-        binding.vp2Client.adapter = ClientDetailPagerAdapter(this)
+        binding.vp2Client.adapter = ClientDetailPagerAdapter(this, arguments)
 
         TabLayoutMediator(
             binding.tabLayoutClient,

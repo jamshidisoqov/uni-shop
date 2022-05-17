@@ -4,6 +4,7 @@ import java.sql.Timestamp
 import java.util.*
 
 // Created by Jamshid Isoqov an 5/15/2022
+
 data class OutputSales(
     val id: Long,
     val client: Client,
@@ -11,8 +12,8 @@ data class OutputSales(
     val debtAmount: Double,
     val expiredDate: Date,
     val comment: String,
-    val amount:Double,
+    val amount: Double,
     val createdDate: Timestamp,
     val updatedDate: Timestamp,
-    val createdBy: UUID
+    val createdBy: UUID? = null
 )

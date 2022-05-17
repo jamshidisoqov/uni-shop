@@ -20,7 +20,10 @@ import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baske
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.adapter.OrderSpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.dialog.AddClientDialog
 import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 @AndroidEntryPoint
@@ -58,7 +61,6 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                 val clientId = (spinnerUser.selectedItem as Client).id
                 val costCash = edCash.text.toString().toDouble()
                 val costCard = edPlastic.text.toString().toDouble()
-                val expireDate = Date()
                 val comment = edComment.text.toString()
                 val cash = allSumma()
                 viewModel.addSell(
@@ -67,7 +69,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                         costCash = costCash,
                         costCard = costCard,
                         costDebt = -1 * cash + costCard + costCash,
-                        expiredDate = Date(dateInLong),
+                        expiredDate = dateInLong,
                         comment = comment,
                         products = getList()
                     )
@@ -88,9 +90,11 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
 
                 datePickerDialog.addOnPositiveButtonClickListener {
                     dateInLong = it
+                    val date1=Date(it)
+                    Timber.d("tip",date1)
+                    Timber.d(date1.toString())
+
                     val date = SimpleDateFormat("dd.MM.yyyy", Locale.ROOT).format(dateInLong)
-                    var dateForBackend =
-                        SimpleDateFormat("yyyy-MM-dd", Locale.ROOT).format(dateInLong)
                     binding.edPaymentDate.setText(date)
                 }
 

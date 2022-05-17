@@ -1,7 +1,6 @@
 package io.jamshid.unishop.data.models.dto
 
 import io.jamshid.unishop.domain.models.Product
-import java.util.*
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 

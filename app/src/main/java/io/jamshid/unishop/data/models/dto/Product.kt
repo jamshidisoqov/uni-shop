@@ -1,6 +1,7 @@
 package io.jamshid.unishop.data.models.dto
 
 import io.jamshid.unishop.domain.models.Category
+import java.sql.Timestamp
 import java.util.*
 
 data class Product(
@@ -13,7 +14,7 @@ data class Product(
     var minimumPrice: Double,
     var maximumPrice: Double,
     var category: Category,
-    var createdDate: Date,
-    var updatedDate: Date,
+    var createdDate: Timestamp,
+    var updatedDate: Timestamp,
     var createdBy: UUID
 )

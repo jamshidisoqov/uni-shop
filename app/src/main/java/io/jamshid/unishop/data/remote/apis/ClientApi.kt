@@ -1,7 +1,7 @@
 package io.jamshid.unishop.data.remote.apis
 
+import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.ClientDto
-import io.jamshid.unishop.domain.models.Client
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -10,7 +10,7 @@ import retrofit2.http.POST
 
 interface ClientApi {
 
-    @GET("/client/all")
+    @GET("client/all")
     suspend fun getAllClients(): List<Client>
 
     @POST("client/create")

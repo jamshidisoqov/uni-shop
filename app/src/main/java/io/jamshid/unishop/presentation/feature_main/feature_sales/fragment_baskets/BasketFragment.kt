@@ -13,6 +13,7 @@ import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.databinding.FragmentBasketBinding
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.adapter.BasketListAdapter
+import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
@@ -55,6 +56,7 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>(FragmentBasketBinding
             }
 
             btnNextProduct.setOnClickListener {
+                Basket.sellProduct = viewModel.saleProducts.value as ArrayList<BasketProductModel>
                 findNavController().navigate(R.id.action_basketFragment_to_orderFragment)
             }
 

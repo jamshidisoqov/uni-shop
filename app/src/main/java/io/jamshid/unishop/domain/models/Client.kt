@@ -4,7 +4,7 @@ import io.jamshid.unishop.data.models.dto.ClientDto
 import java.util.*
 
 data class Client(
-    val id: UUID,
+    val id: Long,
     val fullName: String,
     val phoneNumber: String,
     val personalType: Byte,

@@ -7,7 +7,7 @@ import java.util.*
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
 data class BasketProductModel(
-    val id: UUID,
+    val id: Long,
     val product: Product,
     val quantity: Int,
     val cost: Double,

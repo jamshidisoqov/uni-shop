@@ -18,7 +18,7 @@ class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
 
                 tvProductName.text = basketProductModel.product.name
                 tvProductBrand.text = basketProductModel.product.brand
-                tvProductCountBasket.text = basketProductModel.product.quantity.toString()
+                tvProductCountBasket.text = basketProductModel.quantity.toString()
 
                 imgAddProduct.setOnClickListener {
                     onItemAddClick?.invoke(basketProductModel)

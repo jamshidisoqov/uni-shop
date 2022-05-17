@@ -31,8 +31,11 @@ class SalesViewModel @Inject constructor(
             else
                 ArrayList()
 
+
+
+
             for (i in products.indices) {
-                if (products[i].id == basketProductModel.id) {
+                if (products[i].product.id == basketProductModel.product.id) {
                     val data = products[i].copy(
                         quantity = products[i].quantity + basketProductModel.quantity
                     )

@@ -60,18 +60,19 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.saleProducts.collectLatest { products ->
-                binding.apply {
+
                     "${products.size} product".also {
-                        tvCounterBasket.text = it
+                        binding.tvCounterBasket.text = it
                     }
                     var summa = 0.0
                     for (product in products) {
                         summa += product.cost * product.quantity
                     }
                     "$summa UZS".also {
-                        tvProductBasketSumm.text = it
+                        binding.tvProductBasketSumm.text = it
                     }
-                }
+
+
             }
         }
 

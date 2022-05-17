@@ -9,7 +9,7 @@ data class OutputSales(
     val client: Client,
     val status: PaymentStatus,
     val debtAmount: Double,
-    val expiredDate: Date,
+    val expiredDate: Timestamp,
     val comment: String,
     val amount:Double,
     val createdDate: Timestamp,

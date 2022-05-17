@@ -3,9 +3,9 @@ package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_cl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.ClientDto
 import io.jamshid.unishop.data.remote.apis.ClientApi
-import io.jamshid.unishop.domain.models.Client
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

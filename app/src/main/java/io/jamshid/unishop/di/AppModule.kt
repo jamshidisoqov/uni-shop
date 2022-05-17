@@ -9,8 +9,11 @@ import io.jamshid.unishop.data.remote.apis.CategoryApi
 import io.jamshid.unishop.data.remote.apis.ClientApi
 import io.jamshid.unishop.data.remote.apis.ProductApi
 import io.jamshid.unishop.data.remote.apis.SaleApi
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
@@ -26,6 +29,27 @@ object AppModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
+
+    @Provides
+    fun providesLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
+
+
+
+
+    @Provides
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        val okHttpClient = OkHttpClient().newBuilder()
+
+        okHttpClient.callTimeout(40, TimeUnit.SECONDS)
+        okHttpClient.connectTimeout(40, TimeUnit.SECONDS)
+        okHttpClient.readTimeout(40, TimeUnit.SECONDS)
+        okHttpClient.writeTimeout(40, TimeUnit.SECONDS)
+        okHttpClient.addInterceptor(loggingInterceptor)
+        okHttpClient.build()
+        return okHttpClient.build()
+    }
 
     @Provides
     @Singleton

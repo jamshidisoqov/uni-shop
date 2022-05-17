@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.databinding.SpinnerItemOrderBinding
-import io.jamshid.unishop.domain.models.Client
 
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
@@ -30,5 +30,6 @@ class OrderSpinnerAdapter : BaseAdapter() {
 
     fun submitList(list: List<Client>) {
         this.list = list
+        notifyDataSetChanged()
     }
 }

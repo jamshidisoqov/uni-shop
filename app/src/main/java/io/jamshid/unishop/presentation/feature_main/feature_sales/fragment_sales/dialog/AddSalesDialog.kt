@@ -1,5 +1,6 @@
 package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.dialog
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ class AddSalesDialog(
     private var product: Product
 ) : DialogFragment() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,9 +35,9 @@ class AddSalesDialog(
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
         return DilogAddProductBinding.inflate(inflater, container, false).apply {
 
-            tvMax.text = product.maximumPrice.toString()
-            tvMin.text = product.minimumPrice.toString()
-            tvCost.text = product.price.toString()
+            tvMax.text = "Максимальная цена:${product.maximumPrice}"
+            tvMin.text = "Минимальная цена:${product.minimumPrice}"
+            tvCost.text = "Себестоимость:${product.price}"
             edPrices.setText(product.maximumPrice.toString())
 
             imageView2.setOnClickListener {

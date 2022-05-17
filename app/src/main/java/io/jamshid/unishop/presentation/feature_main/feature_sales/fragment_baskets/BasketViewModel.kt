@@ -28,7 +28,7 @@ class BasketViewModel : ViewModel() {
     fun removeProduct(basket: BasketProductModel) {
         val products = saleProducts.value as ArrayList
         val ind = products.indexOf(basket)
-        if (products[ind].quantity < basket.quantity)
+        if (products[ind].quantity >0)
             products[ind] = products[ind].copy(
                 quantity = products[ind].quantity - 1
             )

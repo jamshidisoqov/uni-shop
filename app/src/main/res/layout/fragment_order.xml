@@ -107,16 +107,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_small">
 
-                <Spinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner_user"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="@dimen/margin_standard"
                     android:layout_weight="1"
                     android:backgroundTint="@color/green"
-                    android:hint="@string/choose_client"
-                    android:textColorHint="@color/hint"
-                    android:textSize="14sp" />
+                    style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
+                    android:popupBackground="@drawable/spinner_popup_bg"
+                    />
 
                 <ImageView
                     android:id="@+id/img_add_client"

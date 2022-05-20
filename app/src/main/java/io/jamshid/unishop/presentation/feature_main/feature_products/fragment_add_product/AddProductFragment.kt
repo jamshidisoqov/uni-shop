@@ -53,7 +53,7 @@ class AddProductFragment :
                         categoryId > 0
 
                 if (fieldsNotValid) {
-                    if (price <= minPrice && minPrice < maxPrice)
+                    if (price <= minPrice && minPrice < maxPrice) {
                         viewModel.addProduct(
                             Product(
                                 id = 0,
@@ -67,10 +67,18 @@ class AddProductFragment :
                                 categoryId = categoryId
                             )
                         )
-                    else {
-                        edProductPrice.error = "To'ldirilishi shart"
-                        edProductMaximumPrices.error = "To'ldirilishi shart"
-                        edProductMinimumPrices.error = "To'ldirilishi shart"
+                        binding.apply {
+                            edProductBrand.setText("")
+                            edProductName.setText("")
+                            edProductQuantity.setText("")
+                            edProductPrice.setText("")
+                            edProductMinimumPrices.setText("")
+                            edProductMaximumPrices.setText("")
+                        }
+                    } else {
+                        edProductPrice.error = "Notog'ri kiritilish"
+                        edProductMaximumPrices.error = "Notog'ri kiritilish"
+                        edProductMinimumPrices.error = "Notog'ri kiritilish"
                     }
                     viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                         viewModel.product.collectLatest {

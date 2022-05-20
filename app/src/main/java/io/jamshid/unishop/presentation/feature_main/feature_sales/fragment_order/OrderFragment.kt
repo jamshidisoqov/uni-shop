@@ -4,14 +4,18 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
+import io.jamshid.unishop.common.extension_functions.getOnlyDigits
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.OutProductDto
 import io.jamshid.unishop.data.models.dto.OutputDto
@@ -19,11 +23,10 @@ import io.jamshid.unishop.databinding.FragmentOrderBinding
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.adapter.OrderSpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.dialog.AddClientDialog
+import io.jamshid.unishop.utils.MaskWatcherPayment
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 @AndroidEntryPoint
@@ -32,6 +35,8 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
     private val viewModel: OrderViewModel by viewModels()
 
     private var dateInLong = System.currentTimeMillis()
+
+    private var allSumm = 0.0
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -46,8 +51,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
         }
 
 
-        Basket.sellProduct
-
+        allSumm = allSumma()
         binding.apply {
             imgAddClient.setOnClickListener {
                 AddClientDialog(viewModel).also {
@@ -59,8 +63,8 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
             }
             btnPayment.setOnClickListener {
                 val clientId = (spinnerUser.selectedItem as Client).id
-                val costCash = edCash.text.toString().toDouble()
-                val costCard = edPlastic.text.toString().toDouble()
+                val costCash = edCash.text.toString().getOnlyDigits().toDouble()
+                val costCard = edPlastic.text.toString().getOnlyDigits().toDouble()
                 val comment = edComment.text.toString()
                 val cash = allSumma()
                 viewModel.addSell(
@@ -74,7 +78,35 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                         products = getList()
                     )
                 )
+                if (viewModel.addSalesStatus.value == 200) {
+                    Snackbar.make(binding.btnPayment, "Successfully added", Snackbar.LENGTH_SHORT)
+                        .show()
+                    findNavController().navigateUp()
+                } else {
+                    Snackbar.make(binding.btnPayment, "Error", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             }
+
+            binding.edCash.addTextChangedListener(MaskWatcherPayment(binding.edCash))
+            binding.edPlastic.addTextChangedListener(MaskWatcherPayment(binding.edPlastic))
+
+            binding.edCash.addTextChangedListener {
+                val min = allSumm - it.toString().getOnlyDigits().toDouble()
+                if (binding.edPlastic.text.toString().isNotEmpty())
+                    min - binding.edPlastic.text.toString().getOnlyDigits().toDouble()
+                tvProductDebtSumm.text = "$min"
+            }
+
+            binding.edPlastic.addTextChangedListener {
+                val min = allSumm - it.toString().getOnlyDigits()
+                    .toDouble()
+                if (edCash.text.toString().isNotEmpty())
+                    min - edCash.text.toString().getOnlyDigits().toDouble()
+                tvProductDebtSumm.text = "$min"
+            }
+
+
 
             binding.edPaymentDate.setOnClickListener {
                 val datePickerDialog = MaterialDatePicker.Builder.datePicker()
@@ -90,8 +122,8 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
 
                 datePickerDialog.addOnPositiveButtonClickListener {
                     dateInLong = it
-                    val date1=Date(it)
-                    Timber.d("tip",date1)
+                    val date1 = Date(it)
+                    Timber.d("tip", date1)
                     Timber.d(date1.toString())
 
                     val date = SimpleDateFormat("dd.MM.yyyy", Locale.ROOT).format(dateInLong)
@@ -108,6 +140,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                 )
             }
         }
+        binding.tvProductAllSumm.text = "$allSumm"
         binding.spinnerUser.adapter = adapter
 
     }

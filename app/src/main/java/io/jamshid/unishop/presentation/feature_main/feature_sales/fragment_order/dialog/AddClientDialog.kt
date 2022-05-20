@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import io.jamshid.unishop.R
 import io.jamshid.unishop.data.models.dto.ClientDto
 import io.jamshid.unishop.databinding.FragmentDialogAddClientBinding
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.OrderViewModel
@@ -27,6 +28,9 @@ class AddClientDialog(
 
         binding = FragmentDialogAddClientBinding.inflate(inflater, container, false)
 
+
+        dialog!!.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
+
         binding!!.apply {
             btnAddClient.setOnClickListener {
                 val name = edClientName.text.toString()
@@ -43,6 +47,7 @@ class AddClientDialog(
                     )
                     dialog!!.dismiss()
                 }
+
             }
 
         }

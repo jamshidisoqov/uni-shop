@@ -107,7 +107,11 @@
         android:id="@+id/detailsFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.fragment_detail.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="outPut"
+            app:argType="io.jamshid.unishop.data.models.dto.OutputSales" />
+    </fragment>
     <fragment
         android:id="@+id/addExpansesFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.fragment_add.AddExpansesFragment"

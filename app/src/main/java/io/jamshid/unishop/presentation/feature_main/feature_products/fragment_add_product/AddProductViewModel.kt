@@ -48,7 +48,7 @@ class AddProductViewModel @Inject constructor(
         viewModelScope.launch {
             val productDto = product.toProductDto()
             val result = productApi.addProduct(productDto).body
-            _productChannel.send(result.toProduct())
+            _productChannel.send(result!!.toProduct())
         }
     }
 

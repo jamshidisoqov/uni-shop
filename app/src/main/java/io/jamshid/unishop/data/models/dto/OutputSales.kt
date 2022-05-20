@@ -1,5 +1,6 @@
 package io.jamshid.unishop.data.models.dto
 
+import java.io.Serializable
 import java.sql.Timestamp
 import java.util.*
 
@@ -15,4 +16,4 @@ data class OutputSales(
     val createdDate: Timestamp,
     val updatedDate: Timestamp,
     val createdBy: UUID
-)
+):Serializable

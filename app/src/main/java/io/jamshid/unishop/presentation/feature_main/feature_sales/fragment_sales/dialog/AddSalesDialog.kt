@@ -79,6 +79,10 @@ class AddSalesDialog(
                     edPrices.error = "Mahsulot summasi notog'ri kiritildi"
                 }
             }
+
+            btnCloseDialog.setOnClickListener {
+                dialog!!.dismiss()
+            }
         }.root
     }
 }

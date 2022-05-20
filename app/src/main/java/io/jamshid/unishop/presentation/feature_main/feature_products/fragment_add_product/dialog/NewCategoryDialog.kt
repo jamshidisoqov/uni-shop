@@ -23,6 +23,7 @@ class NewCategoryDialog(
             btnAddCategory.setOnClickListener {
                 val categoryName = edCategoryName.text.toString()
                 viewModel.addCategory(Category(0, categoryName))
+                dialog!!.dismiss()
             }
         }
         return binding.root

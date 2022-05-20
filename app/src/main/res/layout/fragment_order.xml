@@ -139,6 +139,7 @@
                 android:backgroundTint="@color/green"
                 android:hint="@string/payment_cash"
                 android:maxLength="16"
+                android:inputType="number"
                 android:textColorHint="@color/hint"
                 android:textSize="14sp" />
 
@@ -152,6 +153,7 @@
                 android:layout_marginBottom="@dimen/margin_small"
                 android:backgroundTint="@color/green"
                 android:hint="@string/payment_card"
+                android:inputType="number"
                 android:maxLength="16"
                 android:textColorHint="@color/hint"
                 android:textSize="14sp" />
@@ -165,6 +167,7 @@
                 android:layout_marginEnd="@dimen/margin_bigger"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:backgroundTint="@color/green"
+                android:focusable="false"
                 android:drawableEnd="@drawable/ic_calendar"
                 android:hint="@string/debt_pay_date_helper"
                 android:textColorHint="@color/hint"

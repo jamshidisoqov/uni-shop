@@ -2,6 +2,7 @@ package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_cl
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
@@ -13,10 +14,11 @@ import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_cli
 class ClientDetailFragment : BaseFragment<FragmentClientDetailBinding>(FragmentClientDetailBinding::inflate) {
 
     private val viewModel: ClientDetailViewModel by viewModels()
+    private val args:ClientDetailFragmentArgs by navArgs()
 
     override fun myCreateView(savedInstanceState: Bundle?) {
 
-        binding.vp2Client.adapter = ClientDetailPagerAdapter(this)
+        binding.vp2Client.adapter = ClientDetailPagerAdapter(args.clientId,this)
 
         TabLayoutMediator(
             binding.tabLayoutClient,

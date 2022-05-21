@@ -10,26 +10,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_standart">
+        android:padding="@dimen/margin_small">
 
         <TextView
             android:id="@+id/tv_summ_payment_cash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_standart"
-            android:text="Naqd:124 000 UZS"
+            android:text="@string/default_basket_summ"
             android:textColor="@color/green"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_summ_payment_plastic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_summ_payment_cash"
-            android:layout_marginStart="@dimen/margin_standart"
-            android:text="Karta:124 000 UZS"
-            android:textColor="#03A9F4"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/cash_img"
@@ -37,24 +27,26 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/circle_bg"
+            android:layout_centerVertical="true"
             android:backgroundTint="#175519"
             android:padding="10dp"
             android:src="@drawable/expanses"
             app:tint="@color/green" />
 
         <TextView
+            android:id="@+id/tv_payment_saller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_summ_payment_plastic"
+            android:layout_below="@id/tv_summ_payment_cash"
             android:layout_marginStart="@dimen/margin_standart"
-            android:layout_marginTop="@dimen/margin_small"
-            android:text="Salawat" />
+            android:text="@string/salawat" />
 
         <TextView
+            android:id="@+id/tv_payment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cash_img"
-            android:layout_alignParentEnd="true"
+            android:layout_below="@id/tv_payment_saller"
+            android:layout_marginStart="@dimen/margin_standard"
             android:text="@string/default_date" />
 
 

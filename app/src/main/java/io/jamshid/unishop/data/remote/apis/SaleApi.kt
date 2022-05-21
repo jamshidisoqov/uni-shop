@@ -19,7 +19,7 @@ interface SaleApi {
     @POST("output/create")
     suspend fun addOutput(@Body outputDto: OutputDto): Result<OutputSales>
 
-    @GET("output/{outputId}/products")
-    suspend fun getProductsByOutPut(@Path("outputId") outputId:Long):List<ProductByOutput>
+    @GET("output/{id}/products")
+    suspend fun getProductsByOutPut(@Path("id") id:Long):List<ProductByOutput>
 
 }

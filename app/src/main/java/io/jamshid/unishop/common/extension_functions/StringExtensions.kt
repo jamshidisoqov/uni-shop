@@ -23,3 +23,6 @@ fun String.dialPhone(activity: Activity) {
     val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(phone)))
     activity.startActivity(intent)
 }
+
+fun String.getDateFormat() =
+    this.substring(0, 19) + " " + this.substring(30)

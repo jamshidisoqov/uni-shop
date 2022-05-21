@@ -1,34 +1,53 @@
 package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_sale.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import io.jamshid.unishop.databinding.ListItemSeleListBinding
+import io.jamshid.unishop.R
+import io.jamshid.unishop.common.extension_functions.getDateFormat
+import io.jamshid.unishop.data.models.dto.OutputSales
+import io.jamshid.unishop.databinding.ListItemSaleListBinding
+import java.util.*
 
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
-class SaleListAdapter : RecyclerView.Adapter<SaleListAdapter.ViewHolder>(){
+class SaleListAdapter : RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ListItemSeleListBinding) : RecyclerView.ViewHolder(binding.root) {
+    private lateinit var binding: ListItemSaleListBinding
+    private var salesList: List<OutputSales> = emptyList()
 
+    inner class ViewHolder(val binding: ListItemSaleListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun onBind(outputSales: OutputSales) {
+            binding.apply {
+                tvNameBalans.text = outputSales.client.fullName
+                tvBuyPrices.text = outputSales.amount.toString()
+                tvBuyDate.text = "${Date(outputSales.createdDate.time)}".getDateFormat()
+
+            }
+        }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("Not yet implemented")
+        binding = ListItemSaleListBinding.bind(
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_sale_list, parent, false)
+        )
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+
+        holder.onBind(salesList[position])
+
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    override fun getItemCount(): Int = salesList.size
+
+    fun setData(list: List<OutputSales>){
+        this.salesList  = list
+        notifyDataSetChanged()
     }
 
-//    private val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<>)
-
-
-//    private var onItemClick :
 }

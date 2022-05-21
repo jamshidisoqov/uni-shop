@@ -1,28 +1,34 @@
 package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import io.jamshid.unishop.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
+import io.jamshid.unishop.base.BaseFragment
+import io.jamshid.unishop.databinding.FragmentPaymentBinding
+import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment.adapter.PaymentAdapter
+import kotlinx.coroutines.flow.collectLatest
 
-class PaymentFragment : Fragment() {
+@AndroidEntryPoint
+class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBinding::inflate) {
 
-    companion object {
-        fun newInstance() = PaymentFragment()
+
+    private  val viewModel: PaymentViewModel by viewModels()
+
+    override fun myCreateView(savedInstanceState: Bundle?) {
+        val adapter = PaymentAdapter().also { adapter ->
+            binding.listPayment.adapter = adapter
+        }
+        if (arguments != null)
+            viewModel.getAllPayments(arguments?.getLong("clientId")!!)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.allPayments.collectLatest {
+                if (it.data != null)
+                    adapter.setData(it.data!!)
+            }
+        }
+
+
     }
-
-    private lateinit var viewModel: PaymentViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_payment, container, false)
-    }
-
-
-
 }

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.databinding.ListItemClientBinding
+import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.utils.OnClientClickListener
 
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
-class ClientsListAdapter : RecyclerView.Adapter<ClientsListAdapter.ViewHolder>() {
+class ClientsListAdapter(private val onItemClick:OnClientClickListener) : RecyclerView.Adapter<ClientsListAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ListItemClientBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -19,15 +20,15 @@ class ClientsListAdapter : RecyclerView.Adapter<ClientsListAdapter.ViewHolder>()
                 tvClientName.text = client.fullName
 
                 root.setOnClickListener {
-                    onItemClick?.invoke(client)
+                    onItemClick.onItemClick(client)
                 }
 
                 imgPhone.setOnClickListener {
-                    onItemPhoneClick?.invoke(client)
+                    onItemClick.onPhoneClick(client)
                 }
 
                 imgMoney.setOnClickListener {
-                    onItemMoneyClick?.invoke(client)
+                    onItemClick.onMoneyClick(client)
                 }
             }
         }
@@ -61,21 +62,4 @@ class ClientsListAdapter : RecyclerView.Adapter<ClientsListAdapter.ViewHolder>()
 
     //Click listeners
 
-    private var onItemClick: ((Client) -> Unit)? = null
-
-    fun setOnItemClickListener(onClick: (Client) -> Unit) {
-        onItemClick = onClick
-    }
-
-    private var onItemPhoneClick: ((Client) -> Unit)? = null
-
-    fun setOnItemPhoneClickListener(onClick: (Client) -> Unit) {
-        onItemClick = onClick
-    }
-
-    private var onItemMoneyClick: ((Client) -> Unit)? = null
-
-    fun setOnItemMoneyClickListener(onClick: (Client) -> Unit) {
-        onItemClick = onClick
-    }
 }

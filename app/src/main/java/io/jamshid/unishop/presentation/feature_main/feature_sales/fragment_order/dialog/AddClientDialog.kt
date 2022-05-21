@@ -9,6 +9,7 @@ import io.jamshid.unishop.R
 import io.jamshid.unishop.data.models.dto.ClientDto
 import io.jamshid.unishop.databinding.FragmentDialogAddClientBinding
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.OrderViewModel
+import io.jamshid.unishop.utils.MaskWatcher
 
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
@@ -32,6 +33,7 @@ class AddClientDialog(
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
 
         binding!!.apply {
+            edClientPhoneNumber.addTextChangedListener(MaskWatcher.phoneNumber())
             btnAddClient.setOnClickListener {
                 val name = edClientName.text.toString()
                 val phone = edClientPhoneNumber.text.toString()

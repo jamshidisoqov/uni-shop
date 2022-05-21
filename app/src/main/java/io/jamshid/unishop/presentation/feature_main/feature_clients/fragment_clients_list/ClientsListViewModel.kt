@@ -27,13 +27,12 @@ class ClientsListViewModel @Inject constructor(
         }
     }
 
-    fun addClient(clientDto: ClientDto) {
-        fun addClient(client: ClientDto) {
-            viewModelScope.launch {
-                clientApi.addClient(
-                    clientDto = client
-                )
-            }
+    fun addClient(client: ClientDto) {
+        viewModelScope.launch {
+            clientApi.addClient(
+                clientDto = client
+            )
         }
+
     }
 }

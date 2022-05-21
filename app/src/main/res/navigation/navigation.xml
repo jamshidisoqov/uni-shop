@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_homeFragment_to_warehouseFragment"
             app:destination="@id/warehouseFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_clientsListFragment"
+            app:destination="@id/clientsListFragment" />
 
     </fragment>
 
@@ -118,4 +121,23 @@
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.fragment_add.AddExpansesFragment"
         android:label="fragment_add_expanses"
         tools:layout="@layout/fragment_add_expanses" />
+    <fragment
+        android:id="@+id/clientsListFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.ClientsListFragment"
+        android:label="fragment_clients_list"
+        tools:layout="@layout/fragment_clients_list" >
+        <action
+            android:id="@+id/action_clientsListFragment_to_clientDetailFragment"
+            app:destination="@id/clientDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientDetailFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.ClientDetailFragment"
+        android:label="fragment_client_detail"
+        tools:layout="@layout/fragment_client_detail" >
+        <argument
+            android:name="clientId"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
 </navigation>

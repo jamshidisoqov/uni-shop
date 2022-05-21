@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_small"
+    android:layout_gravity="center"
     android:background="@drawable/category_bg"
     android:backgroundTint="@color/black"
-    android:paddingBottom="@dimen/margin_standard">
+    android:padding="@dimen/margin_standard">
 
     <TextView
         android:id="@+id/tv_new_client"
@@ -22,12 +23,14 @@
 
     <EditText
         android:id="@+id/ed_client_name"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/margin_standard"
         android:backgroundTint="@color/green"
         android:hint="@string/full_name"
         android:inputType="text"
+
+        android:minWidth="320dp"
         android:textColorHint="@color/hint"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +40,7 @@
 
     <EditText
         android:id="@+id/ed_client_phone_number"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/margin_standard"
         android:backgroundTint="@color/green"
@@ -53,16 +56,19 @@
 
     <EditText
         android:id="@+id/ed_client_comment"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_margin="@dimen/margin_standard"
         android:backgroundTint="@color/green"
         android:hint="@string/comment"
         android:inputType="text"
-        android:maxLength="16"
+        android:scrollbars="vertical"
+        android:maxLength="100"
         android:minWidth="350dp"
         android:textColorHint="@color/hint"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_client_phone_number"
         tools:ignore="Autofill" />
 

@@ -30,7 +30,7 @@ object AppModule {
         .build()
 
 
-    @Provides
+  /*  @Provides
     fun providesLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
@@ -50,7 +50,7 @@ object AppModule {
         okHttpClient.build()
         return okHttpClient.build()
     }
-
+*/
     @Provides
     @Singleton
     fun provideSaleApi(retrofit: Retrofit): SaleApi {

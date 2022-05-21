@@ -109,8 +109,9 @@
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <argument
-            android:name="outPut"
-            app:argType="io.jamshid.unishop.data.models.dto.OutputSales" />
+            android:name="outPutId"
+            app:argType="long"
+            android:defaultValue="1L" />
     </fragment>
     <fragment
         android:id="@+id/addExpansesFragment"

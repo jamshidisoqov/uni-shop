@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_small"
-    app:cardBackgroundColor="#302A2A"
+    android:layout_marginBottom="@dimen/margin_standard"
+    app:cardBackgroundColor="#1C1B1B"
     app:cardCornerRadius="@dimen/margin_standard">
 
     <RelativeLayout

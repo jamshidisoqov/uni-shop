@@ -5,15 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.jamshid.unishop.common.Constants.BASE_URL
-import io.jamshid.unishop.data.remote.apis.CategoryApi
-import io.jamshid.unishop.data.remote.apis.ClientApi
-import io.jamshid.unishop.data.remote.apis.ProductApi
-import io.jamshid.unishop.data.remote.apis.SaleApi
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import io.jamshid.unishop.data.remote.apis.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
@@ -30,27 +24,27 @@ object AppModule {
         .build()
 
 
-  /*  @Provides
-    fun providesLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
+    /*  @Provides
+      fun providesLoggingInterceptor(): HttpLoggingInterceptor {
+          return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+      }
 
 
 
 
-    @Provides
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        val okHttpClient = OkHttpClient().newBuilder()
+      @Provides
+      fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+          val okHttpClient = OkHttpClient().newBuilder()
 
-        okHttpClient.callTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.connectTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.readTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.writeTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.addInterceptor(loggingInterceptor)
-        okHttpClient.build()
-        return okHttpClient.build()
-    }
-*/
+          okHttpClient.callTimeout(40, TimeUnit.SECONDS)
+          okHttpClient.connectTimeout(40, TimeUnit.SECONDS)
+          okHttpClient.readTimeout(40, TimeUnit.SECONDS)
+          okHttpClient.writeTimeout(40, TimeUnit.SECONDS)
+          okHttpClient.addInterceptor(loggingInterceptor)
+          okHttpClient.build()
+          return okHttpClient.build()
+      }
+  */
     @Provides
     @Singleton
     fun provideSaleApi(retrofit: Retrofit): SaleApi {
@@ -73,6 +67,12 @@ object AppModule {
     @Singleton
     fun provideCategoryApi(retrofit: Retrofit): CategoryApi {
         return retrofit.create(CategoryApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDebtApi(retrofit: Retrofit): DebtApi {
+        return retrofit.create(DebtApi::class.java)
     }
 
 }

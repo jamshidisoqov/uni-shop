@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 findNavController().navigate(R.id.action_homeFragment_to_warehouseFragment)
             }
             debtContainer.setOnClickListener {
-                //findNavController().navigate(R.id.action_mainFragment_to_debtListFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_debtFragment)
             }
         }
     }

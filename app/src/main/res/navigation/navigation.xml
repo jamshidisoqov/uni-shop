@@ -151,5 +151,18 @@
         android:id="@+id/debtFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_debt.DebtFragment"
         android:label="fragment_debt"
-        tools:layout="@layout/fragment_debt" />
+        tools:layout="@layout/fragment_debt" >
+        <action
+            android:id="@+id/action_debtFragment_to_debtDetailsFragment"
+            app:destination="@id/debtDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/debtDetailsFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details.DebtDetailsFragment"
+        android:label="fragment_debt_details"
+        tools:layout="@layout/fragment_debt_details" >
+        <argument
+            android:name="output"
+            app:argType="io.jamshid.unishop.data.models.dto.OutputSales" />
+    </fragment>
 </navigation>

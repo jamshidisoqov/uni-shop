@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import io.jamshid.unishop.presentation.MainActivity
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
@@ -36,5 +37,9 @@ abstract class BaseFragment<VB : ViewBinding>(
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    protected fun showProgress(show:Boolean){
+        (activity as MainActivity).showProgress(show)
     }
 }

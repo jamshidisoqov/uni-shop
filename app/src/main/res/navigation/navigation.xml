@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_homeFragment_to_clientsListFragment"
             app:destination="@id/clientsListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_debtFragment"
+            app:destination="@id/debtFragment" />
 
     </fragment>
 
@@ -87,7 +90,11 @@
         android:id="@+id/warehouseFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_warehouse.WarehouseFragment"
         android:label="fragment_warehouse"
-        tools:layout="@layout/fragment_warehouse" />
+        tools:layout="@layout/fragment_warehouse" >
+        <action
+            android:id="@+id/action_warehouseFragment_to_addProductFragment"
+            app:destination="@id/addProductFragment" />
+    </fragment>
     <fragment
         android:id="@+id/expansesFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.ExpansesFragment"
@@ -140,4 +147,9 @@
             app:argType="long"
             android:defaultValue="0L" />
     </fragment>
+    <fragment
+        android:id="@+id/debtFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_debt.DebtFragment"
+        android:label="fragment_debt"
+        tools:layout="@layout/fragment_debt" />
 </navigation>

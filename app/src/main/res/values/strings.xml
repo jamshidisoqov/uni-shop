@@ -191,4 +191,6 @@
     <string name="default_month">март\n2022 г.</string>
     <string name="balance">Чистая прибыль</string>
     <string name="salawat">Salawat</string>
+    <string name="search_for_product">Search for product</string>
+    <string name="expire_date">Expire date</string>
 </resources>

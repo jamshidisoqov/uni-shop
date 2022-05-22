@@ -3,6 +3,7 @@ package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_cl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.ClientDto
 import io.jamshid.unishop.data.remote.apis.ClientApi
@@ -16,14 +17,21 @@ class ClientsListViewModel @Inject constructor(
     private val clientApi: ClientApi
 ) : ViewModel() {
 
-    private val _allClients = MutableStateFlow<List<Client>>(emptyList())
+    private val _allClients = MutableStateFlow<Response<List<Client>>>(Response.Loading())
     val allClients = _allClients.asStateFlow()
 
     init {
         viewModelScope.launch {
-            _allClients.emit(
-                clientApi.getAllClients()
-            )
+            try {
+                _allClients.emit(Response.Loading())
+                _allClients.emit(
+                    Response.Success(
+                        clientApi.getAllClients()
+                    )
+                )
+            } catch (e: Exception) {
+                _allClients.emit(Response.Error(e.localizedMessage))
+            }
         }
     }
 
@@ -33,6 +41,5 @@ class ClientsListViewModel @Inject constructor(
                 clientDto = client
             )
         }
-
     }
 }

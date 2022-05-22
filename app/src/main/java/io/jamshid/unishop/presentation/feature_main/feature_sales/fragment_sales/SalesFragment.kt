@@ -10,6 +10,7 @@ import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.databinding.FragmentSalesBinding
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
+import io.jamshid.unishop.presentation.MainActivity
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.adapter.SalesListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.dialog.AddSalesDialog
@@ -41,15 +42,15 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
             viewModel.allProducts.collectLatest { response ->
                 when (response) {
                     is Response.Loading -> {
-                        binding.loading.show()
+                        (activity as MainActivity).showProgress(true)
                     }
                     is Response.Error -> {
                         Timber.d("Error %s", response.message)
-                        binding.loading.hide()
+                        (activity as MainActivity).showProgress(false)
                     }
                     is Response.Success -> {
                         response.data?.let { adapter.submitList(it) }
-                        binding.loading.hide()
+                        (activity as MainActivity).showProgress(false)
                     }
                     else -> Unit
                 }
@@ -63,16 +64,16 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.saleProducts.collectLatest { products ->
 
-                    "${products.size} product".also {
-                        binding.tvCounterBasket.text = it
-                    }
-                    var summa = 0.0
-                    for (product in products) {
-                        summa += product.cost * product.quantity
-                    }
-                    "$summa UZS".also {
-                        binding.tvProductBasketSumm.text = it
-                    }
+                "${products.size} product".also {
+                    binding.tvCounterBasket.text = it
+                }
+                var summa = 0.0
+                for (product in products) {
+                    summa += product.cost * product.quantity
+                }
+                "$summa UZS".also {
+                    binding.tvProductBasketSumm.text = it
+                }
 
 
             }

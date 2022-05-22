@@ -6,9 +6,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
+import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.dialPhone
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.databinding.FragmentClientsListBinding
+import io.jamshid.unishop.presentation.MainActivity
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.adapter.ClientsListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.dialog.AddClientDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.utils.OnClientClickListener
@@ -43,8 +45,20 @@ class ClientsListFragment :
         }).also { binding.rcvClientList.adapter = it }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.allClients.collectLatest { clients ->
-                adapter.submitList(clients)
+            viewModel.allClients.collectLatest { response ->
+                when (response) {
+                    is Response.Loading -> {
+                        (activity as MainActivity).showProgress(true)
+                    }
+                    is Response.Success -> {
+                        adapter.submitList(response.data!!)
+                        (activity as MainActivity).showProgress(false)
+                    }
+                    else -> {
+                        (activity as MainActivity).showProgress(false)
+                    }
+                }
+
             }
         }
 

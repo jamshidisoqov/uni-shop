@@ -1,19 +1,18 @@
 package io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
+import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.FragmentIncomeBinding
+import io.jamshid.unishop.presentation.MainActivity
 import io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.adapter.IncomeAdapter
 import io.jamshid.unishop.utils.OnItemClickListener
 import kotlinx.coroutines.flow.collectLatest
-import timber.log.Timber
 
 @AndroidEntryPoint
 class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding::inflate) {
@@ -37,9 +36,18 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.allSales.collectLatest {
-                Timber.tag(TAG).d("myCreateView: %s", it.data)
-                if (it.data != null)
-                    adapter.setData(it.data!!)
+                when (it) {
+                    is Response.Loading -> {
+                        (activity as MainActivity).showProgress(true)
+                    }
+                    is Response.Success -> {
+                        (activity as MainActivity).showProgress(false)
+                        adapter.setData(it.data!!)
+                    }
+                    else -> {
+                        (activity as MainActivity).showProgress(false)
+                    }
+                }
             }
         }
 

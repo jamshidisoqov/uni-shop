@@ -5,13 +5,19 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.getDateFormat
 import io.jamshid.unishop.data.models.dto.Output
+import io.jamshid.unishop.databinding.DialogPaymentHistoryBinding
 import io.jamshid.unishop.databinding.FragmentDebtDetailsBinding
+import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment.adapter.PaymentAdapter
+import io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details.dialog.PaymentBottomSheetDialog
 import io.jamshid.unishop.presentation.feature_main.feature_warehouse.adapters.ProductAdapter
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
@@ -23,6 +29,7 @@ class DebtDetailsFragment :
     private val viewModel: DebtDetailsViewModel by viewModels()
     private val args: DebtDetailsFragmentArgs by navArgs()
     private lateinit var outputSales: Output
+    private lateinit var paymentAdapter: PaymentAdapter
 
 
     override fun myCreateView(savedInstanceState: Bundle?) {
@@ -31,6 +38,7 @@ class DebtDetailsFragment :
         val adapter = ProductAdapter().also {
             binding.productListDebt.adapter = it
         }
+        paymentAdapter = PaymentAdapter()
 
         showProgress(true)
         if (arguments != null) {
@@ -39,6 +47,7 @@ class DebtDetailsFragment :
             viewModel.allPayments(outputSales.id)
 
             binding.apply {
+
                 outputSales.also {
                     this.tvClientName.text = it.client
                     this.debtExpireDate.text = Date(it.expiredDate.time).toString().getDateFormat()
@@ -49,6 +58,36 @@ class DebtDetailsFragment :
                     this.tvDebtSumm.text = it.debtAmount.toString()
                 }
 
+                btnPaymentDebt.setOnClickListener {
+
+                    val dialog = PaymentBottomSheetDialog(viewModel, outputSales.id).also {
+                        it.show(
+                            requireActivity().supportFragmentManager,
+                            it.tag
+                        )
+                    }
+
+                }
+                imgPayments.setOnClickListener {
+                    showDialog()
+                }
+                imgBack.setOnClickListener {
+                    findNavController().navigateUp()
+                }
+
+            }
+        }
+
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.status.collectLatest {
+                if (it == 200) {
+                    Snackbar.make(
+                        binding.btnPaymentDebt,
+                        "Successfully payed",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 
@@ -69,5 +108,32 @@ class DebtDetailsFragment :
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.allPaymentsByOutput.collectLatest {
+                when (it) {
+                    is Response.Loading -> {
+                        showProgress(true)
+                    }
+                    is Response.Success -> {
+                        showProgress(false)
+                        Log.d(TAG, "myCreateView: ${it.data!!}")
+                        paymentAdapter.setData(it.data!!)
+                    }
+                    else -> {
+                        showProgress(false)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showDialog() {
+        val dialog = BottomSheetDialog(requireContext())
+        val binding = DialogPaymentHistoryBinding.inflate(layoutInflater, null, false)
+        binding.listPaymentsForDebt.adapter = paymentAdapter
+        dialog.setContentView(binding.root)
+        dialog.show()
+
     }
 }

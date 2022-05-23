@@ -24,9 +24,14 @@ class DebtDetailsViewModel @Inject constructor(
     val allProductsByOutput: StateFlow<Response<List<Product>>> get() = _allProductsByOutput
 
 
+
+
+
     private var _allPaymentsByOutput: MutableStateFlow<Response<List<PaymentHistory>>> =
         MutableStateFlow(Response.Loading())
     val allPaymentsByOutput: StateFlow<Response<List<PaymentHistory>>> get() = _allPaymentsByOutput
+
+    var status:MutableStateFlow<Int> = MutableStateFlow(400)
 
     fun allProducts(id: Long) {
         viewModelScope.launch {
@@ -43,13 +48,19 @@ class DebtDetailsViewModel @Inject constructor(
 
     fun allPayments(id: Long) {
         viewModelScope.launch {
-
+            try {
+                _allPaymentsByOutput.emit(Response.Loading())
+                val data = debtApi.getAllPaymentsBYOutput(id)
+                _allPaymentsByOutput.emit(Response.Success(data))
+            } catch (e: Exception) {
+                _allPaymentsByOutput.emit(Response.Error(e.localizedMessage!!.toString()))
+            }
         }
     }
 
     fun paymentForOutput(payment: OutputPayment) {
         viewModelScope.launch {
-
+            status.emit(debtApi.newPayment(payment).status)
         }
     }
 

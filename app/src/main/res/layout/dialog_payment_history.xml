@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/root_bg"
+    android:padding="@dimen/margin_small">
+
+    <TextView
+        android:id="@+id/tv_payments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/payments"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_standard"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_payments_for_debt"
+        android:layout_below="@id/tv_payments"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/list_item_income"/>
+
+</RelativeLayout>

@@ -34,6 +34,18 @@
             android:text="@string/payment_debt"
             android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/img_payments"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/expanses"
+            app:tint="@color/green"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/margin_standard"
+            android:contentDescription="@string/todo" />
+
     </RelativeLayout>
 
     <TextView

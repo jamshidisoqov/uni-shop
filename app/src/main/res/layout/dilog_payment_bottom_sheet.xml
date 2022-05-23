@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_standard"
+    android:background="@drawable/root_bg">
+
+    <TextView
+        android:id="@+id/tv_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_standard"
+        android:text="@string/payment"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_cash_debt"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintWidth_percent="0.9"
+        android:backgroundTint="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/payment_cash"
+        android:textColorHint="@color/hint"
+        android:inputType="number"
+        android:layout_marginTop="@dimen/margin_bigger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_payment"
+        tools:ignore="Autofill" />
+
+
+    <EditText
+        android:id="@+id/ed_card_debt"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/green"
+        android:hint="@string/payment_card"
+        android:inputType="number"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:textColorHint="@color/hint"
+        android:minWidth="320dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_cash_debt"
+        app:layout_constraintWidth_percent="0.9"
+        tools:ignore="Autofill" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_payment_for_debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_in_btn_bg"
+        android:paddingStart="@dimen/margin_bigger"
+        android:paddingEnd="@dimen/margin_bigger"
+        android:text="@string/add_payment"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/margin_standard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_card_debt" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
@@ -78,13 +77,15 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                         products = getList()
                     )
                 )
-                if (viewModel.addSalesStatus.value == 200) {
-                    Snackbar.make(binding.btnPayment, "Successfully added", Snackbar.LENGTH_SHORT)
-                        .show()
-                    findNavController().navigateUp()
-                } else {
-                    Snackbar.make(binding.btnPayment, "Error", Snackbar.LENGTH_SHORT)
-                        .show()
+
+            }
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                viewModel.addSalesStatus.collectLatest {
+                    Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                    if (it == 200) {
+                        findNavController().popBackStack()
+                        findNavController().navigate(R.id.salesFragment)
+                    }
                 }
             }
 
@@ -140,6 +141,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                 )
             }
         }
+
         binding.tvProductAllSumm.text = "$allSumm"
         binding.spinnerUser.adapter = adapter
 
@@ -158,7 +160,6 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
         Basket.sellProduct.forEach {
             list.add(it.toOutputDto())
         }
-        Toast.makeText(requireContext(), "${list}", Toast.LENGTH_SHORT).show()
         return list
     }
 }

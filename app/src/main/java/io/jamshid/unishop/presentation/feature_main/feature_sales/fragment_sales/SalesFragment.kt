@@ -1,6 +1,7 @@
 package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -39,7 +40,7 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.allProducts.collectLatest { response ->
+            viewModel.allProducts.collect { response ->
                 when (response) {
                     is Response.Loading -> {
                         (activity as MainActivity).showProgress(true)
@@ -55,14 +56,12 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
                     else -> Unit
                 }
             }
-
-
         }
 
         navigate()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.saleProducts.collectLatest { products ->
+            viewModel.saleProducts.collect { products ->
 
                 "${products.size} product".also {
                     binding.tvCounterBasket.text = it

@@ -12,8 +12,22 @@ data class OutputSales(
     val debtAmount: Double,
     val expiredDate: Timestamp,
     val comment: String,
-    val amount:Double,
+    val amount: Double,
     val createdDate: Timestamp,
     val updatedDate: Timestamp,
     val createdBy: UUID
-):Serializable
+) : Serializable {
+    fun toOutput(): Output {
+        return Output(
+            id = id,
+            client = client.fullName!!,
+            status = status,
+            debtAmount,
+            expiredDate,
+            comment,
+            amount,
+            createdDate,
+            updatedDate
+        )
+    }
+}

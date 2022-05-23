@@ -5,8 +5,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
+import io.jamshid.unishop.data.models.dto.Output
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.FragmentDebtBinding
 import io.jamshid.unishop.presentation.feature_main.feature_debt.adapter.DebtAdapter
@@ -21,9 +23,14 @@ class DebtFragment : BaseFragment<FragmentDebtBinding>(FragmentDebtBinding::infl
 
 
     override fun myCreateView(savedInstanceState: Bundle?) {
+
+        viewModel.getAllDebt()
+
         val adapter = DebtAdapter(object : DebtClickListener {
-            override fun onClick(outputSales: OutputSales) {
-                findNavController().navigate(DebtFragmentDirections.actionDebtFragmentToDebtDetailsFragment(outputSales))
+            override fun onClick(outputSales: Output) {
+                val bundle = Bundle()
+                bundle.putSerializable("output",outputSales);
+                findNavController().navigate(R.id.action_debtFragment_to_debtDetailsFragment,bundle)
             }
         }).also {
             binding.rcvListDebt.adapter = it

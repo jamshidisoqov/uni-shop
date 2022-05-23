@@ -8,6 +8,7 @@ import io.jamshid.unishop.common.extension_functions.getDateFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.ListItemDebtBinding
 import io.jamshid.unishop.presentation.feature_main.feature_debt.util.DebtClickListener
+import java.util.*
 
 // Created by Jamshid Isoqov an 5/22/2022
 class DebtAdapter(private val debtClickListener: DebtClickListener) :
@@ -22,11 +23,11 @@ class DebtAdapter(private val debtClickListener: DebtClickListener) :
 
         fun onBind(outputSales: OutputSales) {
             binding.apply {
-                tvDebtUserName.text = outputSales.client.fullName
+                tvDebtUserName.text = outputSales.client!!.fullName
                 tvDebtSumm.text = outputSales.debtAmount.toString()
-                tvDebtDate.text = outputSales.expiredDate.toString().getDateFormat()
+                tvDebtDate.text = Date(outputSales.expiredDate.time).toString().getDateFormat()
                 root.setOnClickListener {
-                    debtClickListener.onClick(outputSales)
+                    debtClickListener.onClick(outputSales.toOutput())
                 }
             }
         }

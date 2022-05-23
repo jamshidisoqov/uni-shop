@@ -3,6 +3,7 @@ package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_bask
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
+import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -20,8 +21,15 @@ class BasketViewModel : ViewModel() {
     fun addProduct(basket: BasketProductModel) {
         viewModelScope.launch {
             val products = saleProducts.value as ArrayList
-            val ind = products.indexOf(basket)
-            if (products[ind].quantity < basket.quantity)
+
+            var ind=0
+            for (i in saleProducts.value.indices){
+                if(saleProducts.value[i].id==basket.id){
+                    ind=i
+                    break
+                }
+            }
+            if (products[ind].quantity < 10)
                 products[ind] = products[ind].copy(
                     quantity = products[ind].quantity + 1
                 )
@@ -32,7 +40,13 @@ class BasketViewModel : ViewModel() {
     fun removeProduct(basket: BasketProductModel) {
         viewModelScope.launch {
             val products = saleProducts.value as ArrayList
-            val ind = products.indexOf(basket)
+            var ind=0
+            for (i in saleProducts.value.indices){
+                if(saleProducts.value[i].id==basket.id){
+                    ind=i
+                    break
+                }
+            }
             if (products[ind].quantity > 0)
                 products[ind] = products[ind].copy(
                     quantity = products[ind].quantity - 1

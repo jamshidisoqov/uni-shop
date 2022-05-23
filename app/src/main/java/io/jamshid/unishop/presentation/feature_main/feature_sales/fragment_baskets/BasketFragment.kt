@@ -1,6 +1,7 @@
 package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -43,10 +44,12 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>(FragmentBasketBinding
             }
 
             adapter.setOnAddClickListener {
+                //Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                 viewModel.addProduct(it)
             }
 
             adapter.setOnRemoveClickListener {
+               //Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                 viewModel.removeProduct(it)
             }
 

@@ -13,7 +13,7 @@ import io.jamshid.unishop.domain.models.transfers.BasketProductModel
 class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ListItemBasketBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(basketProductModel: BasketProductModel) {
+        fun onBind(basketProductModel: BasketProductModel,position: Int) {
             binding.apply {
 
                 tvProductName.text = basketProductModel.product.name
@@ -22,10 +22,12 @@ class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
 
                 imgAddProduct.setOnClickListener {
                     onItemAddClick?.invoke(basketProductModel)
+                    notifyItemChanged(position)
                 }
 
                 removeImg.setOnClickListener {
                     onItemRemoveClick?.invoke(basketProductModel)
+                    notifyItemChanged(position)
                 }
             }
         }
@@ -36,7 +38,7 @@ class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.onBind(differ.currentList[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.onBind(differ.currentList[position],position)
 
 
     override fun getItemCount(): Int = differ.currentList.size

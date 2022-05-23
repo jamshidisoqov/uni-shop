@@ -1,5 +1,6 @@
 package io.jamshid.unishop.data.models.dto
 
+import java.io.Serializable
 import java.sql.Timestamp
 import java.util.*
 
@@ -11,5 +12,5 @@ data class Client(
     val comment: String? = null,
     val createdDate: Timestamp,
     val updatedDate: Timestamp,
-    val createdBy: UUID
-)
+    val createdBy: UUID = UUID.randomUUID()
+):Serializable

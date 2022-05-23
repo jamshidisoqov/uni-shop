@@ -21,7 +21,7 @@ class SaleListAdapter : RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
 
         fun onBind(outputSales: OutputSales) {
             binding.apply {
-                tvNameBalans.text = outputSales.client.fullName
+                tvNameBalans.text = outputSales.client!!.fullName
                 tvBuyPrices.text = outputSales.amount.toString()
                 tvBuyDate.text = "${Date(outputSales.createdDate.time)}".getDateFormat()
 
@@ -45,8 +45,8 @@ class SaleListAdapter : RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = salesList.size
 
-    fun setData(list: List<OutputSales>){
-        this.salesList  = list
+    fun setData(list: List<OutputSales>) {
+        this.salesList = list
         notifyDataSetChanged()
     }
 

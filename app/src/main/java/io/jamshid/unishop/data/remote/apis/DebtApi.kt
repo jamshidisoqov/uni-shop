@@ -11,7 +11,7 @@ interface DebtApi {
     @GET("debt/all")
     suspend fun getAllDebt(): List<OutputSales>
 
-    @GET("output/{id}/product")
+    @GET("output/{id}/products")
     suspend fun getAllProductByOutput(@Path("id") id: Long): List<Product>
 
 }

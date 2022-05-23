@@ -20,7 +20,7 @@ class IncomeAdapter(private val onItemClickListener: OnItemClickListener<OutputS
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(outputSales: OutputSales) {
             binding.apply {
-                tvNameBalance.text = outputSales.client.fullName
+                tvNameBalance.text = outputSales.client!!.fullName
                 //saller qoshiw karak
                 tvBuyPrices.text = "${outputSales.amount}"
                 tvBuyDate.text = "${outputSales.updatedDate.time}"

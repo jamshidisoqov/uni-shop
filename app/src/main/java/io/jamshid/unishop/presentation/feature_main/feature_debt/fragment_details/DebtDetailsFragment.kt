@@ -3,6 +3,7 @@ package io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_detai
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,7 @@ class DebtDetailsFragment :
     private val args: DebtDetailsFragmentArgs by navArgs()
     private lateinit var outputSales: Output
     private lateinit var paymentAdapter: PaymentAdapter
+    private var choose = 0
 
 
     override fun myCreateView(savedInstanceState: Bundle?) {
@@ -42,11 +44,16 @@ class DebtDetailsFragment :
 
         showProgress(true)
         if (arguments != null) {
+            choose = arguments?.getInt("choose")!!
             outputSales = arguments?.getSerializable("output") as Output
             viewModel.allProducts(outputSales.id)
             viewModel.allPayments(outputSales.id)
 
             binding.apply {
+
+                if (choose == 1) {
+                    btnPaymentDebt.visibility = View.GONE
+                }
 
                 outputSales.also {
                     this.tvClientName.text = it.client

@@ -29,6 +29,7 @@ class DebtFragment : BaseFragment<FragmentDebtBinding>(FragmentDebtBinding::infl
         val adapter = DebtAdapter(object : DebtClickListener {
             override fun onClick(outputSales: Output) {
                 val bundle = Bundle()
+                bundle.putInt("choose",0)
                 bundle.putSerializable("output",outputSales);
                 findNavController().navigate(R.id.action_debtFragment_to_debtDetailsFragment,bundle)
             }

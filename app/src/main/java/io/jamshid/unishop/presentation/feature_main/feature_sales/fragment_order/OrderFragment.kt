@@ -143,6 +143,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
         }
 
         binding.tvProductAllSumm.text = "$allSumm"
+        binding.tvProductDebtSumm.text = binding.tvProductAllSumm.text
         binding.spinnerUser.adapter = adapter
 
     }

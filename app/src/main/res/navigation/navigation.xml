@@ -112,6 +112,9 @@
         <action
             android:id="@+id/action_incomeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_incomeFragment_to_debtDetailsFragment"
+            app:destination="@id/debtDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"

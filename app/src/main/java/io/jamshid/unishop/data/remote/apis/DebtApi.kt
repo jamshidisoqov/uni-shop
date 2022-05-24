@@ -23,6 +23,6 @@ interface DebtApi {
     suspend fun getAllPaymentsBYOutput(@Path("id") id: Long): List<PaymentHistory>
 
     @POST("debt/pay")
-    suspend fun newPayment(@Body outputPayment: OutputPayment):Result<Any>
+    suspend fun newPayment(@Body outputPayment: OutputPayment): Result<OutputSales>
 
 }

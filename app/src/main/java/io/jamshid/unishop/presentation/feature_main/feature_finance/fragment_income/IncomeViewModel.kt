@@ -39,4 +39,16 @@ class IncomeViewModel @Inject constructor(private val saleApi: SaleApi) : ViewMo
             }
         }
     }
+
+    fun sortedFromDate(start: Long, end: Long) {
+        viewModelScope.launch {
+            try {
+                _allSales.emit(Response.Loading())
+                val data = saleApi.getSalesByDate(start, end)
+                _allSales.emit(Response.Success(data))
+            } catch (e: Exception) {
+                _allSales.emit(Response.Error(e.localizedMessage!!.toString()))
+            }
+        }
+    }
 }

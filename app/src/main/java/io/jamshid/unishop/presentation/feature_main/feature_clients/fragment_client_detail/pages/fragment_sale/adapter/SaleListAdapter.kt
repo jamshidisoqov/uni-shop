@@ -7,11 +7,12 @@ import io.jamshid.unishop.R
 import io.jamshid.unishop.common.extension_functions.getDateFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.ListItemSaleListBinding
+import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_sale.utils.SalesClickListener
 import java.util.*
 
 // Created by Usmon Abdurakhmanv on 5/14/2022.
 
-class SaleListAdapter : RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
+class SaleListAdapter(private val salesClickListener: SalesClickListener) : RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
 
     private lateinit var binding: ListItemSaleListBinding
     private var salesList: List<OutputSales> = emptyList()
@@ -24,7 +25,9 @@ class SaleListAdapter : RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
                 tvNameBalans.text = outputSales.client!!.fullName
                 tvBuyPrices.text = outputSales.amount.toString()
                 tvBuyDate.text = "${Date(outputSales.createdDate.time)}".getDateFormat()
-
+                root.setOnClickListener {
+                    salesClickListener.onClick(outputSales)
+                }
             }
         }
 

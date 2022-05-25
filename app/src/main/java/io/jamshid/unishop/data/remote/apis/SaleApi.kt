@@ -25,4 +25,7 @@ interface SaleApi {
         @Query("to") to:Long
     ):List<OutputSales>
 
+    @GET("")
+    suspend fun getLastSevenMonth()
+
 }

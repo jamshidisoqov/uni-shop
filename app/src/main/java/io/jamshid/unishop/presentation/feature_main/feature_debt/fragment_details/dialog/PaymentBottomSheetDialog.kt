@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.jamshid.unishop.R
+import io.jamshid.unishop.common.extension_functions.getOnlyDigits
 import io.jamshid.unishop.data.models.OutputPayment
 import io.jamshid.unishop.databinding.DilogPaymentBottomSheetBinding
 import io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details.DebtDetailsViewModel
@@ -28,9 +29,11 @@ class PaymentBottomSheetDialog(private var vm: DebtDetailsViewModel,private var 
         binding.edCardDebt.addTextChangedListener(MaskWatcherPayment(binding.edCardDebt))
         binding.edCashDebt.addTextChangedListener(MaskWatcherPayment(binding.edCashDebt))
 
+
+
         binding.btnAddPaymentForDebt.setOnClickListener {
-            val cash  =  binding.edCashDebt.text.toString()
-            val card  =  binding.edCardDebt.text.toString()
+            val cash  =  binding.edCashDebt.text.toString().getOnlyDigits()
+            val card  =  binding.edCardDebt.text.toString().getOnlyDigits()
             if (cash.isNotEmpty()||card.isNotEmpty()){
                 val payment = OutputPayment(id,card.toDouble(),card.toDouble())
                vm.paymentForOutput(payment)

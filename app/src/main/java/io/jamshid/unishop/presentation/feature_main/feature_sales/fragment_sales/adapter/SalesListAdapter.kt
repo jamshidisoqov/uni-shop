@@ -1,5 +1,6 @@
 package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -13,11 +14,12 @@ import io.jamshid.unishop.domain.models.Product
 class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ListItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun onBindView(product: Product) {
             binding.apply {
                 tvItemProductName.text = product.name
                 tvItemProductBrand.text = product.brand
-                tvItemProductCount.text = product.quantity.toString()
+                tvItemProductCount.text = "${product.quantity} dona"
                 tvItemProductPrice.text = product.price.toString()
 
                 root.setOnClickListener {

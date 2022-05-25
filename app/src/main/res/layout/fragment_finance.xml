@@ -42,7 +42,7 @@
         android:layout_height="100dp"
         app:cpb_background_progressbar_color="#3D603C"
         app:cpb_background_progressbar_width="6dp"
-        app:cpb_progress="20"
+        app:cpb_progress="100"
         app:cpb_progress_max="100"
         app:cpb_progressbar_color="@color/green"
         app:cpb_progressbar_width="6dp"
@@ -229,7 +229,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_bigger"
+        android:layout_margin="@dimen/margin_extra_big"
         app:cardBackgroundColor="@color/root_color"
         app:cardCornerRadius="@dimen/margin_standart"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -238,6 +238,7 @@
         app:layout_constraintTop_toBottomOf="@+id/container_income">
 
         <com.github.mikephil.charting.charts.BarChart
+            android:layout_margin="@dimen/margin_standard"
             android:id="@+id/barchart"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

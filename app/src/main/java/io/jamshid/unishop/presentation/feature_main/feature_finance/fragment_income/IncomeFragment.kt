@@ -1,5 +1,6 @@
 package io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -112,6 +113,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding
                 viewModel.sortedFromDate(dateFromInLong, dateToInLong)
             }
 
+
         }
         navigate()
     }
@@ -123,5 +125,6 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding
                 findNavController().navigateUp()
             }
         }
+
     }
 }

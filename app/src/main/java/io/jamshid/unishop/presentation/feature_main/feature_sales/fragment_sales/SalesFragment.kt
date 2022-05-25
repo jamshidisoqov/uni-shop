@@ -1,7 +1,6 @@
 package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,7 +14,6 @@ import io.jamshid.unishop.presentation.MainActivity
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.adapter.SalesListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.dialog.AddSalesDialog
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -86,14 +84,16 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
             imgBack.setOnClickListener { findNavController().navigateUp() }
 
             basketContainer.setOnClickListener {
-                val gsonPretty = GsonBuilder().setPrettyPrinting().create()
-                Basket.products = viewModel.saleProducts.value as ArrayList<BasketProductModel>
-                val gsonString = gsonPretty.toJson(viewModel.saleProducts.value)
-                findNavController().navigate(
-                    SalesFragmentDirections.actionSalesFragmentToBasketFragment(
-                        gsonString
+                if (viewModel.saleProducts.value.isNotEmpty()) {
+                    val gsonPretty = GsonBuilder().setPrettyPrinting().create()
+                    Basket.products = viewModel.saleProducts.value as ArrayList<BasketProductModel>
+                    val gsonString = gsonPretty.toJson(viewModel.saleProducts.value)
+                    findNavController().navigate(
+                        SalesFragmentDirections.actionSalesFragmentToBasketFragment(
+                            gsonString
+                        )
                     )
-                )
+                }
             }
         }
     }

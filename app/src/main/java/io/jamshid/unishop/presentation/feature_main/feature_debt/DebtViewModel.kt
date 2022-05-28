@@ -43,4 +43,8 @@ class DebtViewModel @Inject constructor(
         }
     }
 
+        fun getDebtByClient(){
+
+        }
+
 }

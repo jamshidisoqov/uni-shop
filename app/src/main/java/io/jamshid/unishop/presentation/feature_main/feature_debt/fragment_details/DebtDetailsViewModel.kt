@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.data.models.OutputPayment
+import io.jamshid.unishop.data.models.dto.OutputProduct
 import io.jamshid.unishop.data.models.dto.PaymentHistory
 import io.jamshid.unishop.data.remote.apis.DebtApi
 import io.jamshid.unishop.domain.models.Product
@@ -19,9 +20,9 @@ class DebtDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private var _allProductsByOutput: MutableStateFlow<Response<List<Product>>> =
+    private var _allProductsByOutput: MutableStateFlow<Response<List<OutputProduct>>> =
         MutableStateFlow(Response.Loading())
-    val allProductsByOutput: StateFlow<Response<List<Product>>> get() = _allProductsByOutput
+    val allProductsByOutput: StateFlow<Response<List<OutputProduct>>> get() = _allProductsByOutput
 
 
 

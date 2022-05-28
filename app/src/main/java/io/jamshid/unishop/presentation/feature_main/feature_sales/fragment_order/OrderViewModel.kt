@@ -34,6 +34,7 @@ class OrderViewModel @Inject constructor(
             api.addClient(
                 clientDto = client
             )
+            getAllClient()
         }
     }
 

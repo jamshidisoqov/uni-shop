@@ -37,7 +37,7 @@ class DebtDetailsFragment :
     override fun myCreateView(savedInstanceState: Bundle?) {
 
 
-        val adapter = ProductAdapter().also {
+        val adapter = DebtAdapter().also {
             binding.productListDebt.adapter = it
         }
         paymentAdapter = PaymentAdapter()

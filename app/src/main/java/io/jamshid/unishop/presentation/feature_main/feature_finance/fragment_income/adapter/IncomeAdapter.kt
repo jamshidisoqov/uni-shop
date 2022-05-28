@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
+import io.jamshid.unishop.common.extension_functions.getDateFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.ListItemIncomeBinding
 import io.jamshid.unishop.utils.OnItemClickListener
+import java.util.*
 
 // Created by Jamshid Isoqov an 5/18/2022
 class IncomeAdapter(private val onItemClickListener: OnItemClickListener<OutputSales>) :
@@ -23,7 +25,7 @@ class IncomeAdapter(private val onItemClickListener: OnItemClickListener<OutputS
                 tvNameBalance.text = outputSales.client!!.fullName
                 //saller qoshiw karak
                 tvBuyPrices.text = "${outputSales.amount}"
-                tvBuyDate.text = "${outputSales.updatedDate.time}"
+                tvBuyDate.text = "${Date(outputSales.updatedDate.time)}".getDateFormat()
                 root.setOnClickListener {
                     onItemClickListener.onClick(outputSales)
                 }

@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -19,6 +18,7 @@ import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.OutProductDto
 import io.jamshid.unishop.data.models.dto.OutputDto
 import io.jamshid.unishop.databinding.FragmentOrderBinding
+import io.jamshid.unishop.presentation.MainActivity
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.adapter.OrderSpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.dialog.AddClientDialog
@@ -51,6 +51,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
 
 
         allSumm = allSumma()
+
         binding.apply {
             imgAddClient.setOnClickListener {
                 AddClientDialog(viewModel).also {
@@ -83,8 +84,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                 viewModel.addSalesStatus.collectLatest {
                     Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                     if (it == 200) {
-                        findNavController().popBackStack()
-                        findNavController().navigate(R.id.salesFragment)
+                        (activity as MainActivity).setNewLocale()
                     }
                 }
             }
@@ -93,18 +93,22 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
             binding.edPlastic.addTextChangedListener(MaskWatcherPayment(binding.edPlastic))
 
             binding.edCash.addTextChangedListener {
-                val min = allSumm - it.toString().getOnlyDigits().toDouble()
-                if (binding.edPlastic.text.toString().isNotEmpty())
-                    min - binding.edPlastic.text.toString().getOnlyDigits().toDouble()
-                tvProductDebtSumm.text = "$min"
+                if (it!!.toString().isNotEmpty()) {
+                    val min = allSumm - it.toString().getOnlyDigits().toDouble()
+                    if (binding.edPlastic.text.toString().isNotEmpty())
+                        min - binding.edPlastic.text.toString().getOnlyDigits().toDouble()
+                    tvProductDebtSumm.text = "$min"
+                }
             }
 
             binding.edPlastic.addTextChangedListener {
-                val min = allSumm - it.toString().getOnlyDigits()
-                    .toDouble()
-                if (edCash.text.toString().isNotEmpty())
-                    min - edCash.text.toString().getOnlyDigits().toDouble()
-                tvProductDebtSumm.text = "$min"
+                if (it!!.toString().isNotEmpty()) {
+                    val min = allSumm - it.toString().getOnlyDigits()
+                        .toDouble()
+                    if (edCash.text.toString().isNotEmpty())
+                        min - edCash.text.toString().getOnlyDigits().toDouble()
+                    tvProductDebtSumm.text = "$min"
+                }
             }
 
 

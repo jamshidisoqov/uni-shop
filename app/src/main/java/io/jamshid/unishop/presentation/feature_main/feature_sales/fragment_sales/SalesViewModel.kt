@@ -23,6 +23,8 @@ class SalesViewModel @Inject constructor(
     private val _saleProducts = MutableStateFlow<List<BasketProductModel>>(emptyList())
     val saleProducts = _saleProducts
 
+    val counter:MutableStateFlow<Int>  = MutableStateFlow(0);
+
 
     fun addProduct(basketProductModel: BasketProductModel) {
         viewModelScope.launch {
@@ -31,15 +33,10 @@ class SalesViewModel @Inject constructor(
             else
                 ArrayList()
 
-            for (i in products.indices) {
-                if (products[i].product.id == basketProductModel.product.id) {
-                    val data =
-                        products[i].copy(quantity = products[i].quantity + basketProductModel.quantity)
-                    products[i] = data
-                    _saleProducts.value=products
-                    return@launch
-                }
+            for (basket in products){
+                if (basket.id==basketProductModel.id) return@launch
             }
+            counter.emit(++counter.value)
             products.add(basketProductModel)
             _saleProducts.emit(products)
         }

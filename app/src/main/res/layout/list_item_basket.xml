@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_product_name"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/lenavo"
             android:textStyle="bold" />
 
@@ -34,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/margin_standard"
             android:gravity="center_vertical"
             tools:ignore="RelativeOverlap">
@@ -61,6 +63,17 @@
                 android:src="@drawable/ic_circle_add"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_product_prices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_product_brand"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/default_basket_summ"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

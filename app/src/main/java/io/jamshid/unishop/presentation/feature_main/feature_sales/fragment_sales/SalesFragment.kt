@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
@@ -26,6 +27,7 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
     override fun myCreateView(savedInstanceState: Bundle?) {
 
         val adapter = SalesListAdapter()
+
         binding.rcvProductList.adapter = adapter
 
         adapter.setOnItemClickListener { product ->
@@ -76,11 +78,19 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
             }
         }
 
-        binding.imgBack.setOnClickListener { findNavController().navigateUp() }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.counter.collect { counter ->
+                "$counter product".also {
+                    binding.tvCounterBasket.text = it
+                }
+            }
+        }
+
     }
 
     private fun navigate() {
         binding.apply {
+
             imgBack.setOnClickListener { findNavController().navigateUp() }
 
             basketContainer.setOnClickListener {
@@ -93,8 +103,12 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
                             gsonString
                         )
                     )
+                } else {
+                    Snackbar.make(binding.basketContainer, "Basket empty!", Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
+
         }
     }
 }

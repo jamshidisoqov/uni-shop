@@ -1,27 +1,28 @@
-package io.jamshid.unishop.presentation.feature_main.feature_warehouse.adapters
+package io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
+import io.jamshid.unishop.data.models.dto.OutputProduct
 import io.jamshid.unishop.databinding.ListItemProductBinding
 import io.jamshid.unishop.domain.models.Product
 
 // Created by Jamshid Isoqov an 5/21/2022
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class DebtAdapter : RecyclerView.Adapter<DebtAdapter.ViewHolder>() {
 
     private lateinit var binding: ListItemProductBinding
-    private var productList: List<Product> = emptyList()
+    private var productList: List<OutputProduct> = emptyList()
 
     inner class ViewHolder(val binding: ListItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(product: Product) {
+        fun onBind(product: OutputProduct) {
             binding.apply {
-                tvItemProductName.text = product.name
-                tvItemProductBrand.text = product.brand
-                tvItemProductCount.text = product.quantity.toString()
-                tvItemProductPrice.text = product.price.toString()
+                tvItemProductName.text = product.product!!.name
+                tvItemProductBrand.text = product.product.brand
+                tvItemProductCount.text = product.quantity.toString()+"dona"
+                tvItemProductPrice.text = product.cost.toString()+"UZS"
             }
         }
 
@@ -40,7 +41,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = productList.size
 
-    fun setData(list: List<Product>) {
+    fun setData(list: List<OutputProduct>) {
         productList = list
         notifyDataSetChanged()
     }

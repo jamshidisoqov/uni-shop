@@ -21,6 +21,19 @@ class ClientsListViewModel @Inject constructor(
     val allClients = _allClients.asStateFlow()
 
     init {
+        getAllClient()
+    }
+
+    fun addClient(client: ClientDto) {
+        viewModelScope.launch {
+            clientApi.addClient(
+                clientDto = client
+            )
+        }
+        getAllClient()
+    }
+
+    private fun getAllClient() {
         viewModelScope.launch {
             try {
                 _allClients.emit(Response.Loading())
@@ -32,14 +45,6 @@ class ClientsListViewModel @Inject constructor(
             } catch (e: Exception) {
                 _allClients.emit(Response.Error(e.localizedMessage))
             }
-        }
-    }
-
-    fun addClient(client: ClientDto) {
-        viewModelScope.launch {
-            clientApi.addClient(
-                clientDto = client
-            )
         }
     }
 }

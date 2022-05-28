@@ -27,7 +27,11 @@ class ClientsListFragment :
         val adapter = ClientsListAdapter(object : OnClientClickListener {
 
             override fun onItemClick(client: Client) {
-
+                findNavController().navigate(
+                    ClientsListFragmentDirections.actionClientsListFragmentToClientInfoFragment(
+                        client
+                    )
+                )
             }
 
             override fun onPhoneClick(client: Client) {

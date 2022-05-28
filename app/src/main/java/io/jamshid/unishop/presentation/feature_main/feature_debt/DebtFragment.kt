@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
@@ -20,6 +21,8 @@ class DebtFragment : BaseFragment<FragmentDebtBinding>(FragmentDebtBinding::infl
 
 
     private val viewModel: DebtViewModel by viewModels()
+    private val args:DebtFragmentArgs by navArgs()
+
 
 
     override fun myCreateView(savedInstanceState: Bundle?) {

@@ -2,6 +2,7 @@ package io.jamshid.unishop.data.remote.apis
 
 import io.jamshid.unishop.common.Result
 import io.jamshid.unishop.data.models.OutputPayment
+import io.jamshid.unishop.data.models.dto.OutputProduct
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.data.models.dto.PaymentHistory
 import io.jamshid.unishop.domain.models.Product
@@ -17,7 +18,7 @@ interface DebtApi {
     suspend fun getAllDebt(): List<OutputSales>
 
     @GET("output/{id}/products")
-    suspend fun getAllProductByOutput(@Path("id") id: Long): List<Product>
+    suspend fun getAllProductByOutput(@Path("id") id: Long): List<OutputProduct>
 
     @GET("output/{id}/payments")
     suspend fun getAllPaymentsBYOutput(@Path("id") id: Long): List<PaymentHistory>

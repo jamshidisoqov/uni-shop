@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/root_bg"
+    tools:context=".presentation.feature_main.feature_clients.fragment_client_info.ClientInfoFragment">
+
+    <RelativeLayout
+        android:id="@+id/action_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/margin_standart"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/margin_standart"
+            android:text="@string/clients"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/general_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/margin_bigger"
+        android:paddingEnd="@dimen/margin_bigger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar_container"
+        app:layout_constraintVertical_bias="0.1"
+        tools:ignore="RtlSymmetry">
+
+        <EditText
+            android:id="@+id/client_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/margin_standard"
+            android:backgroundTint="@color/green"
+            android:drawableEnd="@drawable/ic_person"
+            android:focusable="false"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/default_user_name"
+            tools:ignore="LabelFor" />
+
+        <EditText
+            android:id="@+id/client_number"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="@dimen/margin_standard"
+            android:backgroundTint="@color/green"
+            android:drawableEnd="@drawable/phone"
+            android:focusable="false"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/phone_number"
+            tools:ignore="LabelFor,TextFields" />
+
+        <EditText
+            android:id="@+id/client_comment"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/green"
+            android:drawableEnd="@drawable/ic_comment"
+            android:focusable="false"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:text="@string/comment"
+            tools:ignore="LabelFor,TextFields" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/output_client_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginEnd="@dimen/margin_bigger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/general_container"
+        app:layout_constraintVertical_bias="0.1"
+        tools:ignore="UseCompoundDrawables"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:background="@drawable/circle_bg"
+            android:backgroundTint="#24652D"
+            android:contentDescription="@string/todo"
+            android:padding="12dp"
+            android:src="@drawable/budget" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_bigger"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/purchases"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/client_debt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:layout_marginEnd="@dimen/margin_bigger"
+        app:layout_constraintTop_toBottomOf="@+id/output_client_container"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:background="@drawable/circle_bg"
+            android:backgroundTint="#881111"
+            android:contentDescription="@string/todo"
+            android:padding="12dp"
+            android:src="@drawable/budget" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_bigger"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/payment_debt"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/client_payments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:layout_marginEnd="@dimen/margin_bigger"
+        app:layout_constraintTop_toBottomOf="@+id/client_debt"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:background="@drawable/circle_bg"
+            android:backgroundTint="#7E6417"
+            android:contentDescription="@string/todo"
+            android:padding="12dp"
+            android:src="@drawable/income"
+            app:tint="#DDAA11" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_bigger"
+            android:fontFamily="@font/comfortaa_bold"
+            android:text="@string/payment"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

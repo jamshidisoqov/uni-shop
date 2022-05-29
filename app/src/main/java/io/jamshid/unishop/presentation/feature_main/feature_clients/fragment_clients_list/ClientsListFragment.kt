@@ -1,10 +1,12 @@
 package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.dialPhone
@@ -27,11 +29,10 @@ class ClientsListFragment :
         val adapter = ClientsListAdapter(object : OnClientClickListener {
 
             override fun onItemClick(client: Client) {
-                findNavController().navigate(
-                    ClientsListFragmentDirections.actionClientsListFragmentToClientInfoFragment(
-                        client
-                    )
-                )
+                val bundle = Bundle()
+                bundle.putSerializable("client",client.toClient())
+                //Toast.makeText(requireContext(), "${client.toClient()}", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.clientInfoFragment,bundle)
             }
 
             override fun onPhoneClick(client: Client) {

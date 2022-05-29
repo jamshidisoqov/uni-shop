@@ -22,7 +22,7 @@ class SaleListAdapter(private val salesClickListener: SalesClickListener) : Recy
 
         fun onBind(outputSales: OutputSales) {
             binding.apply {
-                tvNameBalans.text = outputSales.client!!.fullName
+                tvNameBalans.text = outputSales.client.fullName
                 tvBuyPrices.text = outputSales.amount.toString()
                 tvBuyDate.text = "${Date(outputSales.createdDate.time)}".getDateFormat()
                 root.setOnClickListener {

@@ -74,9 +74,12 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
-                android:backgroundTint="#AA37AC"
-                android:padding="12dp"
-                android:src="@drawable/budget" />
+                android:backgroundTint="#19463F"
+                android:paddingStart="@dimen/margin_bigger"
+                android:paddingTop="@dimen/margin_standard"
+                android:paddingEnd="@dimen/margin_standard"
+                android:paddingBottom="12dp"
+                android:src="@drawable/sell" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,9 +105,9 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
-                android:backgroundTint="#0C8B37"
+                android:backgroundTint="#624017"
                 android:padding="12dp"
-                android:src="@drawable/budget" />
+                android:src="@drawable/finance" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -112,7 +115,8 @@
                 android:layout_marginStart="@dimen/margin_bigger"
                 android:fontFamily="@font/comfortaa_bold"
                 android:text="Moliya"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -129,9 +133,9 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
-                android:backgroundTint="#AE640C"
+                android:backgroundTint="#374456"
                 android:padding="12dp"
-                android:src="@drawable/budget" />
+                android:src="@drawable/client" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,10 +160,10 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
-                android:backgroundTint="#1D443F"
+                android:backgroundTint="#51352F"
                 android:elevation="8dp"
                 android:padding="12dp"
-                android:src="@drawable/budget" />
+                android:src="@drawable/house" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -184,10 +188,10 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
-                android:backgroundTint="#7E1010"
+                android:backgroundTint="#4D3341"
                 android:elevation="8dp"
-                android:padding="12dp"
-                android:src="@drawable/budget" />
+                android:padding="14dp"
+                android:src="@drawable/debt" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,10 +216,10 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
-                android:backgroundTint="#0C9079"
+                android:backgroundTint="#323041"
                 android:elevation="8dp"
                 android:padding="12dp"
-                android:src="@drawable/budget" />
+                android:src="@drawable/worker" />
 
             <TextView
                 android:layout_width="wrap_content"

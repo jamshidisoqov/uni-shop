@@ -185,8 +185,5 @@
         <action
             android:id="@+id/action_clientInfoFragment_to_clientDetailFragment"
             app:destination="@id/clientDetailFragment" />
-        <argument
-            android:name="client"
-            app:argType="io.jamshid.unishop.data.models.dto.Client" />
     </fragment>
 </navigation>

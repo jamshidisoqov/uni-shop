@@ -33,6 +33,33 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/client_name"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        app:layout_constraintHorizontal_bias="0.1"
+        android:text="@string/default_user_name"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_bar_container"
+        app:layout_constraintVertical_bias="0.05"
+        tools:ignore="LabelFor" />
+
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/client_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/circle_bg"
+        android:backgroundTint="#374456"
+        android:padding="12dp"
+        android:src="@drawable/client"
+        app:layout_constraintTop_toTopOf="@+id/client_name" />
+
     <LinearLayout
         android:id="@+id/general_container"
         android:layout_width="match_parent"
@@ -42,21 +69,9 @@
         android:paddingEnd="@dimen/margin_bigger"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/action_bar_container"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintVertical_bias="0.2"
         tools:ignore="RtlSymmetry">
 
-        <EditText
-            android:id="@+id/client_name"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="@dimen/margin_standard"
-            android:backgroundTint="@color/green"
-            android:drawableEnd="@drawable/ic_person"
-            android:focusable="false"
-            android:importantForAutofill="no"
-            android:inputType="none"
-            android:text="@string/default_user_name"
-            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/client_number"
@@ -66,6 +81,7 @@
             android:backgroundTint="@color/green"
             android:drawableEnd="@drawable/phone"
             android:focusable="false"
+            android:textSize="14sp"
             android:importantForAutofill="no"
             android:inputType="none"
             android:text="@string/phone_number"
@@ -78,6 +94,7 @@
             android:backgroundTint="@color/green"
             android:drawableEnd="@drawable/ic_comment"
             android:focusable="false"
+            android:textSize="14sp"
             android:importantForAutofill="no"
             android:inputType="none"
             android:text="@string/comment"
@@ -101,10 +118,12 @@
             android:layout_height="50dp"
             android:layout_marginEnd="@dimen/margin_standard"
             android:background="@drawable/circle_bg"
-            android:backgroundTint="#24652D"
-            android:contentDescription="@string/todo"
-            android:padding="12dp"
-            android:src="@drawable/budget" />
+            android:backgroundTint="#19463F"
+            android:paddingStart="@dimen/margin_bigger"
+            android:paddingTop="@dimen/margin_standard"
+            android:paddingEnd="@dimen/margin_standard"
+            android:paddingBottom="12dp"
+            android:src="@drawable/sell"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,14 +147,14 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:layout_marginEnd="@dimen/margin_standard"
             android:background="@drawable/circle_bg"
-            android:backgroundTint="#881111"
-            android:contentDescription="@string/todo"
-            android:padding="12dp"
-            android:src="@drawable/budget" />
+            android:backgroundTint="#4D3341"
+            android:elevation="8dp"
+            android:padding="14dp"
+            android:src="@drawable/debt" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,11 +182,9 @@
             android:layout_height="50dp"
             android:layout_marginEnd="@dimen/margin_standard"
             android:background="@drawable/circle_bg"
-            android:backgroundTint="#7E6417"
-            android:contentDescription="@string/todo"
+            android:backgroundTint="#624017"
             android:padding="12dp"
-            android:src="@drawable/income"
-            app:tint="#DDAA11" />
+            android:src="@drawable/finance" />
 
         <TextView
             android:layout_width="wrap_content"

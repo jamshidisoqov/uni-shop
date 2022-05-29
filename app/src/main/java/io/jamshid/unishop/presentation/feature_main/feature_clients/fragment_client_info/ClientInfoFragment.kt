@@ -3,7 +3,6 @@ package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_cl
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.data.models.dto.Client
@@ -15,16 +14,17 @@ class ClientInfoFragment :
 
 
     private val viewModel: ClientInfoViewModel by viewModels()
-    private val args: ClientInfoFragmentArgs by navArgs()
 
 
     override fun myCreateView(savedInstanceState: Bundle?) {
         binding.apply {
-            val client = args.client
-            clientName.setText(client.fullName)
-            clientNumber.setText(client.phoneNumber)
-            clientComment.setText(client.comment)
-            navigate(client)
+            if (arguments!=null) {
+                val client = arguments?.getSerializable("client") as Client
+                clientName.text = client.fullName
+                clientNumber.setText(client.phoneNumber)
+                clientComment.setText(client.comment)
+                navigate(client)
+            }
         }
     }
 

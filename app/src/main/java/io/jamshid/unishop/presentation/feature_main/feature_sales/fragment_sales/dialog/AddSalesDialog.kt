@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import io.jamshid.unishop.R
 import io.jamshid.unishop.common.extension_functions.getOnlyDigits
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.DilogAddProductBinding
 import io.jamshid.unishop.domain.models.Product
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
@@ -16,10 +17,6 @@ import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales
 import io.jamshid.unishop.utils.MaskWatcherNothing
 import io.jamshid.unishop.utils.MaskWatcherPayment
 
-//TZ
-/*quantity kichik yoki teng
-*satilip atrgan summa minimumdan kop max az boliwi kerak
-*/
 
 class AddSalesDialog(
     private val viewModel: SalesViewModel,
@@ -33,34 +30,40 @@ class AddSalesDialog(
         savedInstanceState: Bundle?
     ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
+
         return DilogAddProductBinding.inflate(inflater, container, false).apply {
 
-            tvMax.text = "Максимальная цена:${product.maximumPrice}"
-            tvMin.text = "Минимальная цена:${product.minimumPrice}"
-            tvCost.text = "Себестоимость:${product.price}"
-            edPrices.setText(product.maximumPrice.toString())
+
+            edPrices.addTextChangedListener(MaskWatcherPayment(edPrices))
+            edCountProduct.addTextChangedListener(MaskWatcherNothing(edCountProduct))
+            edPrices.setText(product.maximumPrice.toLong().toString())
+
+            tvMax.text =
+                "Максимальная цена:${product.maximumPrice.toLong().toString().toSummFormat()}"
+            tvMin.text =
+                "Минимальная цена:${product.minimumPrice.toLong().toString().toSummFormat()}"
+            tvCost.text = "Себестоимость:${product.price.toLong().toString().toSummFormat()}"
 
             imageView2.setOnClickListener {
-                if (tvMax.isVisible) {
+                if (tvCost.isVisible) {
                     tvMin.visibility = View.GONE
-                    tvMax.visibility = View.GONE
+                    tvCost.visibility = View.GONE
                     imageView2.setImageResource(R.drawable.ic_add)
                 } else {
                     tvMin.visibility = View.VISIBLE
-                    tvMax.visibility = View.VISIBLE
+                    tvCost.visibility = View.VISIBLE
                     imageView2.setImageResource(R.drawable.ic_close)
                 }
             }
 
 
-            edPrices.addTextChangedListener(MaskWatcherPayment(edPrices))
-            edCountProduct.addTextChangedListener(MaskWatcherNothing(edCountProduct))
-
             btnAddBasket.setOnClickListener {
                 var quantity = 0
                 if (edCountProduct.text.toString().isNotEmpty())
                     quantity = edCountProduct.text.toString().getOnlyDigits().toInt()
+
                 val cost = edPrices.text.toString().getOnlyDigits().toDouble()
+
                 if (cost >= product.minimumPrice && cost <= product.maximumPrice) {
                     if (quantity > 0 && quantity <= product.quantity) {
                         viewModel.addProduct(
@@ -73,10 +76,11 @@ class AddSalesDialog(
                         )
                         dialog!!.dismiss()
                     } else {
-                        edCountProduct.error = "Mahsulot soni notog'ri kiritildi"
+                        edCountProduct.error = getString(R.string.product_quantity_error)
                     }
+
                 } else {
-                    edPrices.error = "Mahsulot summasi notog'ri kiritildi"
+                    edPrices.error = getString(R.string.product_sum_error)
                 }
             }
 

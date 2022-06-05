@@ -10,6 +10,7 @@ import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Constants.ROLE
 import io.jamshid.unishop.databinding.FragmentHomeBinding
+import io.jamshid.unishop.presentation.feature_main.feature_debt.util.Constants
 import io.jamshid.unishop.utils.settings.Settings.SELLER
 
 @AndroidEntryPoint
@@ -36,6 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 findNavController().navigate(R.id.action_homeFragment_to_warehouseFragment)
             }
             debtContainer.setOnClickListener {
+                Constants.choose = 1
                 findNavController().navigate(R.id.action_homeFragment_to_debtFragment)
             }
         }

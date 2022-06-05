@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.OutputProduct
 import io.jamshid.unishop.databinding.ListItemProductBinding
 import io.jamshid.unishop.domain.models.Product
@@ -21,8 +22,8 @@ class DebtAdapter : RecyclerView.Adapter<DebtAdapter.ViewHolder>() {
             binding.apply {
                 tvItemProductName.text = product.product!!.name
                 tvItemProductBrand.text = product.product.brand
-                tvItemProductCount.text = product.quantity.toString()+"dona"
-                tvItemProductPrice.text = product.cost.toString()+"UZS"
+                tvItemProductCount.text = product.quantity.toString()+" штук"
+                tvItemProductPrice.text = product.cost!!.toLong().toString().toSummFormat()
             }
         }
 

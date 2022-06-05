@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_standard"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -44,27 +45,28 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_all_sum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:layout_marginStart="@dimen/margin_standard"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginBottom="@dimen/margin_small"
-                android:layout_marginStart="@dimen/margin_standard"
                 android:drawablePadding="@dimen/margin_bigger"
-                android:text="Umumiy:1 000 000 UZS"
+                android:text="@string/default_basket_summ"
+                android:textSize="16sp"
                 app:drawableStartCompat="@drawable/money" />
 
             <TextView
+                android:id="@+id/tv_debt_summ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:layout_marginStart="@dimen/margin_standard"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginBottom="@dimen/margin_small"
-                android:layout_marginStart="@dimen/margin_standard"
                 android:drawablePadding="@dimen/margin_bigger"
-                android:text="Qarz:1 000 000 UZS"
+                android:text="@string/default_basket_summ"
+                android:textSize="16sp"
                 app:drawableStartCompat="@drawable/expanses" />
-
 
 
         </LinearLayout>
@@ -88,6 +90,16 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/list_item_income" />
 
+        <ProgressBar
+            android:id="@+id/pb_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rcv_sales_all" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_calendar"
             android:layout_width="wrap_content"
@@ -98,7 +110,6 @@
             android:src="@drawable/ic_calendar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

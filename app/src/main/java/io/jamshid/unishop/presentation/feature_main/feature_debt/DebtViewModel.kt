@@ -10,7 +10,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,33 +17,38 @@ class DebtViewModel @Inject constructor(
     private var debtApi: DebtApi
 ) : ViewModel() {
 
-    init {
-        getAllDebt()
-    }
-
 
     private var _allDebt: MutableStateFlow<Response<List<OutputSales>>> =
         MutableStateFlow(Response.Default())
     val allDebt: StateFlow<Response<List<OutputSales>>> get() = _allDebt
 
 
-        fun getAllDebt() {
+    fun getAllDebt() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                Timber.d("Message:keldi")
                 _allDebt.emit(Response.Loading())
                 val data = debtApi.getAllDebt()
-                Timber.d("Message:${data}")
                 _allDebt.emit(Response.Success(data))
             } catch (e: Exception) {
-                Timber.d("Message:${e.message!!}")
-               // _allDebt.emit(Response.Error(e.localizedMessage!!.toString()))
+                _allDebt.emit(Response.Error(e.localizedMessage!!.toString()))
             }
         }
     }
 
-        fun getDebtByClient(){
+    fun getDebtByClient() {
+        TODO("client bo'yincha debt")
+    }
 
+    fun searchDebt(name: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _allDebt.emit(Response.Loading())
+                val data = debtApi.searchDebt(name)
+                _allDebt.emit(Response.Success(data))
+            } catch (e: Exception) {
+                _allDebt.emit(Response.Error(e.localizedMessage!!.toString()))
+            }
         }
+    }
 
 }

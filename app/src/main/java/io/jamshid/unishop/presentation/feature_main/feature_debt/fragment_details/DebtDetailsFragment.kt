@@ -14,12 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.getDateFormat
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.Output
 import io.jamshid.unishop.databinding.DialogPaymentHistoryBinding
 import io.jamshid.unishop.databinding.FragmentDebtDetailsBinding
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment.adapter.PaymentAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details.dialog.PaymentBottomSheetDialog
-import io.jamshid.unishop.presentation.feature_main.feature_warehouse.adapters.ProductAdapter
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
 
@@ -42,7 +42,6 @@ class DebtDetailsFragment :
         }
         paymentAdapter = PaymentAdapter()
 
-        showProgress(true)
         if (arguments != null) {
             choose = arguments?.getInt("choose")!!
             outputSales = arguments?.getSerializable("output") as Output
@@ -61,13 +60,13 @@ class DebtDetailsFragment :
                     this.lastPaymentDate.text =
                         Date(it.updatedDate!!.time).toString().getDateFormat()
                     this.tvBuyDate.text = Date(it.createdDate.time).toString().getDateFormat()
-                    this.tvBuySumm.text = it.amount.toString()
-                    this.tvDebtSumm.text = it.debtAmount.toString()
+                    this.tvBuySumm.text = it.amount.toLong().toString().toSummFormat()+"UZS"
+                    this.tvDebtSumm.text = it.debtAmount.toLong().toString().toSummFormat()+"UZS"
                 }
 
                 btnPaymentDebt.setOnClickListener {
 
-                    val dialog = PaymentBottomSheetDialog(viewModel, outputSales.id).also {
+                    PaymentBottomSheetDialog(viewModel, outputSales.id).also {
                         it.show(
                             requireActivity().supportFragmentManager,
                             it.tag

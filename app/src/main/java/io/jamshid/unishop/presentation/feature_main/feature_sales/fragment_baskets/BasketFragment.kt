@@ -1,16 +1,16 @@
 package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets
 
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.FragmentBasketBinding
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.adapter.BasketListAdapter
@@ -22,19 +22,17 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>(FragmentBasketBinding
 
     private val viewModel: BasketViewModel by viewModels()
 
-    private val args: BasketFragmentArgs by navArgs()
-
-    private val gson = Gson()
+    private var lastTotalPrice = 0L
 
     override fun myCreateView(savedInstanceState: Bundle?) {
+        val productList = Basket.products
 
         binding.apply {
-            val myType = object : TypeToken<List<BasketProductModel>>() {}.type
-            val productList = gson.fromJson<List<BasketProductModel>>(args.jsonString, myType)
+
             viewModel.setSellProducts(productList)
 
-
             val adapter = BasketListAdapter()
+
             binding.rcvBasket.adapter = adapter
 
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -43,13 +41,19 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>(FragmentBasketBinding
                 }
             }
 
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                viewModel.allSumm.collectLatest { all ->
+                    val a = all.toLong()
+                    animateTotalPrice(lastTotalPrice, a)
+                    lastTotalPrice = a
+                }
+            }
+
             adapter.setOnAddClickListener {
-                //Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                 viewModel.addProduct(it)
             }
 
             adapter.setOnRemoveClickListener {
-               //Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                 viewModel.removeProduct(it)
             }
 
@@ -57,12 +61,32 @@ class BasketFragment : BaseFragment<FragmentBasketBinding>(FragmentBasketBinding
             imgBack.setOnClickListener {
                 findNavController().navigateUp()
             }
-
             btnNextProduct.setOnClickListener {
-                Basket.sellProduct = viewModel.saleProducts.value as ArrayList<BasketProductModel>
-                findNavController().navigate(R.id.action_basketFragment_to_orderFragment)
+                if (viewModel.saleProducts.value.isNotEmpty()) {
+                    Basket.sellProduct =
+                        viewModel.saleProducts.value as ArrayList<BasketProductModel>
+                    findNavController().navigate(R.id.action_basketFragment_to_orderFragment)
+                } else {
+                    Snackbar.make(
+                        binding.btnNextProduct,
+                        getString(R.string.basket_empty),
+                        Snackbar.LENGTH_SHORT
+                    )
+                        .show()
+                }
             }
 
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun animateTotalPrice(start: Long, end: Long) {
+        val animator = ValueAnimator.ofFloat(start.toFloat(), end.toFloat())
+        animator.addUpdateListener {
+            val newValue = (it.animatedValue as Float).toLong().toString().toSummFormat()
+            binding.tvAllSum.text = getString(R.string.all) + "$newValue"
+        }
+        animator.duration = 500
+        animator.start()
     }
 }

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
 import io.jamshid.unishop.common.extension_functions.getDateFormat
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.ListItemIncomeBinding
 import io.jamshid.unishop.utils.OnItemClickListener
@@ -22,9 +23,10 @@ class IncomeAdapter(private val onItemClickListener: OnItemClickListener<OutputS
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(outputSales: OutputSales) {
             binding.apply {
-                tvNameBalance.text = outputSales.client!!.fullName
-                //saller qoshiw karak
-                tvBuyPrices.text = "${outputSales.amount}"
+                tvNameBalance.text = outputSales.client.fullName
+                tvNameBalance.setSingleLine()
+                tvNameBalance.isSelected = true
+                tvBuyPrices.text = "${outputSales.amount}".toSummFormat()
                 tvBuyDate.text = "${Date(outputSales.updatedDate.time)}".getDateFormat()
                 root.setOnClickListener {
                     onItemClickListener.onClick(outputSales)

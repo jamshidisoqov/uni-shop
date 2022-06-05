@@ -1,13 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/root_bg"
+    android:orientation="vertical"
     tools:context=".presentation.feature_main.feature_finance.fragment_expanses.fragment_add.AddExpansesFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="?attr/actionBarSize"
+        tools:ignore="UselessParent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/margin_standart"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/margin_standart"
+            android:text="@string/expenses_dto"
+            android:textSize="18sp"
+            tools:ignore="RelativeOverlap" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/ed_expanses_salary"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/green"
+        android:drawableEnd="@drawable/ic_calculate"
+        android:hint="@string/expense_salary"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="15"
+        android:textAlignment="center"
+        android:textColorHint="@color/hint"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:text="@string/category"
+        android:textSize="18sp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:columnCount="4"
+        android:rowCount="2">
+
+        <LinearLayout
+            android:id="@+id/transport_expanses"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/transport" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/transport" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/education_expanses"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/education" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/education" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sport_expanses"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/sport" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sport" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rend"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/rend" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expense_rent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/build"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/building" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/build" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/food"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/restaurant" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/food"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/worker"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/team" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/worker" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/more"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables,UselessParent">
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#67E3CF"
+                android:contentDescription="@string/todo"
+                android:padding="12dp"
+                android:src="@drawable/ic_more" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/expense_any" />
+        </LinearLayout>
+
+
+    </GridLayout>
+
+    <EditText
+        android:id="@+id/ed_date_expanses"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:layout_marginEnd="@dimen/margin_bigger"
+        android:backgroundTint="@color/green"
+        android:drawableEnd="@drawable/ic_calendar"
+        android:focusable="false"
+        android:hint="@string/date_uzb"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:textColorHint="@color/hint"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/ed_time_expanses"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:layout_marginEnd="@dimen/margin_bigger"
+        android:backgroundTint="@color/green"
+        android:drawableEnd="@drawable/ic_calendar"
+        android:focusable="false"
+        android:hint="@string/time"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:textColorHint="@color/hint" />
+
+    <EditText
+        android:id="@+id/ed_comment_expases"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="@dimen/margin_bigger"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:layout_marginEnd="@dimen/margin_bigger"
+        android:backgroundTint="@color/green"
+        android:drawableEnd="@drawable/ic_comment"
+        android:focusable="false"
+        android:hint="@string/comment"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:textColorHint="@color/hint" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_expanses"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_extra_big"
+        android:background="@drawable/sign_in_btn_bg"
+        android:text="@string/add_expense" />
+
+</LinearLayout>

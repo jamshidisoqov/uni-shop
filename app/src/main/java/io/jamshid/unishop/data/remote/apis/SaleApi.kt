@@ -1,8 +1,9 @@
 package io.jamshid.unishop.data.remote.apis
 
+import io.jamshid.unishop.common.Result
+import io.jamshid.unishop.data.models.dto.ExpansesDto
 import io.jamshid.unishop.data.models.dto.OutputDto
 import io.jamshid.unishop.data.models.dto.OutputSales
-import io.jamshid.unishop.common.Result
 import io.jamshid.unishop.data.models.dto.ProductByOutput
 import retrofit2.http.*
 
@@ -17,15 +18,27 @@ interface SaleApi {
     suspend fun addOutput(@Body outputDto: OutputDto): Result<OutputSales>
 
     @GET("output/{id}/products")
-    suspend fun getProductsByOutPut(@Path("id") id:Long):List<ProductByOutput>
+    suspend fun getProductsByOutPut(@Path("id") id: Long): List<ProductByOutput>
 
     @GET("output/byDate")
     suspend fun getSalesByDate(
-        @Query("from") from:Long,
-        @Query("to") to:Long
-    ):List<OutputSales>
+        @Query("from") from: Long,
+        @Query("to") to: Long
+    ): List<OutputSales>
 
     @GET("payment/sumMonths")
-    suspend fun getLastSevenMonth():List<Double?>
+    suspend fun getLastSevenMonth(): List<Double?>
+
+    @GET("expanses/all")
+    suspend fun getAllExpanses(): List<ExpansesDto>
+
+    @GET("output/byDate")
+    suspend fun getExpansesByDate(
+        @Query("from") from: Long,
+        @Query("to") to: Long
+    ): List<ExpansesDto>
+
+    @POST("")
+    suspend fun addExpanses(@Body expansesDto: ExpansesDto): Result<ExpansesDto>
 
 }

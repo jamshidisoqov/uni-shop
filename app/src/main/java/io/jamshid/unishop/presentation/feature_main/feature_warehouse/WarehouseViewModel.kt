@@ -23,7 +23,7 @@ class WarehouseViewModel @Inject constructor(
     val allProducts = _allProducts.asStateFlow()
 
 
-    private val _allCategories = MutableStateFlow<List<Category>>(emptyList())
+    private val _allCategories = MutableStateFlow<Response<List<Category>>>(Response.Default())
     val allCategories = _allCategories.asStateFlow()
 
 
@@ -46,12 +46,29 @@ class WarehouseViewModel @Inject constructor(
 
     private fun fetchAllCategories() {
         viewModelScope.launch {
-            val categories = categoryApi
-                .getAllCategory()
-                .map {
-                    it.toCategory()
-                }
-            _allCategories.emit(categories)
+            try {
+                _allCategories.emit(Response.Loading())
+                val categories = categoryApi
+                    .getAllCategory()
+                    .map {
+                        it.toCategory()
+                    }
+                _allCategories.emit(Response.Success(categories))
+            } catch (e: Exception) {
+                _allCategories.emit(Response.Error(e.localizedMessage!!.toString()))
+            }
+        }
+    }
+
+    fun search(name: String) {
+        viewModelScope.launch {
+            try {
+                _allProducts.emit(Response.Loading())
+                val data = productApi.searchProduct(name)
+                _allProducts.emit(Response.Success(data = data.map { it.toProduct() }))
+            } catch (e: Exception) {
+                _allProducts.emit(Response.Error(e.localizedMessage!!.toString()))
+            }
         }
     }
 }

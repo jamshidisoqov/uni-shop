@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
 import io.jamshid.unishop.common.extension_functions.getDateFormat
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.PaymentHistory
 import io.jamshid.unishop.databinding.ListItemClientPaymentBinding
 import java.util.*
@@ -20,7 +21,8 @@ class PaymentAdapter : RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {
 
         fun onBind(paymentHistory: PaymentHistory) {
             binding.apply {
-                tvSummPaymentCash.text = "${paymentHistory.type}:${paymentHistory.amount}"
+                tvSummPaymentCash.text =
+                    "${paymentHistory.type}:" + "${paymentHistory.amount.toLong()}".toSummFormat()
                 tvPaymentDate.text = "${Date(paymentHistory.createdDate.time)}".getDateFormat()
             }
         }

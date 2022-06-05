@@ -47,4 +47,21 @@ class ClientsListViewModel @Inject constructor(
             }
         }
     }
+
+    fun searchClient(name: String) {
+
+        viewModelScope.launch {
+            try {
+                _allClients.emit(Response.Loading())
+                _allClients.emit(
+                    Response.Success(
+                        clientApi.searchClient(name)
+                    )
+                )
+            } catch (e: Exception) {
+                _allClients.emit(Response.Error(e.localizedMessage))
+            }
+        }
+
+    }
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/root_bg">
+
+    <TextView
+        android:id="@+id/tv_expanses_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_standard"
+        android:text="@string/expenses_dto"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_more_expanses"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginEnd="@dimen/margin_standard"
+        android:contentDescription="@string/todo"
+        android:padding="@dimen/margin_standard"
+        android:src="@drawable/ic_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_cash_expanses"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:backgroundTint="@color/green"
+        android:focusable="false"
+        android:hint="@string/expense_salary"
+        android:inputType="none"
+        android:textColorHint="@color/hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_expanses_name"
+        app:layout_constraintWidth_percent="0.9"
+        tools:ignore="Autofill" />
+
+
+    <EditText
+        android:id="@+id/ed_date_expanses"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:backgroundTint="@color/green"
+        android:focusable="false"
+        android:hint="@string/date_uzb"
+        android:inputType="none"
+        android:minWidth="320dp"
+        android:textColorHint="@color/hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_cash_expanses"
+        app:layout_constraintWidth_percent="0.9"
+        tools:ignore="Autofill,TextFields" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/margin_standard"
+        android:background="@drawable/sign_in_btn_bg"
+        android:backgroundTint="@color/root_color"
+        android:paddingStart="@dimen/margin_bigger"
+        android:paddingEnd="@dimen/margin_bigger"
+        android:text="@string/close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_date_expanses" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

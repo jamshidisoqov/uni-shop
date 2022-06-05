@@ -36,8 +36,11 @@ class PaymentBottomSheetDialog(private var vm: DebtDetailsViewModel,private var 
             val card  =  binding.edCardDebt.text.toString().getOnlyDigits()
             if (cash.isNotEmpty()||card.isNotEmpty()){
                 val payment = OutputPayment(id,card.toDouble(),card.toDouble())
-               vm.paymentForOutput(payment)
+                vm.paymentForOutput(payment)
                 dialog!!.dismiss()
+            }else{
+                binding.edCardDebt.error = getString(R.string.product_sum_error)
+                binding.edCashDebt.error = getString(R.string.product_sum_error)
             }
         }
 

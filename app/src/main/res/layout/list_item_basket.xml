@@ -52,7 +52,7 @@
                 android:id="@+id/tv_product_count_basket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/default_count"
+                android:text="@string/default_product_count"
                 android:textSize="16sp" />
 
             <ImageView

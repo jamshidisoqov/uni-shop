@@ -1,7 +1,8 @@
 package io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -12,7 +13,6 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.dialPhone
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.databinding.FragmentClientsListBinding
-import io.jamshid.unishop.presentation.MainActivity
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.adapter.ClientsListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.dialog.AddClientDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.utils.OnClientClickListener
@@ -30,9 +30,9 @@ class ClientsListFragment :
 
             override fun onItemClick(client: Client) {
                 val bundle = Bundle()
-                bundle.putSerializable("client",client.toClient())
+                bundle.putSerializable("client", client.toClient())
                 //Toast.makeText(requireContext(), "${client.toClient()}", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.clientInfoFragment,bundle)
+                findNavController().navigate(R.id.clientInfoFragment, bundle)
             }
 
             override fun onPhoneClick(client: Client) {
@@ -53,14 +53,14 @@ class ClientsListFragment :
             viewModel.allClients.collectLatest { response ->
                 when (response) {
                     is Response.Loading -> {
-                        (activity as MainActivity).showProgress(true)
+                        binding.pbClient.visibility = View.VISIBLE
                     }
                     is Response.Success -> {
                         adapter.submitList(response.data!!)
-                        (activity as MainActivity).showProgress(false)
+                        binding.pbClient.visibility = View.INVISIBLE
                     }
                     else -> {
-                        (activity as MainActivity).showProgress(false)
+                        showProgress(false)
                     }
                 }
 
@@ -76,6 +76,12 @@ class ClientsListFragment :
                 )
             }
         }
+
+        binding.edSearchClient.addTextChangedListener {
+            viewModel.searchClient(it!!.toString())
+        }
+
+
     }
 
 }

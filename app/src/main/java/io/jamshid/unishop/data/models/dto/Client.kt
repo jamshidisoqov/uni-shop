@@ -12,9 +12,9 @@ data class Client(
     val comment: String? = null,
     val createdDate: Timestamp,
     val updatedDate: Timestamp,
-    val createdBy: UUID = UUID.randomUUID()
+    val createdBy: UUID?=null
 ):Serializable {
     fun toClient():Client{
-        return this.copy(createdBy = UUID.randomUUID())
+        return this.copy(createdBy = createdBy ?: UUID.randomUUID())
     }
 }

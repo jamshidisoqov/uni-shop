@@ -1,7 +1,7 @@
 package io.jamshid.unishop.domain.models
 
 import io.jamshid.unishop.data.models.dto.ProductDto
-import java.util.*
+import java.io.Serializable
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
@@ -15,7 +15,7 @@ data class Product(
     val minimumPrice: Double,
     val maximumPrice: Double,
     val categoryId: Int,
-) {
+) : Serializable {
     fun toProductDto() = ProductDto(
         id = id,
         name = name,

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@drawable/root_bg"
+    android:orientation="vertical"
     tools:context=".presentation.feature_main.feature_warehouse.WarehouseFragment">
 
     <RelativeLayout
@@ -27,8 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="@string/new_product"
-            android:textSize="18sp" />
+            android:text="@string/warehouse"
+            android:textSize="18sp"
+            tools:ignore="RelativeOverlap" />
 
         <ImageView
             android:id="@+id/img_filter"
@@ -39,19 +40,21 @@
             android:padding="@dimen/margin_standart"
             android:src="@drawable/filter"
             tools:ignore="ContentDescription" />
+
         <ImageView
             android:id="@+id/img_add_product"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_add"
-            android:layout_toStartOf="@id/img_filter"
             android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/img_filter"
             android:padding="@dimen/margin_standard"
-            app:tint="#00B533"/>
+            android:src="@drawable/ic_add"
+            app:tint="#00B533" />
 
     </RelativeLayout>
 
     <EditText
+        android:id="@+id/ed_search_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_standart"
@@ -60,21 +63,45 @@
         android:hint="@string/search_for_product"
         android:textColorHint="@color/hint" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_category"
+
+    <HorizontalScrollView
+        android:id="@+id/chipGroupScroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_category" />
+        android:layout_marginHorizontal="@dimen/margin_extra_small"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_ware_house"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            app:singleLine="true"
+            app:singleSelection="true" />
+
+    </HorizontalScrollView>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_small"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_product" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_ware_house"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_small"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_product" />
+
+        <ProgressBar
+            android:id="@+id/pb_warehouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
 </LinearLayout>

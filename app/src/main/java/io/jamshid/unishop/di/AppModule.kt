@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-// Created by Usmon Abdurakhmanv on 5/13/2022.
+// Created by Isoqov Jamshid on 5/13/2022.
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -23,28 +23,6 @@ object AppModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-
-    /*  @Provides
-      fun providesLoggingInterceptor(): HttpLoggingInterceptor {
-          return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-      }
-
-
-
-
-      @Provides
-      fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-          val okHttpClient = OkHttpClient().newBuilder()
-
-          okHttpClient.callTimeout(40, TimeUnit.SECONDS)
-          okHttpClient.connectTimeout(40, TimeUnit.SECONDS)
-          okHttpClient.readTimeout(40, TimeUnit.SECONDS)
-          okHttpClient.writeTimeout(40, TimeUnit.SECONDS)
-          okHttpClient.addInterceptor(loggingInterceptor)
-          okHttpClient.build()
-          return okHttpClient.build()
-      }
-  */
     @Provides
     @Singleton
     fun provideSaleApi(retrofit: Retrofit): SaleApi {
@@ -75,4 +53,9 @@ object AppModule {
         return retrofit.create(DebtApi::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideWorkerApi(retrofit: Retrofit): WorkerApi {
+        return retrofit.create(WorkerApi::class.java)
+    }
 }

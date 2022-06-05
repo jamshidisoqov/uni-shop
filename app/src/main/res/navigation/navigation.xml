@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_homeFragment_to_debtFragment"
             app:destination="@id/debtFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_workerFragment"
+            app:destination="@id/workerFragment" />
 
     </fragment>
 
@@ -69,11 +72,13 @@
             android:id="@+id/action_basketFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/orderFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.OrderFragment"
         android:label="fragment_order"
         tools:layout="@layout/fragment_order" />
+
     <fragment
         android:id="@+id/financeFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.FinanceFragment"
@@ -86,6 +91,7 @@
             android:id="@+id/action_financeFragment_to_expansesFragment"
             app:destination="@id/expansesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/warehouseFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_warehouse.WarehouseFragment"
@@ -94,7 +100,11 @@
         <action
             android:id="@+id/action_warehouseFragment_to_addProductFragment"
             app:destination="@id/addProductFragment" />
+        <action
+            android:id="@+id/action_warehouseFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/expansesFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.ExpansesFragment"
@@ -104,33 +114,23 @@
             android:id="@+id/action_expansesFragment_to_addExpansesFragment"
             app:destination="@id/addExpansesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/incomeFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.IncomeFragment"
         android:label="fragment_income"
         tools:layout="@layout/fragment_income" >
         <action
-            android:id="@+id/action_incomeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-        <action
             android:id="@+id/action_incomeFragment_to_debtDetailsFragment"
             app:destination="@id/debtDetailsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/detailsFragment"
-        android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.fragment_detail.DetailsFragment"
-        android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
-        <argument
-            android:name="outPutId"
-            app:argType="long"
-            android:defaultValue="1L" />
-    </fragment>
+
     <fragment
         android:id="@+id/addExpansesFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.fragment_add.AddExpansesFragment"
         android:label="fragment_add_expanses"
         tools:layout="@layout/fragment_add_expanses" />
+
     <fragment
         android:id="@+id/clientsListFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.ClientsListFragment"
@@ -143,6 +143,7 @@
             android:id="@+id/action_clientsListFragment_to_clientInfoFragment"
             app:destination="@id/clientInfoFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/clientDetailFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.ClientDetailFragment"
@@ -153,6 +154,7 @@
             app:argType="long"
             android:defaultValue="0L" />
     </fragment>
+
     <fragment
         android:id="@+id/debtFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_debt.DebtFragment"
@@ -165,6 +167,7 @@
             android:name="client"
             app:argType="io.jamshid.unishop.data.models.dto.Client" />
     </fragment>
+
     <fragment
         android:id="@+id/debtDetailsFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details.DebtDetailsFragment"
@@ -174,6 +177,7 @@
             android:name="output"
             app:argType="io.jamshid.unishop.data.models.dto.OutputSales" />
     </fragment>
+
     <fragment
         android:id="@+id/clientInfoFragment"
         android:name="io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_info.ClientInfoFragment"
@@ -186,4 +190,16 @@
             android:id="@+id/action_clientInfoFragment_to_clientDetailFragment"
             app:destination="@id/clientDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.feature_warehouse.fragment_product_details.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/workerFragment"
+        android:name="io.jamshid.unishop.presentation.feature_main.fragment_worker.WorkerFragment"
+        android:label="fragment_worker"
+        tools:layout="@layout/fragment_worker" />
+
 </navigation>

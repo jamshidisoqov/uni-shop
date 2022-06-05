@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.ListItemProductBinding
 import io.jamshid.unishop.domain.models.Product
 
@@ -19,8 +20,8 @@ class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
             binding.apply {
                 tvItemProductName.text = product.name
                 tvItemProductBrand.text = product.brand
-                tvItemProductCount.text = "${product.quantity} dona"
-                tvItemProductPrice.text = product.price.toString()
+                tvItemProductCount.text = "${product.quantity} штук"
+                tvItemProductPrice.text = product.maximumPrice.toString().toSummFormat()
 
                 root.setOnClickListener {
                     onItemClick?.invoke(product)

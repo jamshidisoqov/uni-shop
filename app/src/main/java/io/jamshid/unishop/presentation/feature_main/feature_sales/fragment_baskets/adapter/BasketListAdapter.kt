@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.ListItemBasketBinding
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
 
-// Created by Usmon Abdurakhmanv on 5/14/2022.
+// Created by Isoqov Jamshid on 5/14/2022.
 
 class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
 
@@ -20,9 +21,13 @@ class BasketListAdapter : RecyclerView.Adapter<BasketListAdapter.ViewHolder>() {
             binding.apply {
 
                 tvProductName.text = basketProductModel.product.name
+
                 tvProductBrand.text = basketProductModel.product.brand
+
                 tvProductCountBasket.text = basketProductModel.quantity.toString()
-                tvProductPrices.text = "Umumiy:${basketProductModel.cost * basketProductModel.quantity}"
+
+                val sum = "${(basketProductModel.cost * basketProductModel.quantity).toLong()}".toSummFormat()
+                tvProductPrices.text = "Общий:$sum"
 
                 imgAddProduct.setOnClickListener {
                     onItemAddClick?.invoke(basketProductModel)

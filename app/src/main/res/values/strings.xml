@@ -5,31 +5,15 @@
     <string name="default_product_counter">product</string>
     <string name="default_basket_summ">1 200 300 UZS</string>
     <string name="todo">TODO</string>
-    <string name="products">Products</string>
-    <string name="default_product_name">Lenovo</string>
+    <string name="products">Товары</string>
+    <string name="default_product_name">Lenovo 125 HD</string>
     <string name="default_product_price">1 200 340 UZS</string>
     <string name="default_product_count">38 dona</string>
-    <string name="add_basket">Savatga qo\'shish</string>
-    <string name="default_whosale">Ulgurji:2,54 USD</string>
-    <string name="default_min">Minimum:27 000 UZS</string>
-    <string name="default_max">Narxi:27 000 UZS</string>
-    <string name="soni">Soni</string>
-    <string name="summa">Summa</string>
-    <string name="default_count">38 dona</string>
     <string name="lenavo">Lenavo</string>
-    <string name="next">Keyingisi</string>
-    <string name="plastic">Plastik</string>
-    <string name="cash">Naqd</string>
-    <string name="gacha">...gacha</string>
-    <string name="dan">...dan</string>
-    <string name="debt">Qarzlar</string>
     <string name="default_name">Lionel Messi</string>
     <string name="default_date">06.03.2021 09:00:31</string>
-    <string name="hisoblash">Hisoblash</string>
-    <string name="payment_date">To’lovni amalga oshirish sanasi</string>
     <string name="search_for_client">Search for client</string>
     <string name="default_user_name">Isoqov Jamshid</string>
-    <string name="sell">Sotuvalar</string>
 
     <string name="warehouse">Склад</string>
     <string name="clients">Клиенты</string>
@@ -43,7 +27,7 @@
     <string name="natural_person">Физическое лицо</string>
     <string name="tax_identification_number">ИНН</string>
     <string name="address">Адрес</string>
-    <string name="comment">Комментарии</string>
+    <string name="comment">Комментарии(по желанию)</string>
     <string name="add">Добавить</string>
     <string name="enter_special_code">Введите пин-код</string>
     <string name="required_field">Обязательное поле</string>
@@ -70,7 +54,7 @@
     <string name="by_descend">По убыванию</string>
     <string name="by_few_remain">По минимум</string>
     <string name="payment_cash">Наличные</string>
-    <string name="payment_card">Карта</string>
+    <string name="payment_card">Пластик</string>
     <string name="choose_category">Выберите категорию</string>
     <string name="product_name">Название товара</string>
     <string name="brand_name">Производитель</string>
@@ -124,9 +108,6 @@
     <string name="product_quantity_helper">В каком количестве из этого продукта добавить на склад</string>
     <string name="set_duration">Укажите срок</string>
     <string name="today">Сегодня</string>
-    <string name="start_date">От...</string>
-    <string name="end_date">До...</string>
-    <string name="calculate">Рассчитать</string>
     <string name="remove_uz">Удалить</string>
     <string name="confirm_remove_uz">Вы действительно хотите удалить этот товар из корзины?</string>
     <string name="finance">Финанс</string>
@@ -181,6 +162,22 @@
     <string name="default_month">март\n2022 г.</string>
     <string name="balance">Чистая прибыль</string>
     <string name="salawat">Salawat</string>
-    <string name="search_for_product">Search for product</string>
+    <string name="search_for_product">Поиск продукта</string>
     <string name="expire_date">Expire date</string>
+    <string name="mln">%mln</string>
+    <string name="last_7_month">Last 7\n month</string>
+    <string name="maximum_28_000_uzs">Maximum:28 000 UZS</string>
+    <string name="all">Общий:</string>
+    <string name="sallers">Продавцы</string>
+    <string name="basket_empty">Корзина пуста</string>
+    <string name="product_quantity_error">Номер продукта был введен неправильно</string>
+    <string name="product_sum_error">Неправильно введена стоимость товара</string>
+    <string name="transport">транспорт</string>
+    <string name="education">образование</string>
+    <string name="sport">спорт</string>
+    <string name="build">строит</string>
+    <string name="food">еда</string>
+    <string name="worker">Рабочий</string>
+    <string name="time">время</string>
+
 </resources>

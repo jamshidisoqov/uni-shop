@@ -5,11 +5,7 @@ import io.jamshid.unishop.data.models.OutputPayment
 import io.jamshid.unishop.data.models.dto.OutputProduct
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.data.models.dto.PaymentHistory
-import io.jamshid.unishop.domain.models.Product
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 // Created by Jamshid Isoqov an 5/21/2022
 interface DebtApi {
@@ -25,5 +21,8 @@ interface DebtApi {
 
     @POST("debt/pay")
     suspend fun newPayment(@Body outputPayment: OutputPayment): Result<OutputSales>
+
+    @GET("debt/get")
+    suspend fun searchDebt(@Query("name") name: String): List<OutputSales>
 
 }

@@ -13,23 +13,15 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_small">
 
-        <ImageView
-            android:id="@+id/img_expanse_category"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="@dimen/margin_standart"
-            android:background="@drawable/circle_bg"
-            android:backgroundTint="#EA2CCD"
-            android:contentDescription="@string/todo"
-            android:padding="12dp"
-            android:src="@drawable/app_img" />
-
         <TextView
             android:id="@+id/tv_expanse_name"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
+            android:ellipsize="marquee"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/img_expanse_category"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             android:text="@string/expense_office"
+            android:layout_marginStart="@dimen/margin_standard"
             android:textSize="18sp" />
 
         <TextView
@@ -37,8 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_expanse_name"
-            android:layout_toEndOf="@id/img_expanse_category"
+            android:layout_marginStart="@dimen/margin_standard"
+            android:layout_marginBottom="@dimen/margin_small"
             android:text="@string/default_basket_summ"
+            android:textSize="18sp"
             android:textColor="#ED1919"
             android:textStyle="bold" />
 
@@ -48,6 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             android:text="@string/default_user_name"
             tools:ignore="RelativeOverlap" />
 
@@ -55,6 +51,7 @@
         <TextView
             android:id="@+id/tv_expanse_date"
             android:layout_width="wrap_content"
+            android:layout_margin="@dimen/margin_small"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_expanse_user_name"
             android:layout_alignParentEnd="true"

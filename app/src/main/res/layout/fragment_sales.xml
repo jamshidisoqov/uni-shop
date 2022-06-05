@@ -44,18 +44,31 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_bigger"
         android:layout_marginEnd="@dimen/margin_bigger"
+        android:hint="@string/search_for_product"
+        android:textColorHint="@color/hint"
         android:backgroundTint="@color/green"
         android:drawableEnd="@drawable/search" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_product_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/list_item_product" />
 
+        <ProgressBar
+            android:id="@+id/pb_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/basket_container"
@@ -72,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/margin_bigger"
-            android:text="@string/default_product_counter"
+            android:text="@string/products"
             android:textSize="16sp" />
 
         <ImageView

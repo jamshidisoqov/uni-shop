@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
 import io.jamshid.unishop.common.extension_functions.getDateFormat
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.ListItemSaleListBinding
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_sale.utils.SalesClickListener
@@ -23,7 +24,7 @@ class SaleListAdapter(private val salesClickListener: SalesClickListener) : Recy
         fun onBind(outputSales: OutputSales) {
             binding.apply {
                 tvNameBalans.text = outputSales.client.fullName
-                tvBuyPrices.text = outputSales.amount.toString()
+                tvBuyPrices.text = outputSales.amount.toLong().toString().toSummFormat()
                 tvBuyDate.text = "${Date(outputSales.createdDate.time)}".getDateFormat()
                 root.setOnClickListener {
                     salesClickListener.onClick(outputSales)

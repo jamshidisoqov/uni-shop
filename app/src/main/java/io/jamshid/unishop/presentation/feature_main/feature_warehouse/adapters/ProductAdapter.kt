@@ -4,11 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.ListItemProductBinding
 import io.jamshid.unishop.domain.models.Product
+import io.jamshid.unishop.presentation.feature_main.feature_warehouse.utils.ProductItemClick
 
 // Created by Jamshid Isoqov an 5/21/2022
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private val productItemClick: ProductItemClick) :
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private lateinit var binding: ListItemProductBinding
     private var productList: List<Product> = emptyList()
@@ -19,9 +22,14 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         fun onBind(product: Product) {
             binding.apply {
                 tvItemProductName.text = product.name
+                tvItemProductName.setSingleLine()
+                tvItemProductName.isSelected = true
                 tvItemProductBrand.text = product.brand
-                tvItemProductCount.text = product.quantity.toString()
-                tvItemProductPrice.text = product.price.toString()
+                tvItemProductCount.text = product.quantity.toString()+" штук"
+                tvItemProductPrice.text = product.price.toString().toSummFormat()
+                root.setOnClickListener {
+                    productItemClick.onClick(product)
+                }
             }
         }
 
@@ -44,7 +52,6 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         productList = list
         notifyDataSetChanged()
     }
-
 
 
 }

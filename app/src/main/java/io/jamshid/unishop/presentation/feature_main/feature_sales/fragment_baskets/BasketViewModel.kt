@@ -18,11 +18,25 @@ class BasketViewModel @Inject constructor(
     private var _saleProducts = MutableStateFlow<List<BasketProductModel>>(emptyList())
     val saleProducts = _saleProducts.asStateFlow()
 
+    var allSumm:MutableStateFlow<Double>  = MutableStateFlow(0.0);
+
     private var quantity = 0
 
 
     fun setSellProducts(list: List<BasketProductModel>) {
         _saleProducts.value = list
+        getAllSum()
+
+    }
+
+    private fun getAllSum(){
+        viewModelScope.launch {
+            var sum = 0.0
+            for (i in saleProducts.value){
+                sum+=(i.cost*i.quantity)
+            }
+            allSumm.emit(sum)
+        }
     }
 
     fun addProduct(basket: BasketProductModel) {
@@ -45,6 +59,7 @@ class BasketViewModel @Inject constructor(
                     quantity = products[ind].quantity + 1
                 )
             _saleProducts.emit(products)
+            getAllSum()
         }
     }
 
@@ -71,6 +86,7 @@ class BasketViewModel @Inject constructor(
                 products.removeAt(ind)
             }
             _saleProducts.emit(products)
+            getAllSum()
         }
     }
 

@@ -4,10 +4,7 @@ import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.ClientDto
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.data.models.dto.PaymentHistory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 // Created by Usmon Abdurakhmanv on 5/13/2022.
 
@@ -20,8 +17,11 @@ interface ClientApi {
     suspend fun addClient(@Body clientDto: ClientDto): Result<Client>
 
     @GET("client/{id}/history")
-    suspend fun getHistoryByClient(@Path("id") id:Long):List<PaymentHistory>
+    suspend fun getHistoryByClient(@Path("id") id: Long): List<PaymentHistory>
 
     @GET("client/{id}/sales")
-    suspend fun getSalesByClient(@Path("id") id: Long):List<OutputSales>
+    suspend fun getSalesByClient(@Path("id") id: Long): List<OutputSales>
+
+    @GET("client/get")
+    suspend fun searchClient(@Query("name") name: String): List<Client>
 }

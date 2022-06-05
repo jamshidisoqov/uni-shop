@@ -8,6 +8,7 @@ import io.jamshid.unishop.data.remote.apis.ProductApi
 import io.jamshid.unishop.domain.models.Product
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,9 +22,9 @@ class SalesViewModel @Inject constructor(
     val allProducts = _allProducts.asStateFlow()
 
     private val _saleProducts = MutableStateFlow<List<BasketProductModel>>(emptyList())
-    val saleProducts = _saleProducts
+    val saleProducts:StateFlow<List<BasketProductModel>> get() = _saleProducts
 
-    val counter:MutableStateFlow<Int>  = MutableStateFlow(0);
+    val counter: MutableStateFlow<Int> = MutableStateFlow(0);
 
 
     fun addProduct(basketProductModel: BasketProductModel) {
@@ -33,25 +34,32 @@ class SalesViewModel @Inject constructor(
             else
                 ArrayList()
 
-            for (basket in products){
-                if (basket.id==basketProductModel.id) return@launch
+            for (basket in products) {
+                if (basket.id == basketProductModel.id) return@launch
             }
-            counter.emit(++counter.value)
             products.add(basketProductModel)
-            _saleProducts.emit(products)
+            counter.value = counter.value+1
+            _saleProducts.value = products
         }
     }
 
-
-    init {
-        getAllProducts()
-    }
-
-    private fun getAllProducts() {
+    fun getAllProducts() {
         viewModelScope.launch {
             try {
                 _allProducts.emit(Response.Loading())
                 val data = productApi.getAllProduct()
+                _allProducts.emit(Response.Success(data = data.map { it.toProduct() }))
+            } catch (e: Exception) {
+                _allProducts.emit(Response.Error(e.localizedMessage!!.toString()))
+            }
+        }
+    }
+
+    fun search(name: String) {
+        viewModelScope.launch {
+            try {
+                _allProducts.emit(Response.Loading())
+                val data = productApi.searchProduct(name)
                 _allProducts.emit(Response.Success(data = data.map { it.toProduct() }))
             } catch (e: Exception) {
                 _allProducts.emit(Response.Error(e.localizedMessage!!.toString()))

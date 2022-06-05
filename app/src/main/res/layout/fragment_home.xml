@@ -25,6 +25,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/todo"
                 android:padding="4dp"
                 android:src="@drawable/app_img" />
 
@@ -33,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/margin_standard"
-                android:layout_toRightOf="@id/app_img"
+                android:layout_toEndOf="@id/app_img"
                 android:fontFamily="@font/comfortaa_bold"
-                android:text="UniShop"
+                android:text="@string/app_name"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -67,7 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_extra_big"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="54dp"
@@ -75,6 +77,7 @@
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
                 android:backgroundTint="#19463F"
+                android:contentDescription="@string/todo"
                 android:paddingStart="@dimen/margin_bigger"
                 android:paddingTop="@dimen/margin_standard"
                 android:paddingEnd="@dimen/margin_standard"
@@ -86,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_bigger"
                 android:fontFamily="@font/comfortaa_bold"
-                android:text="Yangi sotuv"
+                android:text="@string/new_sale"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -98,7 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_extra_big"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="54dp"
@@ -106,6 +110,7 @@
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
                 android:backgroundTint="#624017"
+                android:contentDescription="@string/todo"
                 android:padding="12dp"
                 android:src="@drawable/finance" />
 
@@ -114,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_bigger"
                 android:fontFamily="@font/comfortaa_bold"
-                android:text="Moliya"
+                android:text="@string/finance"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -126,7 +131,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_extra_big"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="54dp"
@@ -134,6 +140,7 @@
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
                 android:backgroundTint="#374456"
+                android:contentDescription="@string/todo"
                 android:padding="12dp"
                 android:src="@drawable/client" />
 
@@ -141,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_bigger"
-                android:text="Mijozlar"
+                android:text="@string/clients"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -153,7 +160,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_extra_big"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="54dp"
@@ -161,6 +169,7 @@
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
                 android:backgroundTint="#51352F"
+                android:contentDescription="@string/todo"
                 android:elevation="8dp"
                 android:padding="12dp"
                 android:src="@drawable/house" />
@@ -169,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_bigger"
-                android:text="Omborxona"
+                android:text="@string/warehouse"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -181,7 +190,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_extra_big"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="54dp"
@@ -189,6 +199,7 @@
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
                 android:backgroundTint="#4D3341"
+                android:contentDescription="@string/todo"
                 android:elevation="8dp"
                 android:padding="14dp"
                 android:src="@drawable/debt" />
@@ -197,7 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_bigger"
-                android:text="Qarzlar"
+                android:text="@string/payment_debt"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -209,7 +220,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_extra_big"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="54dp"
@@ -217,6 +229,7 @@
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:background="@drawable/circle_bg"
                 android:backgroundTint="#323041"
+                android:contentDescription="@string/todo"
                 android:elevation="8dp"
                 android:padding="12dp"
                 android:src="@drawable/worker" />
@@ -225,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_bigger"
-                android:text="Hodimlar"
+                android:text="@string/sallers"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

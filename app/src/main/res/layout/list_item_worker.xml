@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_small"
+    app:cardBackgroundColor="#161616"
+    app:cardCornerRadius="@dimen/margin_standard"
+    app:cardElevation="@dimen/margin_standard">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_standard">
+
+        <TextView
+            android:id="@+id/tv_worker_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_standard"
+            android:text="@string/default_user_name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/tv_worker_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_worker_name"
+            android:layout_margin="@dimen/margin_standard"
+            android:drawablePadding="@dimen/margin_bigger"
+            android:text="@string/phone_number"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:drawableStartCompat="@drawable/phone" />
+
+        <TextView
+            android:id="@+id/tv_worker_summ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_worker_phone"
+            android:layout_margin="@dimen/margin_standard"
+            android:drawablePadding="@dimen/margin_bigger"
+            android:text="@string/default_basket_summ"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/money"
+            app:drawableTint="#FF9800" />
+
+        <ImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_extra_big"
+            android:background="@drawable/circle_bg"
+            android:backgroundTint="#323041"
+            android:contentDescription="@string/todo"
+            android:elevation="8dp"
+            android:padding="12dp"
+            android:src="@drawable/worker" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

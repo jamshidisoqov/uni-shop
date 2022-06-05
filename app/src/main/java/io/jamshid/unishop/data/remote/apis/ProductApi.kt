@@ -2,12 +2,9 @@ package io.jamshid.unishop.data.remote.apis
 
 import io.jamshid.unishop.common.Result
 import io.jamshid.unishop.data.models.dto.ProductDto
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
-// Created by Usmon Abdurakhmanv on 5/13/2022.
+// Created by Isoqov Jamshid on 5/13/2022.
 
 interface ProductApi {
 
@@ -19,5 +16,17 @@ interface ProductApi {
 
     @GET("product/{id}")
     suspend fun getProduct(@Path("id") id: Long): ProductDto
+
+    @PUT("input/create")
+    suspend fun putProduct(@Body productDto: ProductDto): Result<ProductDto>
+
+    @PUT("product/{id}")
+    suspend fun updateProduct(
+        @Path("id") id: Long,
+        @Body productDto: ProductDto
+    ): Result<ProductDto>
+
+    @GET("product/get")
+    suspend fun searchProduct(@Query("name") name: String): List<ProductDto>
 
 }

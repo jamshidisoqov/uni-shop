@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.jamshid.unishop.R
 import io.jamshid.unishop.common.extension_functions.getDateFormat
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.ListItemDebtBinding
 import io.jamshid.unishop.presentation.feature_main.feature_debt.util.DebtClickListener
@@ -23,8 +24,8 @@ class DebtAdapter(private val debtClickListener: DebtClickListener) :
 
         fun onBind(outputSales: OutputSales) {
             binding.apply {
-                tvDebtUserName.text = outputSales.client!!.fullName
-                tvDebtSumm.text = outputSales.debtAmount.toString()
+                tvDebtUserName.text = outputSales.client.fullName
+                tvDebtSumm.text = outputSales.debtAmount.toLong().toString().toSummFormat()
                 tvDebtDate.text = Date(outputSales.expiredDate.time).toString().getDateFormat()
                 root.setOnClickListener {
                     debtClickListener.onClick(outputSales.toOutput())

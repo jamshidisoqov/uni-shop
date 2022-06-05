@@ -95,6 +95,7 @@
         app:layout_constraintVertical_bias="0.1">
 
         <TextView
+            android:id="@+id/tv_clean_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_standart"
@@ -144,6 +145,7 @@
         app:layout_constraintTop_toBottomOf="@+id/container_balance">
 
         <TextView
+            android:id="@+id/tv_income_summ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_standart"
@@ -190,6 +192,7 @@
         app:layout_constraintTop_toBottomOf="@+id/container_balance">
 
         <TextView
+            android:id="@+id/tv_expanses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity=""
@@ -229,19 +232,57 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_extra_big"
+       android:layout_margin="@dimen/margin_bigger"
         app:cardBackgroundColor="@color/root_color"
         app:cardCornerRadius="@dimen/margin_standart"
+        app:layout_constraintHeight_percent="0.35"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_income">
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:layout_margin="@dimen/margin_standard"
-            android:id="@+id/barchart"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_standard"
+                app:layout_constraintVertical_bias="0.09"
+                android:text="@string/mln"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_standard"
+                android:text="@string/last_7_month"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.7" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_bigger"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:layout_marginBottom="@dimen/margin_standard"
+                android:layout_marginStart="@dimen/margin_bigger"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 

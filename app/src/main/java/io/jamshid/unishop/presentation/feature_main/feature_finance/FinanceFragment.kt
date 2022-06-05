@@ -1,5 +1,6 @@
 package io.jamshid.unishop.presentation.feature_main.feature_finance
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
+import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.FragmentFinanceBinding
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
@@ -32,6 +34,7 @@ import java.time.LocalDate
 class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBinding::inflate) {
 
     private val viewModel: FinanceViewModel by viewModels()
+    private var lastValue = 0.0
 
     @RequiresApi(Build.VERSION_CODES.O)
     val date = LocalDate.now()!!
@@ -51,8 +54,9 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
                     is Response.Success -> {
                         showProgress(false)
                         val list = ArrayList<BarEntry>()
+                        animateTotalPrice(lastValue.toLong(),it.data!![0].toLong())
                         for (i in it.data!!.indices) {
-                            list.add(BarEntry(i.toFloat(), it.data!![i]))
+                            list.add(BarEntry(i.toFloat(), it.data!![i] / 1000000f))
                         }
                         setBarChart(list)
                     }
@@ -100,6 +104,7 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
 
     private fun setBarChart(list: List<BarEntry>) {
 
+
         val barData = BarDataSet(list, "Доходы")
         barData.color = Color.parseColor("#17D837")
         barData.valueTextColor = Color.parseColor("#ffffff")
@@ -113,6 +118,18 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
             description.text = "Last 7 month"
             animateY(2000)
         }
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun animateTotalPrice(start: Long, end: Long) {
+        val animator = ValueAnimator.ofFloat(start.toFloat(), end.toFloat())
+        animator.addUpdateListener {
+            val newValue = (it.animatedValue as Float).toLong().toString().toSummFormat()
+            binding.tvIncomeSumm.text = "$newValue"
+        }
+        animator.duration = 500
+        animator.start()
     }
 
 

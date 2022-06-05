@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/root_bg"
+    android:padding="@dimen/margin_standard">
+
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:text="@string/default_product_name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extra_big"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
+        tools:layout_editor_absoluteX="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_standard"
+            android:paddingEnd="@dimen/margin_standard">
+
+            <EditText
+                android:id="@+id/ed_product_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/green"
+                android:hint="@string/product_quantity"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColorHint="@color/hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:text="@string/product_quantity" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_standard"
+            android:paddingEnd="@dimen/margin_standard">
+
+            <EditText
+                android:id="@+id/ed_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/green"
+                android:hint="@string/wholesale_price"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColorHint="@color/hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:text="@string/wholesale_price" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_standard"
+            android:paddingEnd="@dimen/margin_standard">
+
+            <EditText
+                android:id="@+id/ed_product_minimum_prices"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/green"
+                android:hint="@string/min_price"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColorHint="@color/hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:text="@string/min_price" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_standard"
+            android:paddingEnd="@dimen/margin_standard">
+
+            <EditText
+                android:id="@+id/ed_product_maximum_prices"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/green"
+                android:hint="@string/max_price"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColorHint="@color/hint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:text="@string/max_price" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_bigger"
+        android:layout_marginBottom="@dimen/margin_standard"
+        android:background="@drawable/sign_in_btn_bg"
+        android:paddingStart="@dimen/margin_bigger"
+        android:paddingEnd="@dimen/margin_bigger"
+        android:text="@string/add_new_product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

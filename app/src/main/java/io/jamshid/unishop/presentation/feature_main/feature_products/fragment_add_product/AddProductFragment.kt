@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import io.jamshid.unishop.R
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.extension_functions.getOnlyDigits
 import io.jamshid.unishop.databinding.FragmentAddProductBinding
@@ -14,9 +15,9 @@ import io.jamshid.unishop.domain.models.Category
 import io.jamshid.unishop.domain.models.Product
 import io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.adapter.CategorySpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.dialog.NewCategoryDialog
+import io.jamshid.unishop.utils.MaskWatcherNothing
+import io.jamshid.unishop.utils.MaskWatcherPayment
 import kotlinx.coroutines.flow.collectLatest
-
-// Created by Usmon Abdurakhmanv on 5/13/2022.
 
 @AndroidEntryPoint
 class AddProductFragment :
@@ -36,13 +37,19 @@ class AddProductFragment :
         }
 
         binding.apply {
+
+            edProductQuantity.addTextChangedListener(MaskWatcherNothing(edProductQuantity))
+            edProductPrice.addTextChangedListener(MaskWatcherPayment(edProductPrice))
+            edProductMinimumPrices.addTextChangedListener(MaskWatcherPayment(edProductMinimumPrices))
+            edProductMaximumPrices.addTextChangedListener(MaskWatcherPayment(edProductMaximumPrices))
+
             btnAddNewProduct.setOnClickListener {
                 val name = edProductName.text.toString()
                 val brand = edProductBrand.text.toString()
-                val price = edProductPrice.text.toString()
+                val price = edProductPrice.text.toString().getOnlyDigits()
                 val quantity = edProductQuantity.text.toString().getOnlyDigits().toInt()
-                val minPrice = edProductMinimumPrices.text.toString()
-                val maxPrice = edProductMaximumPrices.text.toString()
+                val minPrice = edProductMinimumPrices.text.toString().getOnlyDigits()
+                val maxPrice = edProductMaximumPrices.text.toString().getOnlyDigits()
                 val categoryId = (actvCategory.selectedItem as Category).id
 
                 val fieldsNotValid = name.isNotBlank() &&
@@ -76,9 +83,9 @@ class AddProductFragment :
                             edProductMaximumPrices.setText("")
                         }
                     } else {
-                        edProductPrice.error = "Notog'ri kiritilish"
-                        edProductMaximumPrices.error = "Notog'ri kiritilish"
-                        edProductMinimumPrices.error = "Notog'ri kiritilish"
+                        edProductPrice.error = getString(R.string.product_sum_error)
+                        edProductMaximumPrices.error = getString(R.string.product_sum_error)
+                        edProductMinimumPrices.error = getString(R.string.product_sum_error)
                     }
                     viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                         viewModel.product.collectLatest {
@@ -98,9 +105,15 @@ class AddProductFragment :
                 val dialog = NewCategoryDialog(viewModel)
                 dialog.show(requireActivity().supportFragmentManager, dialog.tag)
             }
+
+            btnProductList.setOnClickListener {
+
+            }
+
             imgBack.setOnClickListener {
                 findNavController().navigateUp()
             }
         }
     }
+
 }

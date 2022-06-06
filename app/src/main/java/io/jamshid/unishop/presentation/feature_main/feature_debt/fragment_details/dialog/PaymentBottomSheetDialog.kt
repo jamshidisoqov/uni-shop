@@ -26,6 +26,7 @@ class PaymentBottomSheetDialog(private var vm: DebtDetailsViewModel,private var 
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
         binding = DilogPaymentBottomSheetBinding.inflate(inflater,container,false)
 
+
         binding.edCardDebt.addTextChangedListener(MaskWatcherPayment(binding.edCardDebt))
         binding.edCashDebt.addTextChangedListener(MaskWatcherPayment(binding.edCashDebt))
 

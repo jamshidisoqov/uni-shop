@@ -45,7 +45,7 @@ class ProductDetailsFragment :
 
                 when (it) {
                     is Response.Loading -> {
-                        showProgress(true)
+
                     }
                     is Response.Success -> {
                         showProgress(false)

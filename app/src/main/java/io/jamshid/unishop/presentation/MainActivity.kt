@@ -1,14 +1,16 @@
 package io.jamshid.unishop.presentation
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.R
 
-// Created by Usmon Abdurakhmanv on 5/13/2022.
+// Created by Jamshid Isoqov on 5/13/2022.
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -51,5 +53,14 @@ class MainActivity : AppCompatActivity() {
         this.intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         this.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(refresh)
+    }
+
+    fun isConnected():Boolean{
+        val connectivityManager  = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        if(networkInfo!=null){
+            return networkInfo.isConnected
+        }
+        return false;
     }
 }

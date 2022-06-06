@@ -25,7 +25,6 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
 
 
     private val viewModel: SalesViewModel by viewModels()
-    private var lastProductCount=0
 
     @SuppressLint("SetTextI18n")
     override fun myCreateView(savedInstanceState: Bundle?) {

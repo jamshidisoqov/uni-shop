@@ -20,6 +20,7 @@ import io.jamshid.unishop.data.models.dto.OutProductDto
 import io.jamshid.unishop.data.models.dto.OutputDto
 import io.jamshid.unishop.databinding.FragmentOrderBinding
 import io.jamshid.unishop.presentation.MainActivity
+import io.jamshid.unishop.presentation.feature_main.dialog.SuccessDialog
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.adapter.OrderSpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_order.dialog.AddClientDialog
@@ -66,8 +67,12 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
 
             btnPayment.setOnClickListener {
                 val clientId = (spinnerUser.selectedItem as Client).id
-                val costCash = edCash.text.toString().getOnlyDigits().toDouble()
-                val costCard = edPlastic.text.toString().getOnlyDigits().toDouble()
+                val costCash =
+                    if (edCash.text.toString().getOnlyDigits().isNotEmpty()) edCash.text.toString()
+                        .getOnlyDigits().toDouble() else 0.0
+                val costCard = if (edPlastic.text.toString().getOnlyDigits()
+                        .isNotEmpty()
+                ) edPlastic.text.toString().getOnlyDigits().toDouble() else 0.0
                 val comment = edComment.text.toString()
                 val cash = allSumma()
                 viewModel.addSell(
@@ -87,7 +92,11 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 viewModel.addSalesStatus.collectLatest {
                     if (it == 200) {
-                        (activity as MainActivity).setNewLocale()
+                        val successDialog = SuccessDialog("To'landi")
+                        successDialog.show(requireActivity().supportFragmentManager, "show")
+                        successDialog.setOnDismissListener {
+                            (activity as MainActivity).setNewLocale()
+                        }
                     }
                 }
             }
@@ -124,18 +133,28 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
                     binding.edPaymentDate.setText(date)
                 }
 
-                datePickerDialog.addOnDismissListener {
-
-                }
-
                 datePickerDialog.show(
                     requireActivity().supportFragmentManager,
                     datePickerDialog.tag
                 )
             }
             binding.spinnerUser.adapter = adapter
-            binding.tvProductAllSumm.text = getString(R.string.all) +"${allSumm.toLong()}".toSummFormat()
-            binding.tvProductDebtSumm.text = getString(R.string.payment_debt)+":"+"${allSumm.toLong()}".toSummFormat()
+            binding.tvProductAllSumm.text =
+                getString(R.string.all) + "${allSumm.toLong()}".toSummFormat()
+            binding.tvProductDebtSumm.text =
+                getString(R.string.payment_debt) + ":" + "${allSumm.toLong()}".toSummFormat()
+
+            binding.apply {
+
+                imgAllSummFlashCash.setOnClickListener {
+                    edPlastic.setText("")
+                    edCash.setText(allSumm.toLong().toString())
+                }
+                imgAllSummFlashCard.setOnClickListener {
+                    edCash.setText("")
+                    edPlastic.setText(allSumm.toLong().toString())
+                }
+            }
         }
 
     }
@@ -160,10 +179,12 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>(FragmentOrderBinding::i
     private fun calculateDebt() {
 
         binding.apply {
-            val cashString  = edCash.text.toString()
-            val cardString  = edPlastic.text.toString()
-            val cash = if (cashString.isNotEmpty()) cashString.getOnlyDigits().toDouble() else 0.0
-            val card = if (cardString.isNotEmpty()) cardString.getOnlyDigits().toDouble() else 0.0
+            val cashString = edCash.text.toString()
+            val cardString = edPlastic.text.toString()
+            val cash = if (cashString.getOnlyDigits().isNotEmpty()) cashString.getOnlyDigits()
+                .toDouble() else 0.0
+            val card = if (cardString.getOnlyDigits().isNotEmpty()) cardString.getOnlyDigits()
+                .toDouble() else 0.0
             val debt = allSumm - cash - card
             if (debt < 0) {
                 if (isCash) {

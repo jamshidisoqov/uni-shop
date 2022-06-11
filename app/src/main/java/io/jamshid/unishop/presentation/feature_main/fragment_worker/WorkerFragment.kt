@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.util.Pair
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.collectLatest
 class WorkerFragment : BaseFragment<FragmentWorkerBinding>(FragmentWorkerBinding::inflate) {
 
 
-    private lateinit var viewModel: WorkerViewModel
+    private  val viewModel: WorkerViewModel by viewModels()
 
     override fun myCreateView(savedInstanceState: Bundle?) {
         val adapter = WorkerAdapter()

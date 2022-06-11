@@ -13,6 +13,7 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.dialPhone
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.databinding.FragmentClientsListBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.adapter.ClientsListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.dialog.AddClientDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_clients_list.utils.OnClientClickListener
@@ -61,6 +62,8 @@ class ClientsListFragment :
                     }
                     else -> {
                         showProgress(false)
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                     }
                 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,200 +7,218 @@
     android:background="@drawable/root_bg"
     tools:context=".presentation.feature_main.feature_warehouse.fragment_product_details.ProductDetailsFragment">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UselessParent">
-
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/margin_standart"
-            android:src="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/warehouse"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/tv_product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_product_name"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <TextView
-        android:id="@+id/tv_product_brand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_standard"
-        android:text="@string/default_product_name"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
-
-    <ImageView
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:background="@drawable/circle_bg"
-        android:backgroundTint="#19463F"
-        android:contentDescription="@string/todo"
-        android:paddingStart="@dimen/margin_bigger"
-        android:paddingTop="@dimen/margin_standard"
-        android:paddingEnd="@dimen/margin_standard"
-        android:paddingBottom="12dp"
-        android:src="@drawable/sell"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_product_brand"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toEndOf="@+id/tv_product_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_product_name" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_product_brand"
-        app:layout_constraintVertical_bias="0.2">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/relativeLayout4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/margin_standard"
-            android:paddingEnd="@dimen/margin_standard">
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UselessParent">
 
-            <EditText
-                android:id="@+id/ed_product_quantity"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/green"
-                android:hint="@string/product_quantity"
-                android:importantForAutofill="no"
-                android:focusable="false"
-                android:inputType="none"
-                android:textColorHint="@color/hint" />
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/margin_standart"
+                android:src="@drawable/ic_back"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/margin_standard"
-                android:text="@string/product_quantity" />
-        </LinearLayout>
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/warehouse"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/margin_standard"
-            android:paddingEnd="@dimen/margin_standard">
+            android:layout_marginStart="@dimen/margin_bigger"
+            android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/ed_product_price"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/green"
-                android:hint="@string/wholesale_price"
-                android:focusable="false"
-                android:importantForAutofill="no"
-                android:inputType="none"
-                android:textColorHint="@color/hint" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_product_name"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
+                    app:layout_constraintVertical_bias="0.05" />
+
+                <TextView
+                    android:id="@+id/tv_product_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_standard"
+                    android:text="@string/default_product_name"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/margin_standard"
-                android:text="@string/wholesale_price" />
+                android:layout_marginEnd="@dimen/margin_bigger"
+                android:background="@drawable/circle_bg"
+                android:backgroundTint="#19463F"
+                android:contentDescription="@string/todo"
+                android:paddingStart="@dimen/margin_bigger"
+                android:paddingTop="@dimen/margin_standard"
+                android:paddingEnd="@dimen/margin_standard"
+                android:paddingBottom="12dp"
+                android:src="@drawable/sell" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/margin_standard"
-            android:paddingEnd="@dimen/margin_standard">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_brand"
+            app:layout_constraintVertical_bias="0.2">
 
-            <EditText
-                android:id="@+id/ed_product_minimum_prices"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/green"
-                android:hint="@string/min_price"
-                android:focusable="false"
-                android:importantForAutofill="no"
-                android:inputType="none"
-                android:textColorHint="@color/hint" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/margin_standard"
-                android:text="@string/min_price" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingStart="@dimen/margin_standard"
+                android:paddingEnd="@dimen/margin_standard">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/margin_standard"
-            android:paddingEnd="@dimen/margin_standard">
+                <EditText
+                    android:id="@+id/ed_product_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/green"
+                    android:focusable="false"
+                    android:hint="@string/product_quantity"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textColorHint="@color/hint" />
 
-            <EditText
-                android:id="@+id/ed_product_maximum_prices"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/margin_standard"
+                    android:text="@string/product_quantity" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/green"
-                android:hint="@string/max_price"
-                android:importantForAutofill="no"
-                android:inputType="none"
-                android:focusable="false"
-                android:textColorHint="@color/hint" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/margin_standard"
-                android:text="@string/max_price" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingStart="@dimen/margin_standard"
+                android:paddingEnd="@dimen/margin_standard">
 
+                <EditText
+                    android:id="@+id/ed_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/green"
+                    android:focusable="false"
+                    android:hint="@string/wholesale_price"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textColorHint="@color/hint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/margin_standard"
+                    android:text="@string/wholesale_price" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/margin_standard"
+                android:paddingEnd="@dimen/margin_standard">
+
+                <EditText
+                    android:id="@+id/ed_product_minimum_prices"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/green"
+                    android:focusable="false"
+                    android:hint="@string/min_price"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textColorHint="@color/hint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/margin_standard"
+                    android:text="@string/min_price" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/margin_standard"
+                android:paddingEnd="@dimen/margin_standard">
+
+                <EditText
+                    android:id="@+id/ed_product_maximum_prices"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/green"
+                    android:focusable="false"
+                    android:hint="@string/max_price"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textColorHint="@color/hint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/margin_standard"
+                    android:text="@string/max_price" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/todo"
-        android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:src="@drawable/ic_add" />
 
+    <include layout="@layout/product_detail_bottom_sheet" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

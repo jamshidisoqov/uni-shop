@@ -13,6 +13,8 @@ import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.DilogAddProductBinding
 import io.jamshid.unishop.domain.models.Product
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
+import io.jamshid.unishop.presentation.MainActivity
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.SalesViewModel
 import io.jamshid.unishop.utils.MaskWatcherNothing
 import io.jamshid.unishop.utils.MaskWatcherPayment
@@ -59,28 +61,36 @@ class AddSalesDialog(
 
             btnAddBasket.setOnClickListener {
                 var quantity = 0
-                if (edCountProduct.text.toString().isNotEmpty())
-                    quantity = edCountProduct.text.toString().getOnlyDigits().toInt()
+                viewModel.getQuantity(product.id)
+                if (quantity <= viewModel.quantity) {
+                    if (edCountProduct.text.toString().isNotEmpty())
+                        quantity = edCountProduct.text.toString().getOnlyDigits().toInt()
+                    val cost = edPrices.text.toString().getOnlyDigits().toDouble()
+                    if (cost >= product.minimumPrice && cost <= product.maximumPrice) {
+                        if (quantity > 0 && quantity <= product.quantity) {
+                            if ((activity as MainActivity).isConnected()) {
+                                viewModel.addProduct(
+                                    BasketProductModel(
+                                        id = product.id,
+                                        product = product,
+                                        quantity = quantity,
+                                        cost = cost
+                                    )
+                                )
+                                dialog!!.dismiss()
+                            }else{
+                                val dialog = ErrorDialog("No internet connected")
+                                dialog.show(childFragmentManager,"manager")
 
-                val cost = edPrices.text.toString().getOnlyDigits().toDouble()
-
-                if (cost >= product.minimumPrice && cost <= product.maximumPrice) {
-                    if (quantity > 0 && quantity <= product.quantity) {
-                        viewModel.addProduct(
-                            BasketProductModel(
-                                id = product.id,
-                                product = product,
-                                quantity = quantity,
-                                cost = cost
-                            )
-                        )
-                        dialog!!.dismiss()
+                            }
+                        } else {
+                            edCountProduct.error = getString(R.string.product_quantity_error)
+                        }
                     } else {
-                        edCountProduct.error = getString(R.string.product_quantity_error)
+                        edPrices.error = getString(R.string.product_sum_error)
                     }
-
                 } else {
-                    edPrices.error = getString(R.string.product_sum_error)
+                    edCountProduct.error = getString(R.string.product_quantity_error)
                 }
             }
 

@@ -92,7 +92,6 @@ class ProductDetailsFragment :
             edProductMinimumPrices.addTextChangedListener(MaskWatcherPayment(edProductMinimumPrices))
 
 
-            edProductQuantity.setText(product.quantity.toString())
             tvProductName.text = product.name
             edProductQuantity.setText(product.quantity.toString())
             edProductPrice.setText(product.price.toString().toSummFormat())
@@ -104,7 +103,7 @@ class ProductDetailsFragment :
             btnChange.setOnClickListener {
 
                 val p = product.copy(
-                    quantity = edProductQuantity.text.toString().getOnlyDigits().toInt(),
+                    quantity = edProductQuantity.text.toString().getOnlyDigits().toInt()+product.quantity,
                     price = edProductPrice.text.toString().getOnlyDigits().toDouble(),
                     minimumPrice = edProductMinimumPrices.text.toString().getOnlyDigits()
                         .toDouble(),

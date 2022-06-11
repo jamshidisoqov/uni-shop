@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +8,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="@dimen/margin_standard"
         android:paddingEnd="@dimen/margin_standard"
-        tools:ignore="ScrollViewSize,UselessLeaf">
+        tools:ignore="ScrollViewSize,UselessLeaf,UselessParent">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -40,6 +43,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relativeLayout"
@@ -125,7 +129,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/margin_standard"
                     android:padding="8dp"
-                    android:src="@drawable/ic_add_user" />
+                    android:src="@drawable/ic_add_user"
+                    android:contentDescription="@string/todo" />
             </LinearLayout>
 
             <LinearLayout
@@ -145,7 +150,8 @@
                 android:maxLength="16"
                 android:inputType="number"
                 android:textColorHint="@color/hint"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:importantForAutofill="no" />
                 <ImageView
                     android:id="@+id/img_all_summ_flash_cash"
                     android:layout_width="40dp"
@@ -226,6 +232,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_below="@id/container"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/margin_bigger"
             android:background="@drawable/sign_in_btn_bg"
@@ -234,5 +241,5 @@
 
     </RelativeLayout>
 
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

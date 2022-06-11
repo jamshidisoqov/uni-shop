@@ -16,6 +16,7 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.data.models.dto.ExpansesDto
 import io.jamshid.unishop.databinding.DialogExpansesDetailsBinding
 import io.jamshid.unishop.databinding.FragmentExpansesBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_expanses.adapter.ExpansesAdapter
 import kotlinx.coroutines.flow.collectLatest
 
@@ -41,6 +42,8 @@ class ExpansesFragment : BaseFragment<FragmentExpansesBinding>(FragmentExpansesB
                         adapter.setData(response.data!!)
                     }
                     else -> {
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                         binding.pbExpanses.visibility = View.INVISIBLE
                     }
                 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.databinding.FragmentPaymentBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment.adapter.PaymentAdapter
 import kotlinx.coroutines.flow.collectLatest
 
@@ -13,7 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBinding::inflate) {
 
 
-    private  val viewModel: PaymentViewModel by viewModels()
+    private val viewModel: PaymentViewModel by viewModels()
 
     override fun myCreateView(savedInstanceState: Bundle?) {
         val adapter = PaymentAdapter().also { adapter ->
@@ -26,6 +27,10 @@ class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBind
             viewModel.allPayments.collectLatest {
                 if (it.data != null)
                     adapter.setData(it.data!!)
+                else {
+                    val dialog = ErrorDialog("Error")
+                    dialog.show(requireActivity().supportFragmentManager, "TAG")
+                }
             }
         }
 

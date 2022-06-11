@@ -18,6 +18,7 @@ import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.Output
 import io.jamshid.unishop.databinding.DialogPaymentHistoryBinding
 import io.jamshid.unishop.databinding.FragmentDebtDetailsBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment.adapter.PaymentAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_debt.fragment_details.dialog.PaymentBottomSheetDialog
 import kotlinx.coroutines.flow.collectLatest
@@ -54,19 +55,15 @@ class DebtDetailsFragment :
                     btnPaymentDebt.visibility = View.GONE
                 }
 
-                outputSales.also {
-                    this.tvClientName.text = it.client
-                    this.debtExpireDate.text = Date(it.expiredDate.time).toString().getDateFormat()
-                    this.lastPaymentDate.text =
-                        Date(it.updatedDate!!.time).toString().getDateFormat()
-                    this.tvBuyDate.text = Date(it.createdDate.time).toString().getDateFormat()
-                    this.tvBuySumm.text = it.amount.toLong().toString().toSummFormat()+"UZS"
-                    this.tvDebtSumm.text = it.debtAmount.toLong().toString().toSummFormat()+"UZS"
-                }
+                setData(outputSales)
 
                 btnPaymentDebt.setOnClickListener {
 
-                    PaymentBottomSheetDialog(viewModel, outputSales.id).also {
+                    PaymentBottomSheetDialog(
+                        viewModel,
+                        outputSales.id,
+                        outputSales.debtAmount
+                    ).also {
                         it.show(
                             requireActivity().supportFragmentManager,
                             it.tag
@@ -105,7 +102,6 @@ class DebtDetailsFragment :
                     }
                     is Response.Success -> {
                         showProgress(false)
-                        Log.d(TAG, "myCreateView: ${it.data!!}")
                         adapter.setData(it.data!!)
                     }
                     else -> {
@@ -127,6 +123,8 @@ class DebtDetailsFragment :
                         paymentAdapter.setData(it.data!!)
                     }
                     else -> {
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                         showProgress(false)
                     }
                 }
@@ -141,5 +139,18 @@ class DebtDetailsFragment :
         dialog.setContentView(binding.root)
         dialog.show()
 
+    }
+
+    fun setData(outputSales: Output) {
+        binding.apply {
+            outputSales.also {
+                this.tvClientName.text = it.client
+                this.debtExpireDate.text = Date(it.expiredDate.time).toString().getDateFormat()
+                this.lastPaymentDate.text = Date(it.updatedDate!!.time).toString().getDateFormat()
+                this.tvBuyDate.text = Date(it.createdDate.time).toString().getDateFormat()
+                this.tvBuySumm.text = it.amount.toLong().toString().toSummFormat()
+                this.tvDebtSumm.text = it.debtAmount.toLong().toString().toSummFormat()
+            }
+        }
     }
 }

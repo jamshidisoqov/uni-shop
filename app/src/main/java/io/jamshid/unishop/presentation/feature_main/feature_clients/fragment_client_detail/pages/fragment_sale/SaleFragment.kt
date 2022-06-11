@@ -10,6 +10,7 @@ import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.FragmentSaleBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_sale.adapter.SaleListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_sale.utils.SalesClickListener
 import kotlinx.coroutines.flow.collectLatest
@@ -46,6 +47,9 @@ class SaleFragment : BaseFragment<FragmentSaleBinding>(FragmentSaleBinding::infl
                         response.data?.let {
                             listAdapter.setData(it)
                         }
+
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                         showProgress(false)
                     }
                     else -> Unit

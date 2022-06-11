@@ -21,6 +21,8 @@ class SalesViewModel @Inject constructor(
     private var _allProducts = MutableStateFlow<Response<List<Product>>>(Response.Default())
     val allProducts = _allProducts.asStateFlow()
 
+    var quantity=0
+
     private val _saleProducts = MutableStateFlow<List<BasketProductModel>>(emptyList())
     val saleProducts:StateFlow<List<BasketProductModel>> get() = _saleProducts
 
@@ -64,6 +66,12 @@ class SalesViewModel @Inject constructor(
             } catch (e: Exception) {
                 _allProducts.emit(Response.Error(e.localizedMessage!!.toString()))
             }
+        }
+    }
+
+    fun getQuantity(id: Long) {
+        viewModelScope.launch {
+            quantity = productApi.getProduct(id).quantity!!
         }
     }
 }

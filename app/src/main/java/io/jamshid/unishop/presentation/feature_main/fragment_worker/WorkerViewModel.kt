@@ -32,7 +32,7 @@ class WorkerViewModel @Inject constructor(
                 val data = workerApi.getAllWorker()
                 _allWorkers.emit(Response.Success(data))
             } catch (e: Exception) {
-                _allWorkers.emit(Response.Error(e.localizedMessage!!.toString()))
+                //_allWorkers.emit(Response.Error(e.localizedMessage!!.toString()))
             }
         }
     }

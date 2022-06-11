@@ -8,7 +8,6 @@ import io.jamshid.unishop.data.models.OutputPayment
 import io.jamshid.unishop.data.models.dto.OutputProduct
 import io.jamshid.unishop.data.models.dto.PaymentHistory
 import io.jamshid.unishop.data.remote.apis.DebtApi
-import io.jamshid.unishop.domain.models.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -25,14 +24,11 @@ class DebtDetailsViewModel @Inject constructor(
     val allProductsByOutput: StateFlow<Response<List<OutputProduct>>> get() = _allProductsByOutput
 
 
-
-
-
     private var _allPaymentsByOutput: MutableStateFlow<Response<List<PaymentHistory>>> =
         MutableStateFlow(Response.Loading())
     val allPaymentsByOutput: StateFlow<Response<List<PaymentHistory>>> get() = _allPaymentsByOutput
 
-    var status:MutableStateFlow<Int> = MutableStateFlow(400)
+    var status: MutableStateFlow<Int> = MutableStateFlow(400)
 
     fun allProducts(id: Long) {
         viewModelScope.launch {
@@ -62,6 +58,7 @@ class DebtDetailsViewModel @Inject constructor(
     fun paymentForOutput(payment: OutputPayment) {
         viewModelScope.launch {
             status.emit(debtApi.newPayment(payment).status)
+            allPayments(payment.outputId)
         }
     }
 

@@ -7,37 +7,45 @@ import android.widget.EditText
 import java.util.*
 
 class MaskWatcherPayment(private val editText: EditText) : TextWatcher {
-    override fun beforeTextChanged(charSequence: CharSequence, start: Int, count: Int, after: Int) {}
+    override fun beforeTextChanged(
+        charSequence: CharSequence,
+        start: Int,
+        count: Int,
+        after: Int
+    ) {
+    }
 
     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
     @SuppressLint("SetTextI18n")
     override fun afterTextChanged(editable: Editable) {
-        try {
-            editText.removeTextChangedListener(this)
-            val value: String = editText.text.toString()
-            if (value != "") {
-                if (value.startsWith(".")) {
-                    editText.setText("0.")
-                }
-                if (value.startsWith("0") && !value.startsWith("0.")) {
-                    editText.setText("")
-                }
+        if (editText.text.toString().isNotEmpty()) {
+            try {
+                editText.removeTextChangedListener(this)
+                val value: String = editText.text.toString()
+                if (value != "") {
+                    if (value.startsWith(".")) {
+                        editText.setText("0.")
+                    }
+                    if (value.startsWith("0") && !value.startsWith("0.")) {
+                        editText.setText("")
+                    }
 
-                val str: String = editText.text.toString().replace(" ", "")
-                if (str == "UZS") editText.setText("")
-                else {
-                    var d = ""
-                    for (i in str) if (i.isDigit()) d += i
-                    editText.setText("${d.toDecimalFormat()} UZS")
+                    val str: String = editText.text.toString().replace(" ", "")
+                    if (str == "UZS") editText.setText("")
+                    else {
+                        var d = ""
+                        for (i in str) if (i.isDigit()) d += i
+                        editText.setText("${d.toDecimalFormat()} UZS")
+                    }
+                    editText.setSelection(editText.text.toString().length - 4)
                 }
-                editText.setSelection(editText.text.toString().length - 4)
+                editText.addTextChangedListener(this)
+                return
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+                editText.addTextChangedListener(this)
             }
-            editText.addTextChangedListener(this)
-            return
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            editText.addTextChangedListener(this)
         }
     }
 

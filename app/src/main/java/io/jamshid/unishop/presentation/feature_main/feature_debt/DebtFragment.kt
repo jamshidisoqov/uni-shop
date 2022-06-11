@@ -13,6 +13,7 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.data.models.dto.Client
 import io.jamshid.unishop.data.models.dto.Output
 import io.jamshid.unishop.databinding.FragmentDebtBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_debt.adapter.DebtAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_debt.util.Constants
 import io.jamshid.unishop.presentation.feature_main.feature_debt.util.DebtClickListener
@@ -61,6 +62,8 @@ class DebtFragment : BaseFragment<FragmentDebtBinding>(FragmentDebtBinding::infl
                         adapter.setData(it.data!!)
                     }
                     else -> {
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                         binding.pbDebt.visibility = View.INVISIBLE
                     }
                 }

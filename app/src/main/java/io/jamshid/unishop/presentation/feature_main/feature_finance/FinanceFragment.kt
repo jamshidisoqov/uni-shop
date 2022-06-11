@@ -18,6 +18,8 @@ import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.FragmentFinanceBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
+import io.jamshid.unishop.presentation.feature_main.dialog.NoConnectionDialog
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
 
@@ -61,6 +63,12 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
                         setBarChart(list)
                     }
                     else -> {
+
+                        val dialog = NoConnectionDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
+                        dialog.setOnDismissListener {
+                            viewModel.getLastSevenBalance()
+                        }
                         showProgress(false)
                     }
                 }
@@ -126,7 +134,7 @@ class FinanceFragment : BaseFragment<FragmentFinanceBinding>(FragmentFinanceBind
         val animator = ValueAnimator.ofFloat(start.toFloat(), end.toFloat())
         animator.addUpdateListener {
             val newValue = (it.animatedValue as Float).toLong().toString().toSummFormat()
-            binding.tvIncomeSumm.text = "$newValue"
+            binding.tvIncomeSumm.text = newValue
         }
         animator.duration = 500
         animator.start()

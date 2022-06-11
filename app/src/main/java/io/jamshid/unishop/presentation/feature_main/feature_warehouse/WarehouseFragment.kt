@@ -16,6 +16,7 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.databinding.FragmentWarehouseBinding
 import io.jamshid.unishop.domain.models.Category
 import io.jamshid.unishop.domain.models.Product
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_warehouse.adapters.ProductAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_warehouse.utils.ProductItemClick
 import kotlinx.coroutines.flow.collectLatest
@@ -58,6 +59,8 @@ class WarehouseFragment :
                         productAdapter.setData(response.data!!)
                     }
                     else -> {
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                         binding.pbWarehouse.visibility = View.INVISIBLE
                     }
                 }

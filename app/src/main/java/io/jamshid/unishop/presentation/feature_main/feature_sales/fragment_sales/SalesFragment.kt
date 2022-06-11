@@ -3,7 +3,6 @@ package io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sale
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +14,7 @@ import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.databinding.FragmentSalesBinding
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
+import io.jamshid.unishop.presentation.feature_main.dialog.NoConnectionDialog
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.adapter.SalesListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.dialog.AddSalesDialog
@@ -52,6 +52,12 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
                     }
                     is Response.Error -> {
                         binding.pbSales.visibility = View.INVISIBLE
+                        val dialog = NoConnectionDialog("")
+                        dialog.show(requireActivity().supportFragmentManager, "dialog")
+                        dialog.setOnDismissListener {
+                            viewModel.getAllProducts()
+                            binding.pbSales.visibility = View.VISIBLE
+                        }
                     }
                     is Response.Success -> {
                         binding.pbSales.visibility = View.INVISIBLE
@@ -67,8 +73,8 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.counter.collectLatest { counter ->
-                if (counter>0)
-                binding.tvCounterBasket.text = "$counter  " + getString(R.string.products)
+                if (counter > 0)
+                    binding.tvCounterBasket.text = "$counter  " + getString(R.string.products)
             }
         }
 

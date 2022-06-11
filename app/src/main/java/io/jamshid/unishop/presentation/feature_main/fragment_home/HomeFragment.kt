@@ -40,6 +40,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 Constants.choose = 1
                 findNavController().navigate(R.id.action_homeFragment_to_debtFragment)
             }
+            workerContainer.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_workerFragment)
+            }
         }
     }
 

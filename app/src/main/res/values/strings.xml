@@ -3,7 +3,7 @@
     <string name="password_by_in">Parol bilan kirish</string>
     <string name="pin_kodni_kiriting">Pin kodni kiriting</string>
     <string name="default_product_counter">product</string>
-    <string name="default_basket_summ">1 200 300 UZS</string>
+    <string name="default_basket_summ">0 UZS</string>
     <string name="todo">TODO</string>
     <string name="products">Товары</string>
     <string name="default_product_name">Lenovo 125 HD</string>
@@ -179,5 +179,7 @@
     <string name="food">еда</string>
     <string name="worker">Рабочий</string>
     <string name="time">время</string>
+    <string name="no_internet">No Internet</string>
+    <string name="refresh">Refresh</string>
 
 </resources>

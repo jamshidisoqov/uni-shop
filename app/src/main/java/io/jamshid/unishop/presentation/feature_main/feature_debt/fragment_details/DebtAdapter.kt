@@ -21,6 +21,8 @@ class DebtAdapter : RecyclerView.Adapter<DebtAdapter.ViewHolder>() {
         fun onBind(product: OutputProduct) {
             binding.apply {
                 tvItemProductName.text = product.product!!.name
+                tvItemProductName.setSingleLine()
+                tvItemProductName.isSelected = true
                 tvItemProductBrand.text = product.product.brand
                 tvItemProductCount.text = product.quantity.toString()+" штук"
                 tvItemProductPrice.text = product.cost!!.toLong().toString().toSummFormat()

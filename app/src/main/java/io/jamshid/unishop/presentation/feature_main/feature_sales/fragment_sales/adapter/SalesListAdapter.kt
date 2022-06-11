@@ -19,6 +19,8 @@ class SalesListAdapter : RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
         fun onBindView(product: Product) {
             binding.apply {
                 tvItemProductName.text = product.name
+                tvItemProductName.setSingleLine()
+                tvItemProductName.isSelected = true
                 tvItemProductBrand.text = product.brand
                 tvItemProductCount.text = "${product.quantity} штук"
                 tvItemProductPrice.text = product.maximumPrice.toString().toSummFormat()

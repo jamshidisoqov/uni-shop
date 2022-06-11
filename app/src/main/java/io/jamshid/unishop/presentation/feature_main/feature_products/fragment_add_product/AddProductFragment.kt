@@ -13,6 +13,9 @@ import io.jamshid.unishop.common.extension_functions.getOnlyDigits
 import io.jamshid.unishop.databinding.FragmentAddProductBinding
 import io.jamshid.unishop.domain.models.Category
 import io.jamshid.unishop.domain.models.Product
+import io.jamshid.unishop.presentation.MainActivity
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
+import io.jamshid.unishop.presentation.feature_main.dialog.NoConnectionDialog
 import io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.adapter.CategorySpinnerAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_products.fragment_add_product.dialog.NewCategoryDialog
 import io.jamshid.unishop.utils.MaskWatcherNothing
@@ -61,6 +64,7 @@ class AddProductFragment :
 
                 if (fieldsNotValid) {
                     if (price <= minPrice && minPrice < maxPrice) {
+                        if ((activity as MainActivity).isConnected())
                         viewModel.addProduct(
                             Product(
                                 id = 0,
@@ -73,7 +77,10 @@ class AddProductFragment :
                                 maximumPrice = maxPrice.toDouble(),
                                 categoryId = categoryId
                             )
-                        )
+                        )else {
+                            val dialog = NoConnectionDialog("Error")
+                            dialog.show(requireActivity().supportFragmentManager,"TAG")
+                        }
                         binding.apply {
                             edProductBrand.setText("")
                             edProductName.setText("")
@@ -89,7 +96,7 @@ class AddProductFragment :
                     }
                     viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                         viewModel.product.collectLatest {
-                            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+
                         }
                     }
                 } else {

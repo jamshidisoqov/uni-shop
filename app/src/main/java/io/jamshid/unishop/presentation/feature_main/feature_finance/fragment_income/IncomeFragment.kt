@@ -17,6 +17,7 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.data.models.dto.OutputSales
 import io.jamshid.unishop.databinding.FragmentIncomeBinding
+import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_finance.fragment_income.adapter.IncomeAdapter
 import io.jamshid.unishop.utils.OnItemClickListener
 import kotlinx.coroutines.flow.collectLatest
@@ -26,6 +27,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding
 
     private val viewModel: IncomeViewModel by viewModels()
     private var lastValue = 0L
+    private var lastDebt = 0L
 
     override fun myCreateView(savedInstanceState: Bundle?) {
 
@@ -53,6 +55,8 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding
                         calculateSumm(it.data!!)
                     }
                     else -> {
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager,"TAG")
                         binding.pbIncome.visibility = View.INVISIBLE
                     }
                 }
@@ -101,20 +105,22 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding>(FragmentIncomeBinding
             debt += (i.debtAmount)
         }
 
-        animateTotalPrice(lastValue,allSumm.toLong())
+        animateTotalPrice(lastValue, allSumm.toLong(), 0)
         lastValue = allSumm.toLong()
-        binding.tvDebtSumm.text = getString(R.string.payment_debt)+"::"+"${debt.toLong()}".toSummFormat()
-
+        animateTotalPrice(lastDebt, debt.toLong(), 1)
+        lastDebt = debt.toLong()
 
 
     }
 
     @SuppressLint("SetTextI18n")
-    private fun animateTotalPrice(start: Long, end: Long) {
+    private fun animateTotalPrice(start: Long, end: Long, type: Int) {
         val animator = ValueAnimator.ofFloat(start.toFloat(), end.toFloat())
         animator.addUpdateListener {
             val newValue = (it.animatedValue as Float).toLong().toString().toSummFormat()
-            binding.tvAllSum.text = getString(R.string.all)+":$newValue"
+            if (type == 0)
+                binding.tvAllSum.text = getString(R.string.all) + ":$newValue"
+            else binding.tvDebtSumm.text = getString(R.string.all) + ":$newValue"
         }
         animator.duration = 500
         animator.start()

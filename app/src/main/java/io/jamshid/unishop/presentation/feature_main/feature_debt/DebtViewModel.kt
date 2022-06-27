@@ -35,9 +35,7 @@ class DebtViewModel @Inject constructor(
         }
     }
 
-    fun getDebtByClient() {
-        TODO("client bo'yincha debt")
-    }
+
 
     fun searchDebt(name: String) {
         viewModelScope.launch(Dispatchers.IO) {

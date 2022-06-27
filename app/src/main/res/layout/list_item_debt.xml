@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/margin_small"
@@ -11,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/margin_bigger"
-        android:padding="@dimen/margin_standart">
+        android:padding="@dimen/margin_standart"
+        tools:ignore="RtlSymmetry">
 
         <LinearLayout
             android:id="@+id/container_1"
@@ -21,8 +23,9 @@
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/tv_debt_user_name"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="marquee"
                 android:textSize="18sp"
                 android:text="@string/default_name"/>
             <ImageView

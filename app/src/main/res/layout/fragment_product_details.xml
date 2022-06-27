@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_bigger"
+            android:layout_marginTop="@dimen/margin_bigger"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -219,6 +220,8 @@
         android:contentDescription="@string/todo"
         android:src="@drawable/ic_add" />
 
-    <include layout="@layout/product_detail_bottom_sheet" />
+    <include
+        android:id="@+id/layout_bsh"
+        layout="@layout/product_detail_bottom_sheet" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

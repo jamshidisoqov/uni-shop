@@ -14,7 +14,6 @@ import io.jamshid.unishop.databinding.DilogAddProductBinding
 import io.jamshid.unishop.domain.models.Product
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
 import io.jamshid.unishop.presentation.MainActivity
-import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.SalesViewModel
 import io.jamshid.unishop.utils.MaskWatcherNothing
 import io.jamshid.unishop.utils.MaskWatcherPayment
@@ -78,10 +77,6 @@ class AddSalesDialog(
                                     )
                                 )
                                 dialog!!.dismiss()
-                            }else{
-                                val dialog = ErrorDialog("No internet connected")
-                                dialog.show(childFragmentManager,"manager")
-
                             }
                         } else {
                             edCountProduct.error = getString(R.string.product_quantity_error)
@@ -93,7 +88,6 @@ class AddSalesDialog(
                     edCountProduct.error = getString(R.string.product_quantity_error)
                 }
             }
-
             btnCloseDialog.setOnClickListener {
                 dialog!!.dismiss()
             }

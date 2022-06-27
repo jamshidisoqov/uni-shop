@@ -25,6 +25,8 @@ class DebtAdapter(private val debtClickListener: DebtClickListener) :
         fun onBind(outputSales: OutputSales) {
             binding.apply {
                 tvDebtUserName.text = outputSales.client.fullName
+                tvDebtUserName.setSingleLine()
+                tvDebtUserName.isSelected = true
                 tvDebtSumm.text = outputSales.debtAmount.toLong().toString().toSummFormat()
                 tvDebtDate.text = Date(outputSales.expiredDate.time).toString().getDateFormat()
                 root.setOnClickListener {

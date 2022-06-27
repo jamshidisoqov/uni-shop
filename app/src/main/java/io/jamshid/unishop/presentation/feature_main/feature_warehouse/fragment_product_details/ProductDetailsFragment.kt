@@ -3,6 +3,7 @@ package io.jamshid.unishop.presentation.feature_main.feature_warehouse.fragment_
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
@@ -11,7 +12,10 @@ import io.jamshid.unishop.common.extension_functions.getOnlyDigits
 import io.jamshid.unishop.common.extension_functions.toSummFormat
 import io.jamshid.unishop.databinding.DilogChangeProductBinding
 import io.jamshid.unishop.databinding.FragmentProductDetailsBinding
+import io.jamshid.unishop.databinding.ProductDetailBottomSheetBinding
 import io.jamshid.unishop.domain.models.Product
+import io.jamshid.unishop.presentation.feature_main.feature_warehouse.fragment_product_details.adapters.InputAdapter
+import io.jamshid.unishop.presentation.feature_main.feature_warehouse.fragment_product_details.adapters.OutputAdapter
 import io.jamshid.unishop.utils.MaskWatcherNothing
 import io.jamshid.unishop.utils.MaskWatcherPayment
 import kotlinx.coroutines.flow.collectLatest
@@ -23,6 +27,10 @@ class ProductDetailsFragment :
 
     private val viewModel: ProductDetailsViewModel by viewModels()
     private lateinit var args: Product
+    private var isInput = true
+    private lateinit var include: ProductDetailBottomSheetBinding
+    private lateinit var inputAdapter: InputAdapter
+    private lateinit var outputAdapter: OutputAdapter
 
     override fun myCreateView(savedInstanceState: Bundle?) {
 
@@ -32,20 +40,30 @@ class ProductDetailsFragment :
 
             viewModel.setProduct(args)
 
-
             binding.fabAddProduct.setOnClickListener {
                 showDialog(args)
             }
 
+            inputAdapter = InputAdapter()
+            outputAdapter = OutputAdapter()
+
+            val bsh = BottomSheetBehavior.from(binding.layoutBsh.root)
+            bsh.peekHeight = (resources.displayMetrics.heightPixels * 0.3).toInt()
+
+            include = binding.layoutBsh
+            setAdapter()
+
+            include.changedImg.setOnClickListener {
+                isInput = !isInput
+                setAdapter()
+            }
 
         }
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.product.collectLatest {
-
                 when (it) {
                     is Response.Loading -> {
-
+                        showProgress(false)
                     }
                     is Response.Success -> {
                         showProgress(false)
@@ -76,6 +94,12 @@ class ProductDetailsFragment :
 
     }
 
+    private fun setAdapter() {
+        if (isInput)
+            include.rcvProductDetails.adapter = inputAdapter
+        else include.rcvProductDetails.adapter = outputAdapter
+    }
+
     private fun showDialog(product: Product) {
 
 
@@ -103,7 +127,8 @@ class ProductDetailsFragment :
             btnChange.setOnClickListener {
 
                 val p = product.copy(
-                    quantity = edProductQuantity.text.toString().getOnlyDigits().toInt()+product.quantity,
+                    quantity = edProductQuantity.text.toString().getOnlyDigits()
+                        .toInt() + product.quantity,
                     price = edProductPrice.text.toString().getOnlyDigits().toDouble(),
                     minimumPrice = edProductMinimumPrices.text.toString().getOnlyDigits()
                         .toDouble(),

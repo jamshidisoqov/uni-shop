@@ -181,5 +181,6 @@
     <string name="time">время</string>
     <string name="no_internet">No Internet</string>
     <string name="refresh">Refresh</string>
+    <string name="product_history">Product history</string>
 
 </resources>

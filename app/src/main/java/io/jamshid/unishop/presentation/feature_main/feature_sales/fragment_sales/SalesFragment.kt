@@ -14,7 +14,6 @@ import io.jamshid.unishop.base.BaseFragment
 import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.databinding.FragmentSalesBinding
 import io.jamshid.unishop.domain.models.transfers.BasketProductModel
-import io.jamshid.unishop.presentation.feature_main.dialog.NoConnectionDialog
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_baskets.util.Basket
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.adapter.SalesListAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_sales.fragment_sales.dialog.AddSalesDialog
@@ -36,11 +35,15 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
         binding.rcvProductList.adapter = adapter
 
         adapter.setOnItemClickListener { product ->
-            AddSalesDialog(viewModel, product).also {
-                it.show(
-                    requireActivity().supportFragmentManager,
-                    it.tag
-                )
+            if (isConnected) {
+                AddSalesDialog(viewModel, product).also {
+                    it.show(
+                        requireActivity().supportFragmentManager,
+                        it.tag
+                    )
+                }
+            }else{
+                checkInternet()
             }
         }
 
@@ -52,11 +55,10 @@ class SalesFragment : BaseFragment<FragmentSalesBinding>(FragmentSalesBinding::i
                     }
                     is Response.Error -> {
                         binding.pbSales.visibility = View.INVISIBLE
-                        val dialog = NoConnectionDialog("")
-                        dialog.show(requireActivity().supportFragmentManager, "dialog")
-                        dialog.setOnDismissListener {
-                            viewModel.getAllProducts()
-                            binding.pbSales.visibility = View.VISIBLE
+                        if (!isConnected) {
+                            if (checkInternet()) {
+                                viewModel.getAllProducts()
+                            }
                         }
                     }
                     is Response.Success -> {

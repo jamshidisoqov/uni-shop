@@ -32,7 +32,7 @@ class WarehouseViewModel @Inject constructor(
         fetchAllCategories()
     }
 
-    private fun getAllProducts() {
+    fun getAllProducts() {
         viewModelScope.launch {
             try {
                 _allProducts.emit(Response.Loading())

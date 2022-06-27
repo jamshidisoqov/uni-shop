@@ -16,7 +16,6 @@ import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.databinding.FragmentWarehouseBinding
 import io.jamshid.unishop.domain.models.Category
 import io.jamshid.unishop.domain.models.Product
-import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_warehouse.adapters.ProductAdapter
 import io.jamshid.unishop.presentation.feature_main.feature_warehouse.utils.ProductItemClick
 import kotlinx.coroutines.flow.collectLatest
@@ -59,73 +58,75 @@ class WarehouseFragment :
                         productAdapter.setData(response.data!!)
                     }
                     else -> {
-                        val dialog = ErrorDialog("Error")
-                        dialog.show(requireActivity().supportFragmentManager,"TAG")
-                        binding.pbWarehouse.visibility = View.INVISIBLE
-                    }
-                }
-
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.allCategories.collectLatest { response ->
-
-                when (response) {
-                    is Response.Loading -> {
-                        binding.pbWarehouse.visibility = View.VISIBLE
-                    }
-                    is Response.Success -> {
-                        binding.pbWarehouse.visibility = View.INVISIBLE
-                        response.data!!.forEach { category ->
-                            addNewChip(category)
+                        if (!isConnected) {
+                            if (checkInternet()) {
+                                viewModel.getAllProducts()
+                                binding.pbWarehouse.visibility = View.INVISIBLE
+                            }
                         }
                     }
-                    else -> {
-                        binding.pbWarehouse.visibility = View.INVISIBLE
-                    }
                 }
-
             }
         }
 
-        binding.apply {
-            rcvWareHouse.adapter = productAdapter
-            imgAddProduct.setOnClickListener {
-                findNavController().navigate(R.id.action_warehouseFragment_to_addProductFragment)
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                viewModel.allCategories.collectLatest { response ->
+
+                    when (response) {
+                        is Response.Loading -> {
+                            binding.pbWarehouse.visibility = View.VISIBLE
+                        }
+                        is Response.Success -> {
+                            binding.pbWarehouse.visibility = View.INVISIBLE
+                            response.data!!.forEach { category ->
+                                addNewChip(category)
+                            }
+                        }
+                        else -> {
+                            binding.pbWarehouse.visibility = View.INVISIBLE
+                        }
+                    }
+
+                }
             }
 
-            edSearchProduct.addTextChangedListener {
-                viewModel.search(it!!.toString())
-            }
-        }
-
-
-    }
-
-    private fun addNewChip(category: Category) {
-        try {
             binding.apply {
-                val inflater = LayoutInflater.from(requireContext())
-                val newChip =
-                    inflater.inflate(R.layout.item_chip_choice, chipGroup, false) as Chip
-                newChip.text = category.name
+                rcvWareHouse.adapter = productAdapter
+                imgAddProduct.setOnClickListener {
+                    findNavController().navigate(R.id.action_warehouseFragment_to_addProductFragment)
+                }
 
-                chipGroup.addView(newChip)
-                newChip.setOnFocusChangeListener { buttonView, isChecked ->
-                    selectedCategoryId = if (isChecked) {
-                        chipGroup.check((buttonView as Chip).id)
-                        category.id
-                    } else {
-                        -1
-                    }
-                    if (selectedCategoryId!=-1){
-
-                    }
+                edSearchProduct.addTextChangedListener {
+                    viewModel.search(it!!.toString())
                 }
             }
-        }catch (e:Exception){
+
 
         }
+
+        private fun addNewChip(category: Category) {
+            try {
+                binding.apply {
+                    val inflater = LayoutInflater.from(requireContext())
+                    val newChip =
+                        inflater.inflate(R.layout.item_chip_choice, chipGroup, false) as Chip
+                    newChip.text = category.name
+
+                    chipGroup.addView(newChip)
+                    newChip.setOnFocusChangeListener { buttonView, isChecked ->
+                        selectedCategoryId = if (isChecked) {
+                            chipGroup.check((buttonView as Chip).id)
+                            category.id
+                        } else {
+                            -1
+                        }
+                        if (selectedCategoryId != -1) {
+
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+
+            }
+        }
     }
-}

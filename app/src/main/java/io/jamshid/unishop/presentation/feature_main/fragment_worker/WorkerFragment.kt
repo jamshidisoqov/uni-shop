@@ -39,6 +39,7 @@ class WorkerFragment : BaseFragment<FragmentWorkerBinding>(FragmentWorkerBinding
                         binding.root.isEnabled = true
                     }
                     else -> {
+
                         binding.pbWorker.visibility = View.INVISIBLE
                     }
                 }

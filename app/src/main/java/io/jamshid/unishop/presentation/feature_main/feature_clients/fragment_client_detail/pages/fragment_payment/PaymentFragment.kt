@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import io.jamshid.unishop.base.BaseFragment
+import io.jamshid.unishop.common.Response
 import io.jamshid.unishop.databinding.FragmentPaymentBinding
 import io.jamshid.unishop.presentation.feature_main.dialog.ErrorDialog
 import io.jamshid.unishop.presentation.feature_main.feature_clients.fragment_client_detail.pages.fragment_payment.adapter.PaymentAdapter
@@ -24,12 +25,24 @@ class PaymentFragment : BaseFragment<FragmentPaymentBinding>(FragmentPaymentBind
             viewModel.getAllPayments(arguments?.getLong("clientId")!!)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.allPayments.collectLatest {
-                if (it.data != null)
-                    adapter.setData(it.data!!)
-                else {
-                    val dialog = ErrorDialog("Error")
-                    dialog.show(requireActivity().supportFragmentManager, "TAG")
+            viewModel.allPayments.collectLatest { response ->
+                when (response) {
+                    is Response.Loading -> {
+                        showProgress(true)
+                    }
+                    is Response.Error -> {
+                        showProgress(false)
+                        val dialog = ErrorDialog("Error")
+                        dialog.show(requireActivity().supportFragmentManager, "TAG")
+                        showProgress(false)
+                    }
+                    is Response.Success -> {
+                        response.data?.let {
+                            adapter.setData(it)
+                        }
+                        showProgress(false)
+                    }
+                    else -> Unit
                 }
             }
         }
